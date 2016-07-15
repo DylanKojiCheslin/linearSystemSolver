@@ -13,3 +13,12 @@ find out if the systems has: no solution, one solution, infinite solutions
 if there is one or more solutions then define them for the user
 
 optionaly to graph the system
+
+
+
+##taking a linear system as a array of strings
+a linear system as an array of two or more strings where each should have the following properties:
+1. is an "equation" ends in a "=" symbol followed by a space and a real or complex number
+2. before the equation there are one or more groupings of:
+a.  positive "+" or negitive "-" sypmbol(if it is the first in the string the positive may be assumed and not written) this may be followed by a space " " symbol,
+b. a real or complex coefficient(if the coefficient is one it will not be written), followed by "x" subscriped by any positive integer
