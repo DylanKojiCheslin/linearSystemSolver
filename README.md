@@ -22,3 +22,8 @@ a linear system as an array of two or more strings where each should have the fo
 2. before the equation there are one or more groupings of:  
 2a.  positive "+" or negitive "-" sypmbol(if it is the first in the string the positive may be assumed and not written) this may be followed by a space " " symbol,  
 2b. a real or complex coefficient(if the coefficient is one it will not be written), followed by "x" subscriped by any positive integer  
+
+example:  
+["2x1 + 3x2 = 5",   
+ "x3 = 20:,  
+ "-2x2 = 5"]
