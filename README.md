@@ -23,7 +23,7 @@ a linear system as an array of two or more strings where each should have the fo
 
 example:  
 ["2x1 + 3x2 = 5",   
- "x3 = 20:,  
+ "x3 = 2",  
  "-2x2 = 5"]
 
 ## convert into augmented matrix notation
@@ -33,7 +33,7 @@ the intrenal workings of the codebase will be a wrapper object w/utils around a 
 ```javascript
 let theSystemAnArrayOfStrings = [
 "2x1 + 3x2 = 5",   
-   "x3 = 20:,  
+   "x3 = 20",  
    "-2x2 = 5"
  ];
  
