@@ -1,7 +1,7 @@
 # linearSystemUtility
 tools for exploring linear systems
 
-what is a [System_of_linear_equations](https://en.wikipedia.org/wiki/System_of_linear_equations "System of linear equations")
+what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_linear_equations "System_of_linear_equations")
 
 ## behavior of this code
 
