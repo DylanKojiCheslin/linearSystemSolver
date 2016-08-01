@@ -40,8 +40,6 @@ let theSystemAnArrayOfStrings = [
  let theSystemAugmentedMatrixNotation = LinearSystem.convertToAugmentedMartrixNotation(theSystemAnArrayOfStrings);
 ```
 
-
-
 after it is converted it can be used to instanseate a LinearSystem object.
 
 ```javascript
@@ -51,6 +49,13 @@ let theSystem = new LinearSystem(theSystemAugmentedMatrixNotation);
 ##find out if the systems has: no solution, one solution, infinite solutions
 
 what is a [solving a linear system](https://en.wikipedia.org/wiki/Augmented_matrix#Solution_of_a_linear_system "solving_a_System_of_linear_equations")
+
+[3 row operations:](https://en.wikipedia.org/wiki/Elementary_matrix#Operations "matrix_Operations")
+
+1. (switch) switch 2 rows positions
+2. (scaling) mulitply every entry in a row by a non-zero constant
+3. (addition) replace a row with its sum and a mulitple of a diffrent row and a non-zero constant
+
 
 ```javascript
 let solution = theSystem.solve();
@@ -74,23 +79,55 @@ new LinearSystem( theSystemAugmentedMatrixNotation );
 return an instance of LinearSystem
 
 ### solve
-yourInstance.solve();
+yourInstance.solve()
 
-return a description of the systems solution
+return a description of the systems solution in reduced echelon form
 
 ### verboseSolution
-yourInstance.verboseSolution
+yourInstance.verboseSolution()
 
-prints console logs of the details of what it is doing, solutions
+prints console logs of the details of what it is doing, returns a solution in reduced echelon form
+
+### isSolveable
+yourInstance.solve()
+
+return a description of the systems solution in echelon form (non-reduced)
+
+### verboseIsSolveable
+yourInstance.verboseIsSolveable()
+
+prints console logs of the details of what it is doing, returns a solution in echelon form (non-reduced)
 
 ### _logState
 
 console.log of _systemState
 
+### _floatingSortOfColumn(columnNumber, rowsOffSetNumber)
+does a floating sort to rearage rows to move non zero rows to the top.
+rosOffSetNumber argumemt will prevent the rows from being rearagned,
+the rowsOffSetNumber argument defaluts to zero
+
+### _switch
+yourInstance._switch(rowNumberOne, rowNumberTwo)
+excnage the location of 2 rows
+
+### _scaling
+yourInstance._scaling(rowNumber, scaleNumber)
+scales all entries in row by a non-zero number
+
+### _addition
+yourInstance._addition(rowNumberToBeReplaced, diffrenctRowNumber, scaleNumberForOtherRow)
+replaces the row in rowNumberToBeReplaced with the the product of the row in diffrenctRowNumber and scaleNumberForOtherRow
+
 ## instance properties
 
-### _systemState
-the internal storage of the linear system as a array
 
-### _floatingSortOfColumn(columnNumber, rowsOffSetNumber)
-does a floating sort to rearage rows to move non zero rows to top
+### _systemState
+the internal storage of the linear systems matrix as an array
+
+### _isEchelonForm
+returns a bool indecating if the matrix is in [echelon form](https://en.wikipedia.org/wiki/Row_echelon_form "etchlon_Form")
+
+### _isReducedEchelonForm 
+returns a bool indecating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_Etchelon_form")
+
