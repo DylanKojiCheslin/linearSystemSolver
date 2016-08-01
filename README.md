@@ -88,12 +88,12 @@ yourInstance.verboseSolution()
 
 prints console logs of the details of what it is doing, returns a solution in reduced echelon form
 
-### isSolveable
+### isSolvable
 yourInstance.solve()
 
 return a description of the systems solution in echelon form (non-reduced)
 
-### verboseIsSolveable
+### verboseIsSolvable
 yourInstance.verboseIsSolveable()
 
 prints console logs of the details of what it is doing, returns a solution in echelon form (non-reduced)
