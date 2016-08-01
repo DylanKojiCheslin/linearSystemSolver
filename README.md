@@ -56,3 +56,41 @@ what is a [solving a linear system](https://en.wikipedia.org/wiki/Augmented_matr
 let solution = theSystem.solve();
 console.log(solution);
 ```
+
+## API
+
+### static methods
+
+#### convertToAugmentedMartrixNotation
+LinearSystem.convertToAugmentedMartrixNotation(arrayOfStrings);
+
+returns a array of the system
+
+## instance methods
+
+### new LinearSystem 
+new LinearSystem( theSystemAugmentedMatrixNotation );
+
+return an instance of LinearSystem
+
+### solve
+yourInstance.solve();
+
+return a description of the systems solution
+
+### verboseSolution
+yourInstance.verboseSolution
+
+prints console logs of the details of what it is doing, solutions
+
+### _logState
+
+console.log of _systemState
+
+## instance properties
+
+### _systemState
+the internal storage of the linear system as a array
+
+### _floatingSortOfColumn(columnNumber, rowsOffSetNumber)
+does a floating sort to rearage rows to move non zero rows to top
