@@ -5,9 +5,9 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 
 ## behavior of this code
 
-while showing its work and making its desicion process known the code should do the following:
+while showing its work and making its decision process known the code should do the following:
 
-take a linear systems as a array of strings or as a array of numbers that confrom to the augmented matrix notation
+take a linear systems as a array of strings or as a array of numbers that conform to the augmented matrix notation
 if it is an array of strings convert it into augmented matrix notation
 find out if the systems has: no solution, one solution, infinite solutions
 if there is one or more solutions then define them for the user
@@ -18,8 +18,8 @@ optionaly to graph the system
 a linear system as an array of two or more strings where each should have the following properties:  
 1. is an "equation" ends in a "=" symbol followed by a space and a real or complex number  
 2. before the equation there are one or more groupings of:  
-2a.  positive "+" or negitive "-" sypmbol(if it is the first in the string the positive may be assumed and not written) this may be followed by a space " " symbol,  
-2b. a real or complex coefficient(if the coefficient is one it will not be written), followed by "x" subscriped by any positive integer  
+2a.  positive "+" or negative "-" sypmbol(if it is the first in the string the positive may be assumed and not written) this may be followed by a space " " symbol,  
+2b. a real or complex coefficient(if the coefficient is one it will not be written), followed by "x" subscripted by any positive integer  
 
 example:  
 ["2x1 + 3x2 = 5",   
@@ -28,7 +28,7 @@ example:
 
 ## convert into augmented matrix notation
 
-the intrenal workings of the codebase will be a wrapper object w/utils around a array that is the state data storage in the form of augmented matrix notation. there will be a static method to convert arrays of strings.
+the internal workings will be a wrapper object w/utils around a array that is the state data storage in the form of augmented matrix notation. there will be a static method to convert arrays of strings.
 
 ```javascript
 let theSystemAnArrayOfStrings = [
@@ -36,11 +36,11 @@ let theSystemAnArrayOfStrings = [
    "x3 = 20",  
    "-2x2 = 5"
  ];
- 
+
  let theSystemAugmentedMatrixNotation = LinearSystem.convertToAugmentedMartrixNotation(theSystemAnArrayOfStrings);
 ```
 
-after it is converted it can be used to instanseate a LinearSystem object.
+after it is converted it can be used to instantiate a LinearSystem object.
 
 ```javascript
 let theSystem = new LinearSystem(theSystemAugmentedMatrixNotation);
@@ -53,8 +53,8 @@ what is a [solving a linear system](https://en.wikipedia.org/wiki/Augmented_matr
 [3 row operations:](https://en.wikipedia.org/wiki/Elementary_matrix#Operations "matrix_Operations")
 
 1. (switch) switch 2 rows positions
-2. (scaling) mulitply every entry in a row by a non-zero constant
-3. (addition) replace a row with its sum and a mulitple of a diffrent row and a non-zero constant
+2. (scaling) multiply every entry in a row by a non-zero constant
+3. (addition) replace a row with its sum and a multiple of a different row and a non-zero constant
 
 
 ```javascript
@@ -73,7 +73,7 @@ returns a array of the system
 
 ## instance methods
 
-### new LinearSystem 
+### new LinearSystem
 new LinearSystem( theSystemAugmentedMatrixNotation );
 
 return an instance of LinearSystem
@@ -103,13 +103,13 @@ prints console logs of the details of what it is doing, returns a solution in ec
 console.log of _systemState
 
 ### _floatingSortOfColumn(columnNumber, rowsOffSetNumber)
-does a floating sort to rearage rows to move non zero rows to the top.
-rosOffSetNumber argumemt will prevent the rows from being rearagned,
-the rowsOffSetNumber argument defaluts to zero
+does a floating sort to rearrange rows to move non zero rows to the top.
+rosOffSetNumber argumemt will prevent the rows from being rearrange,
+the rowsOffSetNumber argument defaults to zero
 
 ### _switch
 yourInstance._switch(rowNumberOne, rowNumberTwo)
-excnage the location of 2 rows
+exchange the location of 2 rows
 
 ### _scaling
 yourInstance._scaling(rowNumber, scaleNumber)
@@ -126,8 +126,7 @@ replaces the row in rowNumberToBeReplaced with the the product of the row in dif
 the internal storage of the linear systems matrix as an array
 
 ### _isEchelonForm
-returns a bool indecating if the matrix is in [echelon form](https://en.wikipedia.org/wiki/Row_echelon_form "etchlon_Form")
+returns a bool indicating if the matrix is in [echelon form](https://en.wikipedia.org/wiki/Row_echelon_form "etchlon_Form")
 
-### _isReducedEchelonForm 
-returns a bool indecating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_Etchelon_form")
-
+### _isReducedEchelonForm
+returns a bool indicating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_Etchelon_form")
