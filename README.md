@@ -83,6 +83,23 @@ yourInstance.solve()
 
 return a description of the systems solution in reduced echelon form
 
+1. the left most non-zero column is the _pivotColumn
+2. the top row/column postion of the _pivotColumn is the _pivot
+3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
+4. _zeroAllRowsUnderThePevot() - row replacement operaitons to "zero" all entry under the pivot
+
+4. foreach other row:
+- note this doesn't work with non-square linear systems, find a way to fix this
+-provide example of non-square linear system
+- possible solution is to go down&right one then go right until there is a non-zero number?
+a. _pivot.row++, _pivot.column++
+b. _zeroAllRowsUnderThePevot()
+5. _zeroAllRowsAboveThePivot(), _scalePivotToOne
+6. foreach other row:
+a. _pivot.row--, _pivot--
+b. _zeroAllRowsAboveThePivot(), _scalePivotToOne
+
+
 ### verboseSolution
 yourInstance.verboseSolution()
 
@@ -102,11 +119,6 @@ prints console logs of the details of what it is doing, returns a solution in ec
 
 console.log of _systemState
 
-### _floatingSortOfColumn(columnNumber, rowsOffSetNumber)
-does a floating sort to rearrange rows to move non zero rows to the top.
-rosOffSetNumber argumemt will prevent the rows from being rearrange,
-the rowsOffSetNumber argument defaults to zero
-
 ### _switch
 yourInstance._switch(rowNumberOne, rowNumberTwo)
 exchange the location of 2 rows
@@ -119,11 +131,35 @@ scales all entries in row by a non-zero number
 yourInstance._addition(rowNumberToBeReplaced, diffrenctRowNumber, scaleNumberForOtherRow)
 replaces the row in rowNumberToBeReplaced with the the product of the row in diffrenctRowNumber and scaleNumberForOtherRow
 
+### _zeroAllRowsUnderThePevot
+iterate over all entries below the pivot, use _rowReplacementRemover on each
+
+### _zeroAllRowsAboveThePevot
+iterate over all entries above the pivot, use _rowReplacementRemover on each
+
+### _rowReplacementRemover()
+zeros out the entry using _addition and the _pivot
+
+### _scalePivotToOne
+uses _scaling on the row of _pivot to scale _pivot to 1
+
+### _largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber)
+
+rearranges rows to move the largest absolute value in to the top of the column row to the top.
+this is sometimes called partial pivoting
+
 ## instance properties
 
 
 ### _systemState
 the internal storage of the linear systems matrix as an array
+
+### _pivot
+the pivot position, a obj with props row/column
+
+### _pivotColumn
+the pivot column
+
 
 ### _isEchelonForm
 returns a bool indicating if the matrix is in [echelon form](https://en.wikipedia.org/wiki/Row_echelon_form "etchlon_Form")
