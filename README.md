@@ -5,14 +5,12 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 
 ## behavior of this code
 
-while showing its work and making its decision process known the code should do the following:
-
-take a linear systems as a array of strings or as a array of numbers that conform to the augmented matrix notation
+takes a linear systems as a array of strings or as a array of numbers that conform to the augmented matrix notation
 if it is an array of strings convert it into augmented matrix notation
 find out if the systems has: no solution, one solution, infinite solutions
 if there is one or more solutions then define them for the user
 
-optionaly to graph the system
+optionally to graph the system
 
 ##taking a linear system as a array of strings
 a linear system as an array of two or more strings where each should have the following properties:  
@@ -87,8 +85,7 @@ return a description of the systems solution in reduced echelon form
 2. the top row/column postion of the _pivotColumn is the _pivot
 3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
 4. _zeroAllRowsUnderThePevot() - row replacement operaitons to "zero" all entry under the pivot
-
-4. foreach other row:
+foreach other row:
 - note this doesn't work with non-square linear systems, find a way to fix this
 -provide example of non-square linear system
 - possible solution is to go down&right one then go right until there is a non-zero number?
@@ -103,7 +100,7 @@ b. _zeroAllRowsAboveThePivot(), _scalePivotToOne
 ### verboseSolution
 yourInstance.verboseSolution()
 
-prints console logs of the details of what it is doing, returns a solution in reduced echelon form
+console logs the details of attempts to solve, returns a solution in reduced echelon form
 
 ### isSolvable
 yourInstance.solve()
@@ -131,7 +128,7 @@ scales all entries in row by a non-zero number
 yourInstance._addition(rowNumberToBeReplaced, diffrenctRowNumber, scaleNumberForOtherRow)
 replaces the row in rowNumberToBeReplaced with the the product of the row in diffrenctRowNumber and scaleNumberForOtherRow
 
-### _zeroAllRowsUnderThePevot
+### _zeroAllRowsUnderThePivot
 iterate over all entries below the pivot, use _rowReplacementRemover on each
 
 ### _zeroAllRowsAboveThePevot
