@@ -3,14 +3,12 @@ tools for exploring linear systems
 
 what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_linear_equations "System_of_linear_equations")
 
-## behavior of this code
+## project specifications
 
 takes a linear systems as a array of strings or as a array of numbers that conform to the augmented matrix notation
 if it is an array of strings convert it into augmented matrix notation
 find out if the systems has: no solution, one solution, infinite solutions
 if there is one or more solutions then define them for the user
-
-optionally to graph the system
 
 ##taking a linear system as a array of strings
 a linear system as an array of two or more strings where each should have the following properties:  
@@ -77,14 +75,19 @@ new LinearSystem( theSystemAugmentedMatrixNotation );
 return an instance of LinearSystem
 
 ### solve
-yourInstance.solve()
+yourInstance.solve({verbose:false,reduced:true})
 
-return a description of the systems solution in reduced echelon form
+optional parameter object has:
+"verbose" bool prints console logs of the details of the solution default false,
+"reduced" bool if the solutions should be in reduced etchelon form default true
+
+
+return a description of the systems solution (or lack of one) in reduced echelon form
 
 1. the left most non-zero column is the _pivotColumn
 2. the top row/column postion of the _pivotColumn is the _pivot
 3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
-4. _zeroAllRowsUnderThePevot() - row replacement operaitons to "zero" all entry under the pivot
+4. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
 foreach other row:
 - note this doesn't work with non-square linear systems, find a way to fix this
 -provide example of non-square linear system
@@ -96,21 +99,13 @@ b. _zeroAllRowsUnderThePevot()
 a. _pivot.row--, _pivot--
 b. _zeroAllRowsAboveThePivot(), _scalePivotToOne
 
-
-### verboseSolution
-yourInstance.verboseSolution()
-
-console logs the details of attempts to solve, returns a solution in reduced echelon form
-
 ### isSolvable
-yourInstance.solve()
+yourInstance.solve({verbose:false})
 
-return a description of the systems solution in echelon form (non-reduced)
+optional parameter object has "verbose" bool
+prints console logs of the details
 
-### verboseIsSolvable
-yourInstance.verboseIsSolveable()
-
-prints console logs of the details of what it is doing, returns a solution in echelon form (non-reduced)
+return a bool indicating if the system has one or more solutions
 
 ### _logState
 
@@ -131,7 +126,7 @@ replaces the row in rowNumberToBeReplaced with the the product of the row in dif
 ### _zeroAllRowsUnderThePivot
 iterate over all entries below the pivot, use _rowReplacementRemover on each
 
-### _zeroAllRowsAboveThePevot
+### _zeroAllRowsAboveThePivot
 iterate over all entries above the pivot, use _rowReplacementRemover on each
 
 ### _rowReplacementRemover()
