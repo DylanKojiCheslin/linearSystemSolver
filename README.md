@@ -79,10 +79,9 @@ yourInstance.solve({verbose:false,reduced:true})
 
 optional parameter object has:
 "verbose" bool prints console logs of the details of the solution default false,
-"reduced" bool if the solutions should be in reduced etchelon form default true
+"reduced" bool if the solutions should return in reduced etchelon form default true
 
-
-return a description of the systems solution (or lack of one) in reduced echelon form
+return a description of the systems solution (or lack of one)
 
 1. the left most non-zero column is the _pivotColumn
 2. the top row/column postion of the _pivotColumn is the _pivot
