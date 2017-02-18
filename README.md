@@ -5,41 +5,19 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 
 ## project specifications
 
-takes a linear systems as a array of strings or as a array of numbers that conform to the augmented matrix notation
-if it is an array of strings convert it into augmented matrix notation
+takes a array of numbers that conform to the augmented matrix notation
 find out if the systems has: no solution, one solution, infinite solutions
 if there is one or more solutions then define them for the user
 
-##taking a linear system as a array of strings
-a linear system as an array of two or more strings where each should have the following properties:  
-1. is an "equation" ends in a "=" symbol followed by a space and a real or complex number  
-2. before the equation there are one or more groupings of:  
-2a.  positive "+" or negative "-" sypmbol(if it is the first in the string the positive may be assumed and not written) this may be followed by a space " " symbol,  
-2b. a real or complex coefficient(if the coefficient is one it will not be written), followed by "x" subscripted by any positive integer  
-
-example:  
-["2x1 + 3x2 = 5",   
- "x3 = 2",  
- "-2x2 = 5"]
-
-## convert into augmented matrix notation
-
-the internal workings will be a wrapper object w/utils around a array that is the state data storage in the form of augmented matrix notation. there will be a static method to convert arrays of strings.
+a LinearSystem object.
 
 ```javascript
-let theSystemAnArrayOfStrings = [
-"2x1 + 3x2 = 5",   
-   "x3 = 20",  
-   "-2x2 = 5"
- ];
-
- let theSystemAugmentedMatrixNotation = LinearSystem.convertToAugmentedMartrixNotation(theSystemAnArrayOfStrings);
-```
-
-after it is converted it can be used to instantiate a LinearSystem object.
-
-```javascript
-let theSystem = new LinearSystem(theSystemAugmentedMatrixNotation);
+const intObject = [
+  [2,3,0,5],
+  [0,0,1,20],
+  [0,-2,0,5]
+]
+const theSystem = new LinearSystem(intObject);
 ```
 
 ##find out if the systems has: no solution, one solution, infinite solutions
