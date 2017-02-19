@@ -38,13 +38,6 @@ console.log(solution);
 
 ## API
 
-### static methods
-
-#### convertToAugmentedMartrixNotation
-LinearSystem.convertToAugmentedMartrixNotation(arrayOfStrings);
-
-returns a array of the system
-
 ## instance methods
 
 ### new LinearSystem
@@ -66,9 +59,6 @@ return a description of the systems solution (or lack of one)
 3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
 4. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
 foreach other row:
-- note this doesn't work with non-square linear systems, find a way to fix this
--provide example of non-square linear system
-- possible solution is to go down&right one then go right until there is a non-zero number?
 a. _pivot.row++, _pivot.column++
 b. _zeroAllRowsUnderThePevot()
 5. _zeroAllRowsAboveThePivot(), _scalePivotToOne
@@ -135,3 +125,17 @@ returns a bool indicating if the matrix is in [echelon form](https://en.wikipedi
 
 ### _isReducedEchelonForm
 returns a bool indicating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_Etchelon_form")
+
+
+### _validateInput
+
+checks if input matrix is ( column = rows - 1 )
+
+
+## possible features
+
+### graph solutions
+after solved a nice chart to look at if low enough number of dimensions
+
+### animation of algorithm behavior
+ui element that shows system and animates switching, adding, scaling
