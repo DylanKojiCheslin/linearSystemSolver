@@ -32,7 +32,7 @@ what is a [solving a linear system](https://en.wikipedia.org/wiki/Augmented_matr
 
 
 ```javascript
-co solution = theSystem.solve();
+const solution = theSystem.solve();
 console.log(solution);
 ```
 
@@ -46,7 +46,7 @@ new LinearSystem( theSystemAugmentedMatrixNotation );
 return an instance of LinearSystem
 
 ### solve
-yourInstance.solve({verbose:false,reduced:true})
+  yourInstance.solve({verbose:false,reduced:true})
 
 optional parameter object has:
 "verbose" bool prints console logs of the details of the solution default false,
@@ -126,9 +126,6 @@ returns a bool indicating if the matrix is in [echelon form](https://en.wikipedi
 ### _isReducedEchelonForm
 returns a bool indicating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_Etchelon_form")
 
-### _validateInput
-checks if input matrix is ( column = rows - 1 )
-
 ## possible features
 
 ### graph solutions
@@ -138,3 +135,5 @@ after solved a nice chart to look at if low enough number of dimensions
 ui element that shows system and animates switching, adding, scaling
 
 ### optional parameter bool back-substitution instead of going from etchelon to reduced etchelon form
+
+### optional constructor parameter bool toggles validateInput function
