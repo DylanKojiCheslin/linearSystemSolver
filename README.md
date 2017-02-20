@@ -32,7 +32,7 @@ what is a [solving a linear system](https://en.wikipedia.org/wiki/Augmented_matr
 
 
 ```javascript
-let solution = theSystem.solve();
+co solution = theSystem.solve();
 console.log(solution);
 ```
 
@@ -72,6 +72,8 @@ yourInstance.solve({verbose:false})
 optional parameter object has "verbose" bool
 prints console logs of the details
 
+a system is solvable if it is in etchelon form regardless of if it is reduced
+
 return a bool indicating if the system has one or more solutions
 
 ### _logState
@@ -104,11 +106,10 @@ uses _scaling on the row of _pivot to scale _pivot to 1
 
 ### _largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber)
 
-rearranges rows to move the largest absolute value in to the top of the column row to the top.
+rearranges rows to move the largest absolute value to the top of the column row to the top.
 this is sometimes called partial pivoting
 
 ## instance properties
-
 
 ### _systemState
 the internal storage of the linear systems matrix as an array
@@ -119,18 +120,14 @@ the pivot position, a obj with props row/column
 ### _pivotColumn
 the pivot column
 
-
 ### _isEchelonForm
 returns a bool indicating if the matrix is in [echelon form](https://en.wikipedia.org/wiki/Row_echelon_form "etchlon_Form")
 
 ### _isReducedEchelonForm
 returns a bool indicating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_Etchelon_form")
 
-
 ### _validateInput
-
 checks if input matrix is ( column = rows - 1 )
-
 
 ## possible features
 
@@ -139,3 +136,5 @@ after solved a nice chart to look at if low enough number of dimensions
 
 ### animation of algorithm behavior
 ui element that shows system and animates switching, adding, scaling
+
+### optional parameter bool back-substitution instead of going from etchelon to reduced etchelon form
