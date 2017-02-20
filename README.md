@@ -5,7 +5,7 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 
 ## project specifications
 
-takes a array of numbers that conform to the augmented matrix notation
+takes a array of integers that conform to the augmented matrix notation
 find out if the systems has: no solution, one solution, infinite solutions
 if there is one or more solutions then define them for the user
 
@@ -50,7 +50,7 @@ return an instance of LinearSystem
 
 optional parameter object has:
 "verbose" bool prints console logs of the details of the solution default false,
-"reduced" bool if the solutions should return in reduced etchelon form default true
+"reduced" bool if the solutions should return in reduced echelon form default true
 
 return a description of the systems solution (or lack of one)
 
@@ -72,7 +72,7 @@ yourInstance.solve({verbose:false})
 optional parameter object has "verbose" bool
 prints console logs of the details
 
-a system is solvable if it is in etchelon form regardless of if it is reduced
+a system is solvable if it is in echelon form regardless of if it is reduced
 
 return a bool indicating if the system has one or more solutions
 
@@ -124,7 +124,7 @@ the pivot column
 returns a bool indicating if the matrix is in [echelon form](https://en.wikipedia.org/wiki/Row_echelon_form "etchlon_Form")
 
 ### _isReducedEchelonForm
-returns a bool indicating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_Etchelon_form")
+returns a bool indicating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_echelon_form")
 
 ## possible features
 
@@ -134,6 +134,6 @@ after solved a nice chart to look at if low enough number of dimensions
 ### animation of algorithm behavior
 ui element that shows system and animates switching, adding, scaling
 
-### optional parameter bool back-substitution instead of going from etchelon to reduced etchelon form
+### optional parameter bool back-substitution instead of going from echelon to reduced echelon form
 
 ### optional constructor parameter bool toggles validateInput function
