@@ -105,7 +105,6 @@ zeros out the entry using _addition and the _pivot
 uses _scaling on the row of _pivot to scale _pivot to 1
 
 ### _largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber)
-
 rearranges rows to move the largest absolute value to the top of the column row to the top.
 this is sometimes called partial pivoting
 
