@@ -19,23 +19,22 @@ class LinearSystem {
         }
       });
     });
-    _systemState = matrix;
-    _pivotColumn = null;
-    _pivot = null;
-    _isEchelonForm = null;
-    _isReducedEchelonForm = null;
+    this._systemState = matrix;
+    this._pivotColumn = null;
+    this._pivot = null;
+    this._isEchelonForm = null;
+    this._isReducedEchelonForm = null;
   }
   solve(){
     // 1. the left most non-zero column is the _pivotColumn
     //try the first column then iterate until a column is has at least one non-zero int in them
-    const searchingForNonZeroColumn = true;
-    let columIndex = _systemState.length();
+    let searchingForNonZeroColumn = true;
+    let columIndex = this._systemState.length;
     let i = 0;
-    while (searchingForNonZeroColumn && (i > columIndex)) {
+    while (searchingForNonZeroColumn && (i < columIndex)) {
       if (this._columnHasNonZero(i)) {
-        this.pivotColumn = i;
+        this._pivotColumn = i;
         searchingForNonZeroColumn = false;
-        console.log("first non-zero column is " + i);
       }
       i++;
     }
@@ -54,10 +53,12 @@ class LinearSystem {
     // 6. foreach other row:
     // a. _pivot.row--, _pivot--
     // b. _zeroAllRowsAboveThePivot(), _scalePivotToOne
-  },
-  _columnHasNonZero function (columnNumber){
-    _systemState.forEach(fucntion(row){
-      return row[columnNumber].isInteger();
+  }
+  _columnHasNonZero (columnNumber){
+    this._systemState.find( function ( row ) {
+      const isInt = Number.isInteger(row[columnNumber]);
+      const biggerThanZero = Math.abs(row[columnNumber]) > 0;
+      return (isInt && biggerThanZero)
     })
   }
 }
@@ -69,3 +70,4 @@ const initObject = [
 ];
 
 const theSystem = new LinearSystem(initObject);
+theSystem.solve();
