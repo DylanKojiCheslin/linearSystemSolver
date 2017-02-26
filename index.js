@@ -48,8 +48,9 @@ class LinearSystem {
     if ( ! this._pivotColumn) {
       throw 'empty sets have no solutions';
     }
-    // 2. the top row/column postion of the _pivotColumn is the _pivot
-    //
+    // 2. the top row/column postion of the _pivotColumn is the _pivot location
+    this._pivot.row = 0;
+    this._pivot.column = this._pivotColumn;
     // 3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
     // 4. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
     // foreach other row:
