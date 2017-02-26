@@ -20,10 +20,13 @@ class LinearSystem {
       });
     });
     this._systemState = matrix;
-    this._pivotColumn = null;
-    this._pivot = null;
-    this._isEchelonForm = null;
-    this._isReducedEchelonForm = null;
+    this._pivotColumn = undefined;
+    this._pivot = {
+      row: undefined,
+      column: undefined
+    };
+    this._isEchelonForm = undefined;
+    this._isReducedEchelonForm = undefined;
   }
   solve(){
     // 1. the left most non-zero column is the _pivotColumn
@@ -46,6 +49,7 @@ class LinearSystem {
       throw 'empty sets have no solutions';
     }
     // 2. the top row/column postion of the _pivotColumn is the _pivot
+    //
     // 3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
     // 4. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
     // foreach other row:
