@@ -5,6 +5,7 @@ const initObject = [
 ];
 
 const theSystem = new LinearSystem(initObject);
+const solution = theSystem.solve();
 
 // const nullTestinit = null;
 //
@@ -17,3 +18,12 @@ const theSystem = new LinearSystem(initObject);
 // ];
 //
 // const wrongShapeTestSystem = new LinearSystem(wrongShapeInit);
+
+// const emptyInitObject = [
+//   [0,0,0,0],
+//   [0,0,0,0],
+//   [0,0,0,0]
+// ];
+//
+// const theEmptySystem = new LinearSystem(emptyInitObject);
+// theEmptySystem.solve();

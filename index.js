@@ -27,23 +27,25 @@ class LinearSystem {
   }
   solve(){
     // 1. the left most non-zero column is the _pivotColumn
-    //try the first column then iterate until a column is has at least one non-zero int in them
-    let searchingForNonZeroColumn = true;
-    let columIndex = this._systemState.length;
-    let i = 0;
-    while (searchingForNonZeroColumn && (i < columIndex)) {
-      if (this._columnHasNonZero(i)) {
+    //try first column, iterate until a column has a non-zero int in it
+    let isNonZero = false;
+    for (var i = 0; i < this._systemState.length; i++) {
+      let thisColumn = this._systemState.map(function(value) {
+        return value[i];
+      });
+      isNonZero = thisColumn.some(function(entry){
+        return Math.abs(entry) > 0
+      });
+      if (isNonZero) {
         this._pivotColumn = i;
-        searchingForNonZeroColumn = false;
+        break;
       }
-      i++;
     }
     //if there isn't a non-zero column then the set is empty and has no solutions
-    if (searchingForNonZeroColumn) {
-      throw "all inputs are zeros error"
+    if ( ! this._pivotColumn) {
+      throw 'empty sets have no solutions';
     }
     // 2. the top row/column postion of the _pivotColumn is the _pivot
-
     // 3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
     // 4. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
     // foreach other row:
@@ -53,13 +55,6 @@ class LinearSystem {
     // 6. foreach other row:
     // a. _pivot.row--, _pivot--
     // b. _zeroAllRowsAboveThePivot(), _scalePivotToOne
-  }
-  _columnHasNonZero (columnNumber){
-    this._systemState.find( function ( row ) {
-      const isInt = Number.isInteger(row[columnNumber]);
-      const biggerThanZero = Math.abs(row[columnNumber]) > 0;
-      return (isInt && biggerThanZero)
-    })
   }
 }
 
