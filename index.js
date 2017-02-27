@@ -86,11 +86,11 @@ class LinearSystem {
   }
 }
 
-const initObject = [
-  [2,3,0,5],
+const largestToTopInitObject = [
   [0,0,1,20],
-  [0,-2,0,5]
+  [2,3,0,5],
+  [-3,-2,0,5]
 ];
 
-const theSystem = new LinearSystem(initObject);
-theSystem.solve();
+const largestToTopSystem = new LinearSystem(largestToTopInitObject);
+largestToTopSystem.solve();

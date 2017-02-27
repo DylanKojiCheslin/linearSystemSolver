@@ -1,6 +1,8 @@
 # linearSystemUtility
 tools for exploring linear systems
 
+WIP
+
 what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_linear_equations "System_of_linear_equations")
 
 ## project specifications
@@ -123,7 +125,7 @@ returns a bool indicating if the matrix is in [echelon form](https://en.wikipedi
 ### _isReducedEchelonForm
 returns a bool indicating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_echelon_form")
 
-## possible features
+## possible features or research topics
 
 ### graph solutions
 after solved a nice chart to look at if low enough number of dimensions
@@ -134,3 +136,7 @@ ui element that shows system and animates switching, adding, scaling
 ### optional parameter bool back-substitution instead of going from echelon to reduced echelon form
 
 ### optional constructor parameter bool toggles validateInput function
+
+### function approximation of this class with less complexity cost or overhead
+
+### how neural networks solve linear system

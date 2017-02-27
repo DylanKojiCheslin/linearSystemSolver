@@ -27,3 +27,12 @@ const solution = theSystem.solve();
 //
 // const theEmptySystem = new LinearSystem(emptyInitObject);
 // theEmptySystem.solve();
+
+const largestToTopInitObject = [
+  [0,0,1,20],
+  [2,3,0,5],
+  [-3,-2,0,5]
+];
+
+const largestToTopSystem = new LinearSystem(largestToTopInitObject);
+largestToTopSystem.solve();
