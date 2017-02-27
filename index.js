@@ -50,18 +50,17 @@ class LinearSystem {
     }
     // 2. the top row/column postion of the _pivotColumn is the _pivot location
     this._pivot.row = 0;
-    this._pivot.column = this._pivotColumn;
-    // 3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
-
-    // 4. _zeroAllRowsUnderThePevot()
-    // row replacement operations to "zero" all entry under the pivot
-    // foreach other row:
-    // a. _pivot.row++, _pivot.column++
-    // b. _zeroAllRowsUnderThePevot()
-    // 5. _zeroAllRowsAboveThePivot(), _scalePivotToOne
-    // 6. foreach other row:
-    // a. _pivot.row--, _pivot--
-    // b. _zeroAllRowsAboveThePivot(), _scalePivotToOne
+    _largestAbsoluteMovedToTopOfColumn = this._pivotColumn;
+    // foreach row:
+    this._systemState.forEach(function(row, index){
+    // a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
+      this._largestAbsoluteMovedToTopOfColumn(this._piviot.column, this._piviot.row);
+    });
+    // b. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
+    // c. _pivot.row++, _pivot.column++
+    // 3. foreach row:
+    // a. _zeroAllRowsAboveThePivot(), _scalePivotToOne
+    // b. _pivot.row--, _pivot--
   }
   _largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber){
     let largestValue = 0;

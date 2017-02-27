@@ -56,15 +56,13 @@ return a description of the systems solution (or lack of one)
 
 1. the left most non-zero column is the _pivotColumn
 2. the top row/column postion of the _pivotColumn is the _pivot
-3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
-4. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
-foreach other row:
-a. _pivot.row++, _pivot.column++
-b. _zeroAllRowsUnderThePevot()
-5. _zeroAllRowsAboveThePivot(), _scalePivotToOne
-6. foreach other row:
-a. _pivot.row--, _pivot--
-b. _zeroAllRowsAboveThePivot(), _scalePivotToOne
+foreach row:
+a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
+b. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
+c. _pivot.row++, _pivot.column++
+3. foreach row:
+a. _zeroAllRowsAboveThePivot(), _scalePivotToOne
+b. _pivot.row--, _pivot--
 
 ### isSolvable
 yourInstance.solve({verbose:false})
