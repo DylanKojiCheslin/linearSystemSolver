@@ -50,12 +50,13 @@ class LinearSystem {
     }
     // 2. the top row/column postion of the _pivotColumn is the _pivot location
     this._pivot.row = 0;
-    _largestAbsoluteMovedToTopOfColumn = this._pivotColumn;
+    this._pivot.column = this._pivotColumn;
     // foreach row:
     this._systemState.forEach(function(row, index){
     // a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
-      this._largestAbsoluteMovedToTopOfColumn(this._piviot.column, this._piviot.row);
+      this._largestAbsoluteMovedToTopOfColumn(this._pivot.column, this._pivot.row);
     });
+    console.log(this._systemState);
     // b. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
     // c. _pivot.row++, _pivot.column++
     // 3. foreach row:
@@ -76,7 +77,12 @@ class LinearSystem {
         }
       }
     });
-    //this._switch(this._piviot.row, indexOfLargestValue)
+    this._switch(this._pivot.row, indexOfLargestValue)
+  }
+  _switch(aRowNumber, differentRowNumber){
+    let holder = this._systemState[differentRowNumber];
+    this._systemState[differentRowNumber] = this._systemState[aRowNumber];
+    this._systemState[aRowNumber] = holder;
   }
 }
 
