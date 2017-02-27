@@ -54,14 +54,20 @@ class LinearSystem {
     this._pivot.column = this._pivotColumn;
     // foreach row:
     this._systemState.forEach(function(row, index){
-    // a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
+      // a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
       that._largestAbsoluteMovedToTopOfColumn(that._pivot.column, that._pivot.row);
-    // b. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
-    // c. _pivot.row++, _pivot.column++
+      // b. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
+      // _zeroAllRowsUnderThePevot(that._pivot.column, that._pivot.row);
+      // c. _pivot.row++, _pivot.column++
     });
     // 3. foreach row:
     // a. _zeroAllRowsAboveThePivot(), _scalePivotToOne
     // b. _pivot.row--, _pivot--
+  }
+  _switch(aRowNumber, differentRowNumber){
+    let holder = this._systemState[differentRowNumber];
+    this._systemState[differentRowNumber] = this._systemState[aRowNumber];
+    this._systemState[aRowNumber] = holder;
   }
   _largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber){
     let largestValue = 0;
@@ -78,11 +84,6 @@ class LinearSystem {
       }
     });
     this._switch(this._pivot.row, indexOfLargestValue)
-  }
-  _switch(aRowNumber, differentRowNumber){
-    let holder = this._systemState[differentRowNumber];
-    this._systemState[differentRowNumber] = this._systemState[aRowNumber];
-    this._systemState[aRowNumber] = holder;
   }
 }
 
