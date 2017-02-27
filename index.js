@@ -70,12 +70,14 @@ class LinearSystem {
       return value[columnNumber];
     });
     columnArray.forEach(function(value, index){
-      if (Math.abs(value) > largestValue) {
-        largestValue = Math.abs(value);
-        indexOfLargestValue = index;
+      if (index >= rowsOffSetNumber) {
+        if (Math.abs(value) > largestValue) {
+          largestValue = Math.abs(value);
+          indexOfLargestValue = index;
+        }
       }
     });
-
+    //this._switch(this._piviot.row, indexOfLargestValue)
   }
 }
 
