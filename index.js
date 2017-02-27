@@ -32,6 +32,7 @@ class LinearSystem {
     // 1. the left most non-zero column is the _pivotColumn
     //try first column, iterate until a column has a non-zero int in it
     let isNonZero = false;
+    const that = this;
     for (var i = 0; i < this._systemState.length; i++) {
       let thisColumn = this._systemState.map(function(value) {
         return value[i];
@@ -54,11 +55,10 @@ class LinearSystem {
     // foreach row:
     this._systemState.forEach(function(row, index){
     // a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
-      this._largestAbsoluteMovedToTopOfColumn(this._pivot.column, this._pivot.row);
-    });
-    console.log(this._systemState);
+      that._largestAbsoluteMovedToTopOfColumn(that._pivot.column, that._pivot.row);
     // b. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
     // c. _pivot.row++, _pivot.column++
+    });
     // 3. foreach row:
     // a. _zeroAllRowsAboveThePivot(), _scalePivotToOne
     // b. _pivot.row--, _pivot--
