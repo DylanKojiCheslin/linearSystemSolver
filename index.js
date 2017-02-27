@@ -45,14 +45,16 @@ class LinearSystem {
       }
     }
     //if there isn't a non-zero column then the set is empty and has no solutions
-    if ( ! this._pivotColumn) {
+    if ( undefined === this._pivotColumn) {
       throw 'empty sets have no solutions';
     }
     // 2. the top row/column postion of the _pivotColumn is the _pivot location
     this._pivot.row = 0;
     this._pivot.column = this._pivotColumn;
     // 3. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
-    // 4. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
+
+    // 4. _zeroAllRowsUnderThePevot()
+    // row replacement operations to "zero" all entry under the pivot
     // foreach other row:
     // a. _pivot.row++, _pivot.column++
     // b. _zeroAllRowsUnderThePevot()
@@ -60,6 +62,20 @@ class LinearSystem {
     // 6. foreach other row:
     // a. _pivot.row--, _pivot--
     // b. _zeroAllRowsAboveThePivot(), _scalePivotToOne
+  }
+  _largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber){
+    let largestValue = 0;
+    let indexOfLargestValue = undefined;
+    let columnArray = this._systemState.map(function(value) {
+      return value[columnNumber];
+    });
+    columnArray.forEach(function(value, index){
+      if (Math.abs(value) > largestValue) {
+        largestValue = Math.abs(value);
+        indexOfLargestValue = index;
+      }
+    });
+
   }
 }
 
