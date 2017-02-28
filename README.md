@@ -30,7 +30,7 @@ what is a [solving a linear system](https://en.wikipedia.org/wiki/Augmented_matr
 
 1. (switch) switch 2 rows positions
 2. (scaling) multiply every entry in a row by a non-zero constant
-3. (addition) replace a row with its sum and a multiple of a different row and a non-zero constant
+3. (rowReplacement) replace a row with its sum and a multiple of a different row and a non-zero constant
 
 
 ```javascript
@@ -88,9 +88,9 @@ exchange the location of 2 rows
 yourInstance._scaling(rowNumber, scaleNumber)
 scales all entries in row by a non-zero number
 
-### _addition
-yourInstance._addition(rowNumberToBeReplaced, diffrenctRowNumber, scaleNumberForOtherRow)
-replaces the row in rowNumberToBeReplaced with the the product of the row in diffrenctRowNumber and scaleNumberForOtherRow
+### _rowReplacement
+yourInstance._rowReplacement(rowToBeReplaced, diffrenctRowNumber, scaleNumberForOtherRow)
+replaces the row in rowToBeReplaced with the the product of the row in diffrenctRowNumber and scaleNumberForOtherRow
 
 ### _zeroAllRowsUnderThePivot
 iterate over all entries below the pivot, use _rowReplacementRemover on each
@@ -99,7 +99,7 @@ iterate over all entries below the pivot, use _rowReplacementRemover on each
 iterate over all entries above the pivot, use _rowReplacementRemover on each
 
 ### _rowReplacementRemover()
-zeros out the entry using _addition and the _pivot
+zeros out the entry using _rowReplacement and the _pivot
 
 ### _scalePivotToOne
 uses _scaling on the row of _pivot to scale _pivot to 1

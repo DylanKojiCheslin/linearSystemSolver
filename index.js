@@ -28,6 +28,7 @@ class LinearSystem {
     this._isEchelonForm = undefined;
     this._isReducedEchelonForm = undefined;
   }
+
   solve(){
     // 1. the left most non-zero column is the _pivotColumn
     //try first column, iterate until a column has a non-zero int in it
@@ -64,11 +65,39 @@ class LinearSystem {
     // a. _zeroAllRowsAboveThePivot(), _scalePivotToOne
     // b. _pivot.row--, _pivot--
   }
+
   _switch(aRowNumber, differentRowNumber){
     let holder = this._systemState[differentRowNumber];
     this._systemState[differentRowNumber] = this._systemState[aRowNumber];
     this._systemState[aRowNumber] = holder;
   }
+
+  _rowReplacement(rowToBeReplaced, otherRow, scale){
+  let otherRowScaled = this._getRowScaledBy(this._systemState[otherRow], scale))
+  let sumOfRows = otherRowScaled.map(function (num, idx) {
+    return num + this._systemState[idx];
+  });
+  this._systemState[rowToBeReplaced] = sumOfRows;
+  }
+
+_getRowScaledBy (rowNumber, scale) {
+  return (this._systemState[rowNumber] * scale)
+}
+
+  // _zeroAllRowsUnderThePivot(){
+  // for each entries below the pivot,
+  // if the row is non-zero
+    // _rowReplacementRemover on each
+    // pass index and keep in mind the offset based on the pivot location
+  // }
+
+  // zeros out the entry using _rowReplacement and the _pivot
+  // _rowReplacementRemover(entry){
+    // let scale = (_this._systemState[this._pivot.row][this._pivot.column]) / entry;
+    //scale = -scale;
+    // rowReplacement(rowToBeReplaced, otherRow, scale)
+  // }
+
   _largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber){
     let largestValue = 0;
     let indexOfLargestValue = undefined;
