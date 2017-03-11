@@ -56,9 +56,10 @@ class LinearSystem {
     // forEach row:
     this._systemState.forEach(function(row, index, array){
       // a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
-      that._largestAbsoluteMovedToTopOfColumn(that._pivot.column, that._pivot.row);
+      that._largestAbsoluteMovedToTopOfColumn();
       // b. _zeroAllRowsUnderThePivot() - row replacement operations to "zero" all entry under the pivot
-      that._zeroAllRowsUnderThePivot(that._pivot.column, that._pivot.row);
+      debugger;
+      that._zeroAllRowsUnderThePivot();
       //unless pivot in the bottom right
       if (that._pivot.column < array.length && that._pivot.row < array.length) {
       // c. _pivot.row++, _pivot.column++
@@ -66,11 +67,14 @@ class LinearSystem {
         that._pivot.row = that._pivot.row + 1;
       }
     });
-    console.table(this._systemState);
 
-    // 3. forEach row:
-    // a. _zeroAllRowsAboveThePivot(), _scalePivotToOne
-    // b. _pivot.row--, _pivot--
+    // // 3. forEach row:
+    // this._systemState.forEach(function(row, index, array){
+    //   // a. _zeroAllRowsAboveThePivot(), _scalePivotToOne
+    //   _zeroAllRowsAboveThePivot()
+    //   // b. _pivot.row--, _pivot--
+    // }
+    console.table(this._systemState);
   }
 
   _switch(aRowNumber, differentRowNumber){
@@ -108,7 +112,9 @@ class LinearSystem {
     return rowScaled;
   }
 // that._zeroAllRowsUnderThePivot(that._pivot.column, that._pivot.row);
-  _zeroAllRowsUnderThePivot(column, row){
+  _zeroAllRowsUnderThePivot(){
+    let column = this._pivot.column;
+    let row = this._pivot.row;
     let rowUnderThePivot = row + 1;
   // for each entries below the pivot,
     for (var i = rowUnderThePivot; i < this._systemState.length; i++) {
@@ -129,7 +135,9 @@ class LinearSystem {
     this._rowReplacement(rowNumber, this._pivot.row, scale);
   }
 
-  _largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber){
+  _largestAbsoluteMovedToTopOfColumn(){
+    let rowsOffSetNumber = this._pivot.row;
+    let columnNumber = this._pivot.column;
     let largestValue = 0;
     let indexOfLargestValue = undefined;
     let columnArray = this._systemState.map(function(value) {
