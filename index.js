@@ -69,17 +69,17 @@
       });
 
       // 3. forEach row:
-        // a. _zeroAllRowsAboveThePivot(),
       for (var i = limit; i > -1; i--) {
+        // a. _zeroAllRowsAboveThePivot(),
         that._zeroAllRowsAboveThePivot();
-        // b. _pivot.row--, _pivot.column--
-        // move the pivot up and over unless
-        if (i > -1) {
-        that._pivot.row = that._pivot.row - 1;
-        that._pivot.column = that._pivot.column - 1;
-        }
         // the pivot shoud be scaled to postive one
-        // _scalePivotToOne
+        that._scalePivotToOne();
+        // b. _pivot.row--, _pivot.column--
+        // move the pivot up and over unless its at the top
+        if (i > -1) {
+          that._pivot.row = that._pivot.row - 1;
+          that._pivot.column = that._pivot.column - 1;
+        }
       }
       console.table(this._systemState);
     }
@@ -104,7 +104,12 @@
 
     _getRowScaledBy (row, scale) {
       let rowScaled = row.map(function (entry, idx) {
-        let number = scale * Number(entry);
+        let number;
+        if (entry != 0) {
+          number = scale * Number(entry);
+        }else {
+          number = Number(entry);
+        }
         return number;
       });
       return rowScaled;
@@ -143,6 +148,16 @@
       const pivotValue = Number(this._systemState[this._pivot.row][this._pivot.column]);
       const scale = (rowValue / pivotValue)  * -1;
       this._rowReplacement(rowNumber, this._pivot.row, scale);
+    }
+
+    _scalePivotToOne(){
+      // a = ((a/b) * b)
+      const deleteCount = 1;
+      const rowNumber = this._pivot.row;
+      const pivotValue = Number(this._systemState[this._pivot.row][this._pivot.column]);
+      const scale = 1 / pivotValue;
+      const rowPivotScaledToOne = this._getRowScaledBy(this._systemState[rowNumber], scale);
+      this._systemState.splice(rowNumber, deleteCount, rowPivotScaledToOne)
     }
 
     _largestAbsoluteMovedToTopOfColumn(){
