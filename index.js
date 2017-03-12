@@ -73,12 +73,13 @@
       for (var i = limit; i > -1; i--) {
         that._zeroAllRowsAboveThePivot();
         // b. _pivot.row--, _pivot.column--
-        // _scalePivotToOne
-        // move the pivot up and over
+        // move the pivot up and over unless
         if (i > -1) {
         that._pivot.row = that._pivot.row - 1;
         that._pivot.column = that._pivot.column - 1;
         }
+        // the pivot shoud be scaled to postive one
+        // _scalePivotToOne
       }
       console.table(this._systemState);
     }
@@ -140,8 +141,7 @@
     _rowReplacementRemover(rowNumber){
       const rowValue = Number(this._systemState[rowNumber][this._pivot.column]);
       const pivotValue = Number(this._systemState[this._pivot.row][this._pivot.column]);
-      const scale = rowValue / pivotValue;
-      scale = scale * -1;
+      const scale = (rowValue / pivotValue)  * -1;
       this._rowReplacement(rowNumber, this._pivot.row, scale);
     }
 
