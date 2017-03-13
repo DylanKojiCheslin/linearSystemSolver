@@ -20,7 +20,6 @@
         });
       });
       this._systemState = matrix;
-      this._pivotColumn = undefined;
       this._pivot = {
         row: undefined,
         column: undefined
@@ -30,7 +29,7 @@
     }
 
     solve(){
-      // 1. the left most non-zero column is the _pivotColumn
+      // 1. the left most non-zero column is the _pivot.column
       //try first column, iterate until a column has a non-zero int in it
       let isNonZero = false;
       const that = this;
@@ -42,21 +41,21 @@
           return Math.abs(entry) > 0
         });
         if (isNonZero) {
-          this._pivotColumn = i;
+          this._pivot.column = i;
           break;
         }
       }
       //if there isn't a non-zero column then the set is empty and has no solutions
-      if ( undefined === this._pivotColumn) {
+      if ( undefined === this._pivot.column) {
         throw 'empty sets have no solutions';
       }
-      // 2. the top row/column postion of the _pivotColumn is the _pivot location
+      // 2. the top row/column postion of the _pivot.column is the _pivot location
       this._pivot.row = 0;
-      this._pivot.column = this._pivotColumn;
+      this._pivot.column = this._pivot.column;
       let limit = this._systemState.length - 1;
       // forEach row:
       this._systemState.forEach(function(row, index, array){
-        // a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
+        // a. _largestAbsoluteMovedToTopOfColumn on the _pivot.column - largest to top
         that._largestAbsoluteMovedToTopOfColumn();
         // b. _zeroAllRowsUnderThePivot() - row replacement operations to "zero" all entry under the pivot
         that._zeroAllRowsUnderThePivot();
