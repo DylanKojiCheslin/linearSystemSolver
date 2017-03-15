@@ -31,48 +31,51 @@
     solve(){
       // 1. the left most non-zero column is the _pivot.column
       //try first column, iterate until a column has a non-zero int in it
+      let system = {};
+      system.s = this._systemState;
+      system.pivot = this._pivot;
       let isNonZero = false;
       const that = this;
-      for (var i = 0; i < this._systemState.length; i++) {
-        let thisColumn = this._systemState.map(function(value) {
+      for (var i = 0; i < system.s.length; i++) {
+        let thisColumn = system.s.map(function(value) {
           return value[i];
         });
         isNonZero = thisColumn.some(function(entry){
           return Math.abs(entry) > 0
         });
         if (isNonZero) {
-          this._pivot.column = i;
+          system.pivot.column = i;
           break;
         }
       }
       //if there isn't a non-zero column then the set is empty and has no solutions
-      if ( undefined === this._pivot.column) {
+      if ( undefined === system.pivot.column) {
         throw 'empty sets have no solutions';
       }
       // 2. the top row/column postion of the _pivot.column is the _pivot location
-      this._pivot.row = 0;
-      this._pivot.column = this._pivot.column;
-      let limit = this._systemState.length - 1;
+      system.pivot.row = 0;
+      system.pivot.column = this._pivot.column;
+      let limit = system.s.length - 1;
       // forEach row:
-      this._systemState.forEach(function(row, index, array){
+      for (var i = 0; i < system.s.length; i++) {
         // a. _largestAbsoluteMovedToTopOfColumn on the _pivot.column - largest to top
-        that._largestAbsoluteMovedToTopOfColumn();
+        system = that._largestAbsoluteMovedToTopOfColumn(system)
         // b. _zeroAllRowsUnderThePivot() - row replacement operations to "zero" all entry under the pivot
-        that._zeroAllRowsUnderThePivot();
-        //unless pivot in the bottom right
-        if (that._pivot.column < limit && that._pivot.row < limit) {
+        system = that._zeroAllRowsUnderThePivot(system);
+        //unless the pivot is in the bottom right
+        if (system.pivot.column < limit && system.pivot.row < limit) {
         // c. _pivot.row++, _pivot.column++
-          that._pivot.column = that._pivot.column + 1;
-          that._pivot.row = that._pivot.row + 1;
+          system.pivot.column = system.pivot.column + 1;
+          system.pivot.row = system.pivot.row + 1;
         }
-      });
+      }
 
       // 3. forEach row:
       for (var i = limit; i > -1; i--) {
         // a. _zeroAllRowsAboveThePivot(),
-        that._zeroAllRowsAboveThePivot();
+        system = that._zeroAllRowsAboveThePivot(system);
         // the pivot shoud be scaled to postive one
-        that._scalePivotToOne();
+        system = that._scalePivotToOne(system);
         // b. _pivot.row--, _pivot.column--
         // move the pivot up and over unless its at the top
         if (i > -1) {
@@ -80,25 +83,28 @@
           that._pivot.column = that._pivot.column - 1;
         }
       }
-      console.table(this._systemState);
+      console.table(system.s);
     }
 
-    _switch(aRowNumber, differentRowNumber){
-      let holder = this._systemState[differentRowNumber];
-      this._systemState[differentRowNumber] = this._systemState[aRowNumber];
-      this._systemState[aRowNumber] = holder;
+    _switch(system, aRowNumber, differentRowNumber){
+      //change to splice
+      let holder = system.s[differentRowNumber];
+      system.s[differentRowNumber] = system.s[aRowNumber];
+      system.s[aRowNumber] = holder;
+      return system;
     }
 
-    _rowReplacement(rowToBeReplaced, otherRow, scale){
+    _rowReplacement(system, rowToBeReplaced, otherRow, scale){
       const that = this;
       const deleteCount = 1;
       let otherRowScaled = that._getRowScaledBy(that._systemState[otherRow], scale);
       let sumOfRows = otherRowScaled.map(function (num, idx) {
-        let otherRowAtIndexValue = that._systemState[rowToBeReplaced][idx];
+        let otherRowAtIndexValue = system.s[rowToBeReplaced][idx];
         let value = num + otherRowAtIndexValue;
         return value;
       });
-      that._systemState.splice(rowToBeReplaced, deleteCount, sumOfRows)
+      system.s.splice(rowToBeReplaced, deleteCount, sumOfRows)
+      return system;
     }
 
     _getRowScaledBy (row, scale) {
@@ -113,58 +119,64 @@
       });
       return rowScaled;
     }
-    _zeroAllRowsAboveThePivot(){
-      const column = this._pivot.column;
-      const row = this._pivot.row;
+    _zeroAllRowsAboveThePivot(system){
+      const column = system.pivot.column;
+      const row = system.pivot.row;
       const rowAboveThePivot = row - 1;
       //for each of the rows above the pivot
       for (var i = rowAboveThePivot; i > -1; i--) {
         // if the row is non-zero
-        if (this._systemState[row][column] != 0) {
+        if (system.s[row][column] != 0) {
           //use  _rowReplacementRemover on each
-          this._rowReplacementRemover(i);
+          system = this._rowReplacementRemover(system, i);
         }
       }
+      return system;
     };
   // that._zeroAllRowsUnderThePivot(that._pivot.column, that._pivot.row);
-    _zeroAllRowsUnderThePivot(){
-      const column = this._pivot.column;
-      const row = this._pivot.row;
+    _zeroAllRowsUnderThePivot(system){
+      const column = system.pivot.column;
+      const row = system.pivot.row;
       const rowUnderThePivot = row + 1;
+      const limit = system.s.length;
+      let newSystem = system;
     // for each entries below the pivot,
-      for (var i = rowUnderThePivot; i < this._systemState.length; i++) {
+      for (var i = rowUnderThePivot; i < limit; i++) {
         // if the row is non-zero
-        if (this._systemState[column][i] != 0) {
+        if (newSystem.s[row][i] != 0) {
           //use  _rowReplacementRemover on each
-          this._rowReplacementRemover(i);
+          newSystem = this._rowReplacementRemover(system, i);
         }
       }
+      return newSystem;
     }
 
     // zeros out the entry using _rowReplacement and the _pivot
-    _rowReplacementRemover(rowNumber){
-      const rowValue = Number(this._systemState[rowNumber][this._pivot.column]);
-      const pivotValue = Number(this._systemState[this._pivot.row][this._pivot.column]);
+    _rowReplacementRemover(system, rowNumber){
+      const rowValue = Number(system.s[rowNumber][system.pivot.column]);
+      const pivotValue = Number(system.s[system.pivot.row][system.pivot.column]);
       const scale = (rowValue / pivotValue)  * -1;
-      this._rowReplacement(rowNumber, this._pivot.row, scale);
+      system = this._rowReplacement(system, rowNumber, system.pivot.row, scale);
+      return system;
     }
 
-    _scalePivotToOne(){
+    _scalePivotToOne(system){
       // a = ((a/b) * b)
       const deleteCount = 1;
-      const rowNumber = this._pivot.row;
-      const pivotValue = Number(this._systemState[this._pivot.row][this._pivot.column]);
+      const rowNumber = system.pivot.row;
+      const pivotValue = Number(system.s[system.pivot.row][system.pivot.column]);
       const scale = 1 / pivotValue;
-      const rowPivotScaledToOne = this._getRowScaledBy(this._systemState[rowNumber], scale);
-      this._systemState.splice(rowNumber, deleteCount, rowPivotScaledToOne)
+      const rowPivotScaledToOne = this._getRowScaledBy(system.s[rowNumber], scale);
+      system.s.splice(rowNumber, deleteCount, rowPivotScaledToOne)
+      return system;
     }
 
-    _largestAbsoluteMovedToTopOfColumn(){
-      const rowsOffSetNumber = this._pivot.row;
-      const columnNumber = this._pivot.column;
+    _largestAbsoluteMovedToTopOfColumn(system){
+      const rowsOffSetNumber = system.pivot.row;
+      const columnNumber = system.pivot.column;
       let largestValue = 0;
       let indexOfLargestValue = undefined;
-      const columnArray = this._systemState.map(function(value) {
+      const columnArray = system.s.map(function(value) {
         return Number(value[columnNumber]);
       });
       columnArray.forEach(function(value, index){
@@ -175,7 +187,8 @@
           }
         }
       });
-      this._switch(this._pivot.row, indexOfLargestValue)
+      system = this._switch(system, system.pivot.row, indexOfLargestValue)
+      return system;
     }
   }
 
