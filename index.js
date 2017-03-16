@@ -103,7 +103,7 @@
         let value = num + otherRowAtIndexValue;
         return value;
       });
-      system.s.splice(rowToBeReplaced, deleteCount, sumOfRows)
+      system.s.splice(rowToBeReplaced, deleteCount, sumOfRows);
       return system;
     }
 
@@ -119,6 +119,7 @@
       });
       return rowScaled;
     }
+
     _zeroAllRowsAboveThePivot(system){
       const column = system.pivot.column;
       const row = system.pivot.row;
@@ -133,7 +134,7 @@
       }
       return system;
     };
-  // that._zeroAllRowsUnderThePivot(that._pivot.column, that._pivot.row);
+
     _zeroAllRowsUnderThePivot(system){
       const column = system.pivot.column;
       const row = system.pivot.row;
