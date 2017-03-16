@@ -1,0 +1,25 @@
+{
+  "name": "linearsystemutility",
+  "version": "1.0.0",
+  "description": "solves systems of linear equations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DylanKojiCheslin/linearSystemUtility.git"
+  },
+  "keywords": [
+    "linear",
+    "algebra",
+    "linearalgebra",
+    "linearsystem"
+  ],
+  "author": "dylan koji-cheslin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DylanKojiCheslin/linearSystemUtility/issues"
+  },
+  "homepage": "https://github.com/DylanKojiCheslin/linearSystemUtility#readme"
+}
