@@ -83,7 +83,7 @@
           that._pivot.column = that._pivot.column - 1;
         }
       }
-      console.table(system.s);
+        return system;
     }
 
     _switch(system, aRowNumber, differentRowNumber){
@@ -200,4 +200,4 @@
   ];
 
   const largestToTopSystem = new LinearSystem(largestToTopInitObject);
-  largestToTopSystem.solve();
+  console.log(largestToTopSystem.solve());
