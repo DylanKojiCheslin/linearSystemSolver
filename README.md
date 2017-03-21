@@ -1,7 +1,7 @@
 # linearSystemUtility
-tools for exploring linear systems
 
-WIP
+[![Build Status](https://travis-ci.org/DylanKojiCheslin/linearSystemUtility.svg?branch=master)](https://travis-ci.org/DylanKojiCheslin/linearSystemUtility)
+tools for exploring linear systems
 
 what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_linear_equations "System_of_linear_equations")
 
