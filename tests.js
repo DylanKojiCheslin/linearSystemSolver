@@ -1,11 +1,13 @@
-// const initObject = [
-//   [2,3,0,5],
-//   [0,0,1,20],
-//   [0,-2,0,5]
-// ];
-//
-// const theSystem = new LinearSystem(initObject);
-// const solution = theSystem.solve();
+import LinearSystem from '/index.js'
+
+const initObject = [
+  [2,3,0,5],
+  [0,0,1,20],
+  [0,-2,0,5]
+];
+
+const theSystem = new LinearSystem(initObject);
+const solution = theSystem.solve();
 
 // const nullTestinit = null;
 //

@@ -1,24 +1,26 @@
-  class LinearSystem {
+  export default class LinearSystem {
     constructor(matrix) {
-      //input should be a array of array of ints
-      if ( ! Array.isArray(matrix)) {
-        throw 'not array type error';
-      }
-      const hight = matrix.length;
-      matrix.forEach(function(row){
-        if ( ! Array.isArray(row)) {
+      if (matrix != undefined) {
+        //input should be a array of array of ints
+        if ( ! Array.isArray(matrix)) {
           throw 'not array type error';
         }
-        //checks if input matrix is ( column.length + 1 == rows.length )
-        if ( hight + 1 != row.length ) {
-          throw 'not in required shape (width == hight + 1)';
-        }
-        row.forEach(function(entry){
-          if ( ! Number.isInteger(entry)) {
-            throw 'not a integer error';
+        const hight = matrix.length;
+        matrix.forEach(function(row){
+          if ( ! Array.isArray(row)) {
+            throw 'not array type error';
           }
+          //checks if input matrix is ( column.length + 1 == rows.length )
+          if ( hight + 1 != row.length ) {
+            throw 'not in required shape (width == hight + 1)';
+          }
+          row.forEach(function(entry){
+            if ( ! Number.isInteger(entry)) {
+              throw 'not a integer error';
+            }
+          });
         });
-      });
+      }
       this._systemState = matrix;
       this._pivot = {
         row: undefined,
@@ -29,6 +31,9 @@
     }
 
     solve(){
+      if (this._systemState == undefined) {
+        throw "_systemState undefined"
+      }
       // 1. the left most non-zero column is the _pivot.column
       //try first column, iterate until a column has a non-zero int in it
       let system = {};
@@ -192,12 +197,3 @@
       return system;
     }
   }
-
-  const largestToTopInitObject = [
-    [1,1,1,20],
-    [2,3,1,5],
-    [-3,-2,1,5]
-  ];
-
-  const largestToTopSystem = new LinearSystem(largestToTopInitObject);
-  console.log(largestToTopSystem.solve());
