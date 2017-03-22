@@ -102,7 +102,7 @@
     _rowReplacement(system, rowToBeReplaced, otherRow, scale){
       const that = this;
       const deleteCount = 1;
-      let otherRowScaled = that._getRowScaledBy(that._systemState[otherRow], scale);
+      let otherRowScaled = that._getRowScaledBy(system.s[otherRow], scale);
       let sumOfRows = otherRowScaled.map(function (num, idx) {
         let otherRowAtIndexValue = system.s[rowToBeReplaced][idx];
         let value = num + otherRowAtIndexValue;
