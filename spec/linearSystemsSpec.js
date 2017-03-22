@@ -33,10 +33,6 @@ describe('linearSystem', () => {
     sinon.assert.calledWith(scaledBy, [9,9,30], 2);
   });
 
-  // data = {
-  //   s : [[2,2,6],[9,9,30]]
-  // };
-
   it('linearSystem._rowReplacement should return array with a row replaced by itself mulitplied to scale', () => {
     let rowToBeReplaced = 0,otherRow = 1,scale = 2;
     let newthing = linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
