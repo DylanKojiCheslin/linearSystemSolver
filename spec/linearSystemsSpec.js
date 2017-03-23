@@ -39,4 +39,30 @@ describe('linearSystem', () => {
     expect(newthing).toEqual({s : [[20,20,66],[9,9,30]]});
   });
 
+  it('linearSystem._largestAbsoluteMovedToTopOfColumn should return array with largest absolute value to top of each pivot', () => {
+    let inputSystem = {
+      s : [
+        [0,1,2,3],
+        [1,2,3,4],
+        [-3,2,1,5]
+      ],
+      pivot : {
+        column : 0,
+        row : 0
+      }
+    };
+    let expectedOutput = {
+      s : [
+        [-3,2,1,5],
+        [1,2,3,4],
+        [0,1,2,3]
+      ],
+      pivot : {
+        column : 0,
+        row : 0
+      }
+    };
+    let output = linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
+    expect(output).toEqual(expectedOutput);
+  });
 });
