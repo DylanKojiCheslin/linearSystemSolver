@@ -1,3 +1,4 @@
+import clonedeep from 'lodash.clonedeep'
   export default class LinearSystem {
     constructor(matrix) {
       if (matrix != undefined) {
@@ -141,11 +142,11 @@
     };
 
     _zeroAllRowsUnderThePivot(system){
-      const column = system.pivot.column;
-      const row = system.pivot.row;
+      let newSystem = clonedeep(system);
+      const column = newSystem.pivot.column;
+      const row = newSystem.pivot.row;
       const rowUnderThePivot = row + 1;
-      const limit = system.s.length;
-      let newSystem = system;
+      const limit = newSystem.s.length;
     // for each entries below the pivot,
       for (var i = rowUnderThePivot; i < limit; i++) {
         // if the row is non-zero
