@@ -101,16 +101,17 @@ import clonedeep from 'lodash.clonedeep'
     }
 
     _rowReplacement(system, rowToBeReplaced, otherRow, scale){
+      let newSystem = JSON.parse(JSON.stringify(system));
       const that = this;
       const deleteCount = 1;
-      let otherRowScaled = that._getRowScaledBy(system.s[otherRow], scale);
+      let otherRowScaled = that._getRowScaledBy(newSystem.s[otherRow], scale);
       let sumOfRows = otherRowScaled.map(function (num, idx) {
-        let otherRowAtIndexValue = system.s[rowToBeReplaced][idx];
+        let otherRowAtIndexValue = newSystem.s[rowToBeReplaced][idx];
         let value = num + otherRowAtIndexValue;
         return value;
       });
-      system.s.splice(rowToBeReplaced, deleteCount, sumOfRows);
-      return system;
+      newSystem.s.splice(rowToBeReplaced, deleteCount, sumOfRows);
+      return newSystem;
     }
 
     _getRowScaledBy (row, scale) {
@@ -142,7 +143,7 @@ import clonedeep from 'lodash.clonedeep'
     };
 
     _zeroAllRowsUnderThePivot(system){
-      let newSystem = clonedeep(system);
+      let newSystem = JSON.parse(JSON.stringify(system));
       const column = newSystem.pivot.column;
       const row = newSystem.pivot.row;
       const rowUnderThePivot = row + 1;
@@ -152,19 +153,21 @@ import clonedeep from 'lodash.clonedeep'
         // if the row is non-zero
         if (newSystem.s[row][i] != 0) {
           //use  _rowReplacementRemover on each
-          newSystem = this._rowReplacementRemover(system, i);
+          newSystem = this._rowReplacementRemover(newSystem, i);
         }
       }
+      console.log(newSystem.s);
       return newSystem;
     }
 
     // zeros out the entry using _rowReplacement and the _pivot
     _rowReplacementRemover(system, rowNumber){
-      const rowValue = Number(system.s[rowNumber][system.pivot.column]);
-      const pivotValue = Number(system.s[system.pivot.row][system.pivot.column]);
+      let newSystem = JSON.parse(JSON.stringify(system));
+      const rowValue = Number(newSystem.s[rowNumber][newSystem.pivot.column]);
+      const pivotValue = Number(newSystem.s[newSystem.pivot.row][newSystem.pivot.column]);
       const scale = (rowValue / pivotValue)  * -1;
-      system = this._rowReplacement(system, rowNumber, system.pivot.row, scale);
-      return system;
+      newSystem = this._rowReplacement(newSystem, rowNumber, system.pivot.row, scale);
+      return newSystem;
     }
 
     _scalePivotToOne(system){

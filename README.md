@@ -7,6 +7,11 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 
 ## project specifications
 
+### code specifications
+all methods on the class should be purely functional
+all methods should have a test preventing input mutation
+
+### features
 takes a array of integers that conform to the augmented matrix notation
 find out if the systems has: no solution, one solution, infinite solutions
 if there is one or more solutions then define them for the user

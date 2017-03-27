@@ -66,7 +66,7 @@ describe('linearSystem', () => {
     expect(output).toEqual(expectedOutput);
   });
 
-  it('linearSystem._zeroAllRowsUnderThePivot does stuff', () => {
+  it('linearSystem._zeroAllRowsUnderThePivot input not mutated', () => {
     let inputSystem = {
       s : [
         [5,1,1,10],
@@ -78,31 +78,13 @@ describe('linearSystem', () => {
         row : 0
       }
     };
-    console.log(inputSystem.s);
-    // let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
     let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
-    let valueSystem = linSys._zeroAllRowsUnderThePivot(
-      {
-        s : [
-          [5,1,1,10],
-          [-1,1,1,-2],
-          [1,1,1,2]
-        ],
-        pivot : {
-          column : 0,
-          row : 0
-        }
-      }
-    );
-    // console.log(inputSystem.s);
-    // console.log(outSystem.s);
-    // console.log(valueSystem.s);
-    console.log(inputSystem === outSystem);
-    console.log(inputSystem.s);
-    //this should fail but paramiters in class are all pased by refrence,
-    // should be passed by values
-    expect(valueSystem.s).toEqual(outSystem.s);
-    expect(inputSystem.s).toEqual(outSystem.s);
+    expect(outSystem.s).toEqual(
+      [
+        [ 5, 1, 1, 10 ],
+        [ 0, 1.2, 1.2, 0 ],
+        [ 0, 0.8, 0.8, 0 ]
+      ]);
     expect(inputSystem).toEqual({
       s : [
         [5,1,1,10],
