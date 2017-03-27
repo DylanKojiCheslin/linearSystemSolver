@@ -9,18 +9,19 @@ describe('linearSystem', () => {
           s : [[2,2,6],[9,9,30]]
         };
     });
+    describe('_switch', () => {
+      it('linearSystem._switch should exchange places of two diffrent rows', () => {
+        let thing = linSys._switch(data,0,1);
+        expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
+        //mutation check
+      });
 
-  it('linearSystem._switch should exchange places of two diffrent rows', () => {
-    let thing = linSys._switch(data,0,1);
-    expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
-    //mutation check
-  });
-
-  it('_switch mutation check', () => {
-    let thing = linSys._switch(data,0,1);
-    expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
-    expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
-  });
+      it('_switch mutation check', () => {
+        let thing = linSys._switch(data,0,1);
+        expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
+        expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
+      });
+    });
 
 
   it('linearSystem._getRowScaledBy should return array mulitplied by scale', () => {
@@ -33,7 +34,7 @@ describe('linearSystem', () => {
     expect(row).toEqual([-2,0,6]);
   });
 
-  it('linearSystem._rowReplacement should call _getRowScaledBy with data', () => {
+  it('_rowReplacement should call _getRowScaledBy with data', () => {
     let scaledBy = sinon.spy(linSys, '_getRowScaledBy');
     let rowToBeReplaced = 0, otherRow = 1, scale = 2;
     linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
