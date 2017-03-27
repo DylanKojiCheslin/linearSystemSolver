@@ -47,13 +47,13 @@ describe('linearSystem', () => {
     sinon.assert.calledWith(scaledBy, [9,9,30], 2);
   });
 
-  it('linearSystem._rowReplacement should return array with a row replaced by itself mulitplied to scale', () => {
+  it('_rowReplacement should return array with a row replaced by itself mulitplied to scale', () => {
     let rowToBeReplaced = 0,otherRow = 1,scale = 2;
     let newthing = linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
     expect(newthing).toEqual({s : [[20,20,66],[9,9,30]]});
   });
 
-  it('linearSystem._largestAbsoluteMovedToTopOfColumn should return array with largest absolute value to top of each pivot', () => {
+  it('_largestAbsoluteMovedToTopOfColumn should return array with largest absolute value to top of each pivot', () => {
     let inputSystem = {
       s : [
         [0,1,2,3],
@@ -80,7 +80,7 @@ describe('linearSystem', () => {
     expect(output).toEqual(expectedOutput);
   });
 
-  it('linearSystem._zeroAllRowsUnderThePivot returns correct value', () => {
+  it('_zeroAllRowsUnderThePivot returns correct value', () => {
     let inputSystem = {
       s : [
         [5,1,1,10],
