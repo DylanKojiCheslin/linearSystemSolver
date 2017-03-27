@@ -10,37 +10,37 @@ describe('linearSystem', () => {
         };
     });
     describe('_switch', () => {
-      it('linearSystem._switch should exchange places of two diffrent rows', () => {
+      it('should exchange places of two diffrent rows', () => {
         let thing = linSys._switch(data,0,1);
         expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
         //mutation check
       });
 
-      it('_switch mutation check', () => {
+      it('mutation check', () => {
         let thing = linSys._switch(data,0,1);
         expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
         expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
       });
     });
     describe("_getRowScaledBy", () => {
-      it('_getRowScaledBy should return array mulitplied by scale', () => {
+      it('should return array mulitplied by scale', () => {
         let row = linSys._getRowScaledBy([2,0,6],2);
         expect(row).toEqual([4,0,12]);
       });
 
-      it('_getRowScaledBy should return array mulitplied to negitive scale', () => {
+      it('should return array mulitplied to negitive scale', () => {
         let row = linSys._getRowScaledBy([2,0,-6],-1);
         expect(row).toEqual([-2,0,6]);
       });
 
-      it('_getRowScaledBy mutation check', () => {
+      it('mutation check', () => {
         let row = linSys._getRowScaledBy([2,0,-6],-1);
         expect(data).toEqual({s : [[2,2,6],[9,9,30]]});
       });
     });
 
     describe("_rowReplacement", () => {
-      it('_rowReplacement should call _getRowScaledBy with data', () => {
+      it('should call _getRowScaledBy with data', () => {
         let scaledBy = sinon.spy(linSys, '_getRowScaledBy');
         let rowToBeReplaced = 0, otherRow = 1, scale = 2;
         linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
@@ -48,13 +48,13 @@ describe('linearSystem', () => {
         sinon.assert.calledWith(scaledBy, [9,9,30], 2);
       });
 
-      it('_rowReplacement should return array with a row replaced by itself mulitplied to scale', () => {
+      it('should return array with a row replaced by itself mulitplied to scale', () => {
         let rowToBeReplaced = 0,otherRow = 1,scale = 2;
         let newthing = linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
         expect(newthing).toEqual({s : [[20,20,66],[9,9,30]]});
       });
 
-      it('_rowReplacement mutation test', () => {
+      it('mutation test', () => {
         let rowToBeReplaced = 0, otherRow = 1, scale = 2;
         linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
         expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
