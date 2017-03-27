@@ -143,50 +143,52 @@ describe('linearSystem', () => {
       });
     });
 
-  it('_zeroAllRowsUnderThePivot returns correct value', () => {
-    let inputSystem = {
-      s : [
-        [5,1,1,10],
-        [-1,1,1,-2],
-        [1,1,1,2]
-      ],
-      pivot : {
-        column : 0,
-        row : 0
-      }
-    };
-    let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
-    expect(outSystem.s).toEqual(
-      [
-        [ 5, 1, 1, 10 ],
-        [ 0, 1.2, 1.2, 0 ],
-        [ 0, 0.8, 0.8, 0 ]
-      ]);
-  });
+    describe("_zeroAllRowsUnderThePivot", () => {
+      it('returns correct value', () => {
+        let inputSystem = {
+          s : [
+            [5,1,1,10],
+            [-1,1,1,-2],
+            [1,1,1,2]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        };
+        let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
+        expect(outSystem.s).toEqual(
+          [
+            [ 5, 1, 1, 10 ],
+            [ 0, 1.2, 1.2, 0 ],
+            [ 0, 0.8, 0.8, 0 ]
+          ]);
+      });
 
-  it('_zeroAllRowsUnderThePivot mutation check', () => {
-    let inputSystem = {
-      s : [
-        [5,1,1,10],
-        [-1,1,1,-2],
-        [1,1,1,2]
-      ],
-      pivot : {
-        column : 0,
-        row : 0
-      }
-    };
-    let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
-    expect(inputSystem).toEqual({
-      s : [
-        [5,1,1,10],
-        [-1,1,1,-2],
-        [1,1,1,2]
-      ],
-      pivot : {
-        column : 0,
-        row : 0
-      }
+      it('mutation check', () => {
+        let inputSystem = {
+          s : [
+            [5,1,1,10],
+            [-1,1,1,-2],
+            [1,1,1,2]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        };
+        let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
+        expect(inputSystem).toEqual({
+          s : [
+            [5,1,1,10],
+            [-1,1,1,-2],
+            [1,1,1,2]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        });
+      });
     });
-  });
 });
