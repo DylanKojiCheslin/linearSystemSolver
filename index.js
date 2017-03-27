@@ -182,11 +182,12 @@ import clonedeep from 'lodash.clonedeep'
     }
 
     _largestAbsoluteMovedToTopOfColumn(system){
-      const rowsOffSetNumber = system.pivot.row;
-      const columnNumber = system.pivot.column;
+      let newSystem = JSON.parse(JSON.stringify(system));
+      const rowsOffSetNumber = newSystem.pivot.row;
+      const columnNumber = newSystem.pivot.column;
       let largestValue = 0;
       let indexOfLargestValue = undefined;
-      const columnArray = system.s.map(function(value) {
+      const columnArray = newSystem.s.map(function(value) {
         return Number(value[columnNumber]);
       });
       columnArray.forEach(function(value, index){
@@ -197,7 +198,7 @@ import clonedeep from 'lodash.clonedeep'
           }
         }
       });
-      system = this._switch(system, system.pivot.row, indexOfLargestValue)
-      return system;
+      newSystem = this._switch(newSystem, system.pivot.row, indexOfLargestValue)
+      return newSystem;
     }
   }

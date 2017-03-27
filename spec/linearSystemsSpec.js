@@ -61,32 +61,87 @@ describe('linearSystem', () => {
       });
     });
 
-  it('_largestAbsoluteMovedToTopOfColumn should return array with largest absolute value to top of each pivot', () => {
-    let inputSystem = {
-      s : [
-        [0,1,2,3],
-        [1,2,3,4],
-        [-3,2,1,5]
-      ],
-      pivot : {
-        column : 0,
-        row : 0
-      }
-    };
-    let expectedOutput = {
-      s : [
-        [-3,2,1,5],
-        [1,2,3,4],
-        [0,1,2,3]
-      ],
-      pivot : {
-        column : 0,
-        row : 0
-      }
-    };
-    let output = linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
-    expect(output).toEqual(expectedOutput);
-  });
+    describe("_largestAbsoluteMovedToTopOfColumn", () => {
+      it('should return array with largest absolute value to top of each pivot', () => {
+        let inputSystem = {
+          s : [
+            [0,1,2,3],
+            [1,2,3,4],
+            [-3,2,1,5]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        };
+        let expectedOutput = {
+          s : [
+            [-3,2,1,5],
+            [1,2,3,4],
+            [0,1,2,3]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        };
+        let output = linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
+        expect(output).toEqual(expectedOutput);
+      });
+
+      it("calls _switch with correct values", () => {
+        let switchy = sinon.spy(linSys, '_switch');
+        let inputSystem = {
+          s : [
+            [0,1,2,3],
+            [1,2,3,4],
+            [-3,2,1,5]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        };
+        let output = linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
+        switchy.restore();
+        sinon.assert.calledWith(switchy, {
+          s : [
+            [0,1,2,3],
+            [1,2,3,4],
+            [-3,2,1,5]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        });
+      });
+      it("mutation check", () => {
+        let inputSystem = {
+          s : [
+            [0,1,2,3],
+            [1,2,3,4],
+            [-3,2,1,5]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        };
+        linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
+        expect(inputSystem).toEqual({
+          s : [
+            [0,1,2,3],
+            [1,2,3,4],
+            [-3,2,1,5]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        });
+      });
+    });
 
   it('_zeroAllRowsUnderThePivot returns correct value', () => {
     let inputSystem = {
