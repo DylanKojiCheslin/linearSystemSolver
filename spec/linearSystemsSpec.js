@@ -39,19 +39,27 @@ describe('linearSystem', () => {
       });
     });
 
-  it('_rowReplacement should call _getRowScaledBy with data', () => {
-    let scaledBy = sinon.spy(linSys, '_getRowScaledBy');
-    let rowToBeReplaced = 0, otherRow = 1, scale = 2;
-    linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
-    scaledBy.restore();
-    sinon.assert.calledWith(scaledBy, [9,9,30], 2);
-  });
+    describe("_rowReplacement", () => {
+      it('_rowReplacement should call _getRowScaledBy with data', () => {
+        let scaledBy = sinon.spy(linSys, '_getRowScaledBy');
+        let rowToBeReplaced = 0, otherRow = 1, scale = 2;
+        linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
+        scaledBy.restore();
+        sinon.assert.calledWith(scaledBy, [9,9,30], 2);
+      });
 
-  it('_rowReplacement should return array with a row replaced by itself mulitplied to scale', () => {
-    let rowToBeReplaced = 0,otherRow = 1,scale = 2;
-    let newthing = linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
-    expect(newthing).toEqual({s : [[20,20,66],[9,9,30]]});
-  });
+      it('_rowReplacement should return array with a row replaced by itself mulitplied to scale', () => {
+        let rowToBeReplaced = 0,otherRow = 1,scale = 2;
+        let newthing = linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
+        expect(newthing).toEqual({s : [[20,20,66],[9,9,30]]});
+      });
+
+      it('_rowReplacement mutation test', () => {
+        let rowToBeReplaced = 0, otherRow = 1, scale = 2;
+        linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
+        expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
+      });
+    });
 
   it('_largestAbsoluteMovedToTopOfColumn should return array with largest absolute value to top of each pivot', () => {
     let inputSystem = {
