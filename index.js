@@ -94,10 +94,11 @@ import clonedeep from 'lodash.clonedeep'
 
     _switch(system, aRowNumber, differentRowNumber){
       //change to splice
-      let holder = system.s[differentRowNumber];
-      system.s[differentRowNumber] = system.s[aRowNumber];
-      system.s[aRowNumber] = holder;
-      return system;
+      let newSystem = JSON.parse(JSON.stringify(system));
+      let holder = newSystem.s[differentRowNumber];
+      newSystem.s[differentRowNumber] = newSystem.s[aRowNumber];
+      newSystem.s[aRowNumber] = holder;
+      return newSystem;
     }
 
     _rowReplacement(system, rowToBeReplaced, otherRow, scale){
@@ -156,7 +157,6 @@ import clonedeep from 'lodash.clonedeep'
           newSystem = this._rowReplacementRemover(newSystem, i);
         }
       }
-      console.log(newSystem.s);
       return newSystem;
     }
 
