@@ -190,5 +190,34 @@ describe('linearSystem', () => {
           }
         });
       });
+      
+      it("calls _rowReplacementRemover with correct values", () => {
+        let replacer = sinon.spy(linSys, '_rowReplacementRemover');
+        let inputSystem = {
+          s : [
+            [0,1,2,3],
+            [1,2,3,4],
+            [-3,2,1,5]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        };
+        let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
+        replacer.restore();
+        sinon.assert.calledWithExactly(replacer, {
+          s : [
+            [0,1,2,3],
+            [1,2,3,4],
+            [-3,2,1,5]
+          ],
+          pivot : {
+            column : 0,
+            row : 0
+          }
+        },
+      1);
+      });
     });
 });
