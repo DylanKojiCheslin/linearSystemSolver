@@ -9,6 +9,7 @@ describe('linearSystem', () => {
           s : [[2,2,6],[9,9,30]]
         };
     });
+
     describe('_switch', () => {
       it('should exchange places of two diffrent rows', () => {
         let thing = linSys._switch(data,0,1);
@@ -22,6 +23,7 @@ describe('linearSystem', () => {
         expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
       });
     });
+
     describe("_getRowScaledBy", () => {
       it('should return array mulitplied by scale', () => {
         let row = linSys._getRowScaledBy([2,0,6],2);
@@ -116,6 +118,7 @@ describe('linearSystem', () => {
           }
         });
       });
+
       it("mutation check", () => {
         let inputSystem = {
           s : [
@@ -220,6 +223,7 @@ describe('linearSystem', () => {
       1);
       });
     });
+
     describe("_zeroAllRowsAboveThePivot", () => {
       it("should return correct output", () => {
         let inputSystem = {
@@ -238,6 +242,7 @@ describe('linearSystem', () => {
             [ 0, 0, 2, 54 ]
           ],
           pivot:{row:2,column:2}});
-      })
+      });
     });
+
 });
