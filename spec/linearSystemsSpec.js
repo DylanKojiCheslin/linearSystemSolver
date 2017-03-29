@@ -190,7 +190,7 @@ describe('linearSystem', () => {
           }
         });
       });
-      
+
       it("calls _rowReplacementRemover with correct values", () => {
         let replacer = sinon.spy(linSys, '_rowReplacementRemover');
         let inputSystem = {
@@ -219,5 +219,25 @@ describe('linearSystem', () => {
         },
       1);
       });
+    });
+    describe("_zeroAllRowsAboveThePivot", () => {
+      it("should return correct output", () => {
+        let inputSystem = {
+          s : [
+            [5,3,4,10],
+            [0,5,7,14],
+            [0,0,2,54],
+          ],
+          pivot:{row:2,column:2}
+        };
+        let outputSystem = linSys._zeroAllRowsAboveThePivot(inputSystem);
+        expect(outputSystem).toEqual({
+          s:[
+            [ 5, 3, 0, -98 ],
+            [ 0, 5, 0, -175 ],
+            [ 0, 0, 2, 54 ]
+          ],
+          pivot:{row:2,column:2}});
+      })
     });
 });
