@@ -1,4 +1,3 @@
-import clonedeep from 'lodash.clonedeep'
   export default class LinearSystem {
     constructor(matrix) {
       if (matrix != undefined) {
