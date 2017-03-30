@@ -245,4 +245,25 @@ describe('linearSystem', () => {
       });
     });
 
+    it('mutation check', () => {
+      let inputSystem = {
+        s : [
+          [5,3,4,10],
+          [0,5,7,14],
+          [0,0,2,54],
+        ],
+        pivot:{row:2,column:2}
+      };
+      let outputSystem = linSys._zeroAllRowsAboveThePivot(inputSystem);
+      console.log(outputSystem.s);
+      console.log(outputSystem === inputSystem);
+      expect(inputSystem).toEqual({
+        s : [
+          [5,3,4,10],
+          [0,5,7,14],
+          [0,0,2,54],
+        ],
+        pivot:{row:2,column:2}
+      });
+    });
 });
