@@ -46,7 +46,7 @@ describe('linearSystem', () => {
         let rowToBeReplaced = 0, otherRow = 1, scale = 2;
         linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
         scaledBy.restore();
-        sinon.assert.calledWith(scaledBy, [9,9,30], 2);
+        scaledBy.calledWith([9,9,30], 2);
       });
 
       it('should return array with a row replaced by itself mulitplied to scale', () => {
@@ -55,7 +55,7 @@ describe('linearSystem', () => {
         expect(newthing).toEqual({s : [[20,20,66],[9,9,30]]});
       });
 
-      it('mutation test', () => {
+      it('should not mutate input value', () => {
         let rowToBeReplaced = 0, otherRow = 1, scale = 2;
         linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
         expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
@@ -105,7 +105,7 @@ describe('linearSystem', () => {
         };
         let output = linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
         switchy.restore();
-        sinon.assert.calledWith(switchy, {
+        switchy.calledWith({
           s : [
             [0,1,2,3],
             [1,2,3,4],
@@ -208,7 +208,7 @@ describe('linearSystem', () => {
         };
         let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
         replacer.restore();
-        sinon.assert.calledWithExactly(replacer, {
+        replacer.calledWithExactly({
           s : [
             [0,1,2,3],
             [1,2,3,4],
@@ -275,7 +275,7 @@ describe('linearSystem', () => {
       };
       let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
       replacer.restore();
-      sinon.assert.calledWithExactly(replacer, {
+      replacer.calledWithExactly({
         s : [
           [1,2,3,5],
           [0,2,1,5],
@@ -319,6 +319,7 @@ describe('linearSystem', () => {
         };
         let replacer = sinon.spy(linSys, "_scalePivotToOne");
         linSys._scalePivotToOne(inputSystem);
+        replacer.restore();
         replacer.calledWithExactly([2,0,0,2], .5);
       });
     });
