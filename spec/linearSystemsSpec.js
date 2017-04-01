@@ -286,7 +286,7 @@ describe('linearSystem', () => {
       },
     1);
     });
-    });
+  });
 
     describe("_scalePivotToOne", () => {
       it("returns expected value", () => {
