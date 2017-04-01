@@ -289,4 +289,26 @@ describe('linearSystem', () => {
       },
     1);
     });
+    describe("_scalePivotToOne", () => {
+      it("returns expected value", () => {
+        let testSystem = {
+          s : [
+            [3,0,0,3],
+            [0,2,1,5],
+            [0,5,6,7,]
+          ],
+          pivot : {row:0,column:0}
+        };
+        let outSystem = linSys._scalePivotToOne(testSystem);
+        expect(outSystem).toEqual({
+          s : [
+            [1,0,0,1],
+            [0,2,1,5],
+            [0,5,6,7,]
+          ],
+          pivot : {row:0,column:0}
+        })
+      });
+    });
+
 });
