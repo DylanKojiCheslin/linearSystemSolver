@@ -308,6 +308,19 @@ describe('linearSystem', () => {
           pivot : {row:0,column:0}
         });
       });
+      it('should call _getRowScaledBy with correct values', () => {
+        let inputSystem = {
+          s : [
+            [2,0,0,2],
+            [0,2,1,5],
+            [0,5,6,7,]
+          ],
+          pivot : {row:0,column:0}
+        };
+        let replacer = sinon.spy(linSys, "_scalePivotToOne");
+        linSys._scalePivotToOne(inputSystem);
+        replacer.calledWithExactly([2,0,0,2], .5);
+      });
     });
 
 });
