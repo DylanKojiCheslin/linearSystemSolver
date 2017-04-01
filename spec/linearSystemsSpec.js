@@ -263,7 +263,6 @@ describe('linearSystem', () => {
         ],
         pivot:{row:2,column:2}
       });
-    });
 
     it("calls _rowReplacementRemover with correct values", () => {
       let replacer = sinon.spy(linSys, '_rowReplacementRemover');
@@ -287,6 +286,8 @@ describe('linearSystem', () => {
       },
     1);
     });
+    });
+
     describe("_scalePivotToOne", () => {
       it("returns expected value", () => {
         let testSystem = {
