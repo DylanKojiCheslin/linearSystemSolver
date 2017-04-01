@@ -14,10 +14,9 @@ describe('linearSystem', () => {
       it('should exchange places of two diffrent rows', () => {
         let thing = linSys._switch(data,0,1);
         expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
-        //mutation check
       });
 
-      it('mutation check', () => {
+      it('should not mutate input', () => {
         let thing = linSys._switch(data,0,1);
         expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
         expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
@@ -35,7 +34,7 @@ describe('linearSystem', () => {
         expect(row).toEqual([-2,0,6]);
       });
 
-      it('mutation check', () => {
+      it('should not mutate input', () => {
         let row = linSys._getRowScaledBy([2,0,-6],-1);
         expect(data).toEqual({s : [[2,2,6],[9,9,30]]});
       });
@@ -119,7 +118,7 @@ describe('linearSystem', () => {
         });
       });
 
-      it("mutation check", () => {
+      it("should not mutate input", () => {
         let inputSystem = {
           s : [
             [0,1,2,3],
@@ -168,7 +167,7 @@ describe('linearSystem', () => {
           ]);
       });
 
-      it('mutation check', () => {
+      it('should not mutate input', () => {
         let inputSystem = {
           s : [
             [5,1,1,10],
@@ -245,7 +244,7 @@ describe('linearSystem', () => {
       });
     });
 
-    it('mutation check', () => {
+    it('should not mutate input', () => {
       let inputSystem = {
         s : [
           [5,3,4,10],
@@ -289,7 +288,7 @@ describe('linearSystem', () => {
   });
 
     describe("_scalePivotToOne", () => {
-      it("returns expected value", () => {
+      it("return expected value", () => {
         let testSystem = {
           s : [
             [3,0,0,3],
@@ -308,6 +307,7 @@ describe('linearSystem', () => {
           pivot : {row:0,column:0}
         });
       });
+
       it('should call _getRowScaledBy with correct values', () => {
         let inputSystem = {
           s : [
