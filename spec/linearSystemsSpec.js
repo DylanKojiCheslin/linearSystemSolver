@@ -255,8 +255,6 @@ describe('linearSystem', () => {
         pivot:{row:2,column:2}
       };
       let outputSystem = linSys._zeroAllRowsAboveThePivot(inputSystem);
-      console.log(outputSystem.s);
-      console.log(outputSystem === inputSystem);
       expect(inputSystem).toEqual({
         s : [
           [5,3,4,10],
