@@ -307,7 +307,7 @@ describe('linearSystem', () => {
             [0,5,6,7,]
           ],
           pivot : {row:0,column:0}
-        })
+        });
       });
     });
 
