@@ -347,4 +347,23 @@ describe('linearSystem', () => {
       });
     });
 
+    it('should not mutate input', () => {
+      let inputSystem = {
+        s : [
+          [2,0,0,2],
+          [0,2,1,5],
+          [0,5,6,7,]
+        ],
+        pivot : {row:0,column:0}
+      };
+      linSys._scalePivotToOne(inputSystem);
+      expect(inputSystem).toEqual({
+        s : [
+          [2,0,0,2],
+          [0,2,1,5],
+          [0,5,6,7,]
+        ],
+        pivot : {row:0,column:0}
+      })
+    });
 });

@@ -76,7 +76,7 @@
       }
 
       // 3. forEach row:
-      for (var i = limit; i > 0; i--) {
+      for (var i = limit; i >= 0; i--) {
         // a. _zeroAllRowsAboveThePivot(),
         system = that._zeroAllRowsAboveThePivot(system);
         // the pivot shoud be scaled to postive one
@@ -84,8 +84,8 @@
         // b. _pivot.row--, _pivot.column--
         // move the pivot up and over unless its at the top
         if (i > 0) {
-          that._pivot.row = that._pivot.row - 1;
-          that._pivot.column = that._pivot.column - 1;
+          system.pivot.row = system.pivot.row - 1;
+          system.pivot.column = system.pivot.column - 1;
         }
       }
         return system;
@@ -177,7 +177,7 @@
       const pivotValue = Number(newSystem.s[system.pivot.row][newSystem.pivot.column]);
       const scale = 1 / pivotValue;
       const rowPivotScaledToOne = this._getRowScaledBy(newSystem.s[rowNumber], scale);
-      newSystem.s.splice(rowNumber, deleteCount, rowPivotScaledToOne)
+      newSystem.s.splice(rowNumber, deleteCount, rowPivotScaledToOne);
       return newSystem;
     }
 
