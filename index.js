@@ -76,14 +76,14 @@
       }
 
       // 3. forEach row:
-      for (var i = limit; i > -1; i--) {
+      for (var i = limit; i > 0; i--) {
         // a. _zeroAllRowsAboveThePivot(),
         system = that._zeroAllRowsAboveThePivot(system);
         // the pivot shoud be scaled to postive one
         system = that._scalePivotToOne(system);
         // b. _pivot.row--, _pivot.column--
         // move the pivot up and over unless its at the top
-        if (i > -1) {
+        if (i > 0) {
           that._pivot.row = that._pivot.row - 1;
           that._pivot.column = that._pivot.column - 1;
         }
@@ -171,13 +171,14 @@
 
     _scalePivotToOne(system){
       // a = ((a/b) * b)
+      let newSystem = JSON.parse(JSON.stringify(system));
       const deleteCount = 1;
-      const rowNumber = system.pivot.row;
-      const pivotValue = Number(system.s[system.pivot.row][system.pivot.column]);
+      const rowNumber = newSystem.pivot.row;
+      const pivotValue = Number(newSystem.s[system.pivot.row][newSystem.pivot.column]);
       const scale = 1 / pivotValue;
-      const rowPivotScaledToOne = this._getRowScaledBy(system.s[rowNumber], scale);
-      system.s.splice(rowNumber, deleteCount, rowPivotScaledToOne)
-      return system;
+      const rowPivotScaledToOne = this._getRowScaledBy(newSystem.s[rowNumber], scale);
+      newSystem.s.splice(rowNumber, deleteCount, rowPivotScaledToOne)
+      return newSystem;
     }
 
     _largestAbsoluteMovedToTopOfColumn(system){
