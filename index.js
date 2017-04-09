@@ -175,9 +175,11 @@
       const deleteCount = 1;
       const rowNumber = newSystem.pivot.row;
       const pivotValue = Number(newSystem.s[system.pivot.row][newSystem.pivot.column]);
-      const scale = 1 / pivotValue;
-      const rowPivotScaledToOne = this._getRowScaledBy(newSystem.s[rowNumber], scale);
-      newSystem.s.splice(rowNumber, deleteCount, rowPivotScaledToOne);
+      if (pivotValue != 1) {
+        const scale = 1 / pivotValue;
+        const rowPivotScaledToOne = this._getRowScaledBy(newSystem.s[rowNumber], scale);
+        newSystem.s.splice(rowNumber, deleteCount, rowPivotScaledToOne);
+      }
       return newSystem;
     }
 
