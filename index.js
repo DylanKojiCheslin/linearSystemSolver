@@ -40,7 +40,6 @@
       system.s = this._systemState;
       system.pivot = this._pivot;
       let isNonZero = false;
-      const that = this;
       for (var i = 0; i < system.s.length; i++) {
         let thisColumn = system.s.map(function(value) {
           return value[i];
@@ -64,9 +63,9 @@
       // forEach row:
       for (var i = 0; i < system.s.length; i++) {
         // a. _largestAbsoluteMovedToTopOfColumn on the pivot.column - largest to top
-        system = that._largestAbsoluteMovedToTopOfColumn(system)
+        system = this._largestAbsoluteMovedToTopOfColumn(system)
         // b. _zeroAllRowsUnderThePivot() - row replacement operations to "zero" all entry under the pivot
-        system = that._zeroAllRowsUnderThePivot(system);
+        system = this._zeroAllRowsUnderThePivot(system);
         //unless the pivot is in the bottom right
         if (system.pivot.column < limit && system.pivot.row < limit) {
         // c. pivot.row++, pivot.column++
@@ -78,9 +77,9 @@
       // 3. forEach row:
       for (var i = limit; i >= 0; i--) {
         // a. _zeroAllRowsAboveThePivot(),
-        system = that._zeroAllRowsAboveThePivot(system);
+        system = this._zeroAllRowsAboveThePivot(system);
         // the pivot shoud be scaled to postive one
-        system = that._scalePivotToOne(system);
+        system = this._scalePivotToOne(system);
         // b. pivot.row--, pivot.column--
         // move the pivot up and over unless its at the top
         if (i > 0) {
@@ -102,9 +101,8 @@
 
     _rowReplacement(system, rowToBeReplaced, otherRow, scale){
       let newSystem = JSON.parse(JSON.stringify(system));
-      const that = this;
       const deleteCount = 1;
-      let otherRowScaled = that._getRowScaledBy(newSystem.s[otherRow], scale);
+      let otherRowScaled = this._getRowScaledBy(newSystem.s[otherRow], scale);
       let sumOfRows = otherRowScaled.map(function (num, idx) {
         let otherRowAtIndexValue = newSystem.s[rowToBeReplaced][idx];
         let value = num + otherRowAtIndexValue;
