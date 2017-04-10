@@ -97,7 +97,6 @@
     }
 
     _switch(system, aRowNumber, differentRowNumber){
-      //change to splice
       let newSystem = JSON.parse(JSON.stringify(system));
       let holder = newSystem.s[differentRowNumber];
       newSystem.s[differentRowNumber] = newSystem.s[aRowNumber];
@@ -114,7 +113,7 @@
         let value = num + otherRowAtIndexValue;
         return value;
       });
-      newSystem.s.splice(rowToBeReplaced, deleteCount, sumOfRows);
+      newSystem.s[rowToBeReplaced] = sumOfRows;
       return newSystem;
     }
 
