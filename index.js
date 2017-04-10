@@ -1,25 +1,7 @@
   export default class LinearSystem {
     constructor(matrix) {
       if (matrix != undefined) {
-        //input should be a array of array of ints
-        if ( ! Array.isArray(matrix)) {
-          throw 'not array type error';
-        }
-        const hight = matrix.length;
-        matrix.forEach(function(row){
-          if ( ! Array.isArray(row)) {
-            throw 'not array type error';
-          }
-          //checks if input matrix is ( column.length + 1 == rows.length )
-          if ( hight + 1 != row.length ) {
-            throw 'not in required shape (width == hight + 1)';
-          }
-          row.forEach(function(entry){
-            if ( ! Number.isInteger(entry)) {
-              throw 'not a integer error';
-            }
-          });
-        });
+        this._isCorrectFormat(matrix);
       }
       this._systemState = matrix;
       this._pivot = {
@@ -72,6 +54,29 @@
       }
         return system;
     }
+
+    //checks if input is correctly formatted linear system
+    _isCorrectFormat(matrix){
+      //input should be a array of array of ints
+      if ( ! Array.isArray(matrix)) {
+        throw 'not array type error';
+      }
+      const hight = matrix.length;
+      matrix.forEach(function(row){
+        if ( ! Array.isArray(row)) {
+          throw 'not array type error';
+        }
+        //checks if input matrix is ( column.length + 1 == rows.length )
+        if ( hight + 1 != row.length ) {
+          throw 'not in required shape (width == hight + 1)';
+        }
+        row.forEach(function(entry){
+          if ( ! Number.isInteger(entry)) {
+            throw 'not a integer error';
+          }
+        });
+      });
+    };
 
     //the left most non-zero column is the _pivot.column
     _findPivotColumn(system){
