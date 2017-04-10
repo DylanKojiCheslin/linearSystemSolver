@@ -8,7 +8,7 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 ## project specifications
 
 ### code specifications
-all methods on the class should be purely functional
+all methods in the class should be purely functional
 all methods should have a test preventing input mutation
 
 ### features
@@ -71,20 +71,6 @@ c. _pivot.row++, _pivot.column++
 a. _zeroAllRowsAboveThePivot(), _scalePivotToOne
 b. _pivot.row--, _pivot--
 
-### isSolvable
-yourInstance.solve({verbose:false})
-
-optional parameter object has "verbose" bool
-prints console logs of the details
-
-a system is solvable if it is in echelon form regardless of if it is reduced
-
-return a bool indicating if the system has one or more solutions
-
-### _logState
-
-console.log of _systemState
-
 ### _switch
 yourInstance._switch(rowNumberOne, rowNumberTwo)
 exchange the location of 2 rows
@@ -121,9 +107,6 @@ the internal storage of the linear systems matrix as an array
 ### _pivot
 the pivot position, a obj with props row/column
 
-### _pivotColumn
-the pivot column
-
 ### _isEchelonForm
 returns a bool indicating if the matrix is in [echelon form](https://en.wikipedia.org/wiki/Row_echelon_form "etchlon_Form")
 
@@ -139,8 +122,6 @@ after solved a nice chart to look at if low enough number of dimensions
 ui element that shows system and animates switching, adding, scaling
 
 ### optional parameter bool back-substitution instead of going from echelon to reduced echelon form
-
-### optional constructor parameter bool toggles validateInput function
 
 ### function approximation of this class with less complexity cost or overhead
 

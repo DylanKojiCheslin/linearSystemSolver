@@ -37,7 +37,7 @@
       let system = {};
       system.s = this._systemState;
       system.pivot = this._pivot;
-      // 1.
+      // 1. find pivot column
       system = this._findPivotColumn(system);
       // 2. the top row/column postion of the pivot.column is the pivot location
       system.pivot.row = 0;
