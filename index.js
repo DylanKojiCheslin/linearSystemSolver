@@ -57,19 +57,19 @@
       if ( undefined === system.pivot.column) {
         throw 'empty sets have no solutions';
       }
-      // 2. the top row/column postion of the _pivot.column is the _pivot location
+      // 2. the top row/column postion of the pivot.column is the pivot location
       system.pivot.row = 0;
       system.pivot.column = this._pivot.column;
       let limit = system.s.length - 1;
       // forEach row:
       for (var i = 0; i < system.s.length; i++) {
-        // a. _largestAbsoluteMovedToTopOfColumn on the _pivot.column - largest to top
+        // a. _largestAbsoluteMovedToTopOfColumn on the pivot.column - largest to top
         system = that._largestAbsoluteMovedToTopOfColumn(system)
         // b. _zeroAllRowsUnderThePivot() - row replacement operations to "zero" all entry under the pivot
         system = that._zeroAllRowsUnderThePivot(system);
         //unless the pivot is in the bottom right
         if (system.pivot.column < limit && system.pivot.row < limit) {
-        // c. _pivot.row++, _pivot.column++
+        // c. pivot.row++, pivot.column++
           system.pivot.column = system.pivot.column + 1;
           system.pivot.row = system.pivot.row + 1;
         }
@@ -81,7 +81,7 @@
         system = that._zeroAllRowsAboveThePivot(system);
         // the pivot shoud be scaled to postive one
         system = that._scalePivotToOne(system);
-        // b. _pivot.row--, _pivot.column--
+        // b. pivot.row--, pivot.column--
         // move the pivot up and over unless its at the top
         if (i > 0) {
           system.pivot.row = system.pivot.row - 1;
