@@ -24,6 +24,26 @@
       // 2. the top row/column postion of the pivot.column is the pivot location
       system.pivot.row = 0;
       system.pivot.column = this._pivot.column;
+      system = this._rowReductionToEtchlonForm(system);
+
+      // 3. forEach row:
+      let limit = system.s.length - 1;
+      for (var i = limit; i >= 0; i--) {
+        // a. _zeroAllRowsAboveThePivot(),
+        system = this._zeroAllRowsAboveThePivot(system);
+        // the pivot shoud be scaled to postive one
+        system = this._scalePivotToOne(system);
+        // b. pivot.row--, pivot.column--
+        // move the pivot up and over unless its at the top
+        if (i > 0) {
+          system.pivot.row = system.pivot.row - 1;
+          system.pivot.column = system.pivot.column - 1;
+        }
+      }
+        return system;
+    }
+
+    _rowReductionToEtchlonForm(system){
       let limit = system.s.length - 1;
       // forEach row:
       for (var i = 0; i < system.s.length; i++) {
@@ -38,21 +58,7 @@
           system.pivot.row = system.pivot.row + 1;
         }
       }
-
-      // 3. forEach row:
-      for (var i = limit; i >= 0; i--) {
-        // a. _zeroAllRowsAboveThePivot(),
-        system = this._zeroAllRowsAboveThePivot(system);
-        // the pivot shoud be scaled to postive one
-        system = this._scalePivotToOne(system);
-        // b. pivot.row--, pivot.column--
-        // move the pivot up and over unless its at the top
-        if (i > 0) {
-          system.pivot.row = system.pivot.row - 1;
-          system.pivot.column = system.pivot.column - 1;
-        }
-      }
-        return system;
+      return system;
     }
 
     //checks if input is correctly formatted linear system
