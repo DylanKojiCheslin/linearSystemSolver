@@ -24,7 +24,7 @@
       // 2. the top row/column postion of the pivot.column is the pivot location
       system.pivot.row = 0;
       system.pivot.column = this._pivot.column;
-      system = this._rowReductionToEtchlonForm(system);
+      system = this._rowReduceToEtchlonForm(system);
 
       // 3. forEach row:
       let limit = system.s.length - 1;
@@ -43,7 +43,7 @@
         return system;
     }
 
-    _rowReductionToEtchlonForm(system){
+    _rowReduceToEtchlonForm(system){
       let limit = system.s.length - 1;
       // forEach row:
       for (var i = 0; i < system.s.length; i++) {
