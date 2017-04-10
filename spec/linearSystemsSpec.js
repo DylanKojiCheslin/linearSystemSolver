@@ -34,6 +34,34 @@ describe('linearSystem', () => {
     });
 
     describe('_findPivotColumn', () => {
+
+      it('returns with correct pivot', () => {
+        const inputSystem = {
+          s : [
+            [0,0,0,0],
+            [0,1,0,0],
+            [0,0,0,0]
+          ],
+          pivot :{
+            row : undefined,
+            column : undefined
+          }
+        };
+        const expectedOutput = {
+          s : [
+            [0,0,0,0],
+            [0,1,0,0],
+            [0,0,0,0]
+          ],
+          pivot :{
+            row : undefined,
+            column : 1
+          }
+        }
+        let outputSystem = linSys._findPivotColumn(inputSystem);
+        expect(outputSystem).toEqual(expectedOutput);
+      });
+
       it('throws error for empty sets', () => {
         const emptyObject = {
           s:[
