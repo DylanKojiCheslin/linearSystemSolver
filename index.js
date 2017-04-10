@@ -34,28 +34,11 @@
       if (this._systemState == undefined) {
         throw "_systemState undefined"
       }
-      // 1. the left most non-zero column is the _pivot.column
-      //try first column, iterate until a column has a non-zero int in it
       let system = {};
       system.s = this._systemState;
       system.pivot = this._pivot;
-      let isNonZero = false;
-      for (var i = 0; i < system.s.length; i++) {
-        let thisColumn = system.s.map(function(value) {
-          return value[i];
-        });
-        isNonZero = thisColumn.some(function(entry){
-          return Math.abs(entry) > 0
-        });
-        if (isNonZero) {
-          system.pivot.column = i;
-          break;
-        }
-      }
-      //if there isn't a non-zero column then the set is empty and has no solutions
-      if ( undefined === system.pivot.column) {
-        throw 'empty sets have no solutions';
-      }
+      // 1.
+      system = this._findPivotColumn(system);
       // 2. the top row/column postion of the pivot.column is the pivot location
       system.pivot.row = 0;
       system.pivot.column = this._pivot.column;
@@ -88,6 +71,29 @@
         }
       }
         return system;
+    }
+
+    //the left most non-zero column is the _pivot.column
+    _findPivotColumn(system){
+      let isNonZero = false;
+    //iterate until a column has a non-zero int in it
+      for (var i = 0; i < system.s.length; i++) {
+        let thisColumn = system.s.map(function(value) {
+          return value[i];
+        });
+        isNonZero = thisColumn.some(function(entry){
+          return Math.abs(entry) > 0
+        });
+        if (isNonZero) {
+          system.pivot.column = i;
+          break;
+        }
+      }
+      //if there isn't a non-zero column then the set is empty and has no solutions
+      if ( undefined === system.pivot.column) {
+        throw 'empty sets have no solutions';
+      }
+      return system;
     }
 
     _switch(system, aRowNumber, differentRowNumber){

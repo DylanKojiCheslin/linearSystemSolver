@@ -33,6 +33,26 @@ describe('linearSystem', () => {
     expect(solution).toEqual(expectedOutput);
     });
 
+    describe('_findPivotColumn', () => {
+      it('throws error for empty sets', () => {
+        const emptyObject = {
+          s:[
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,0,0,0]
+          ],
+          pivot:{
+            row : undefined,
+            column : undefined
+          }
+        };
+        expect(
+          function(){
+            linSys._findPivotColumn(emptyObject)
+          }).toThrow('empty sets have no solutions');
+      });
+    });
+
     describe('_switch', () => {
       it('should exchange places of two diffrent rows', () => {
         let thing = linSys._switch(data,0,1);
