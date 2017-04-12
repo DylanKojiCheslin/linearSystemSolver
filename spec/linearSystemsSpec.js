@@ -10,27 +10,30 @@ describe('linearSystem', () => {
         };
     });
 
-    it('integration',() => {
-    const initObject =
-    [
-      [0,0,5,5],
-      [0,3,0,3],
-      [-4,0,0,20]
-    ];
-    const expectedOutput = {
-      s : [
-        [1,0,0,-5],
-        [0,1,0,1],
-        [0,0,1,1]
-      ],
-      pivot : {
-        column : 0,
-        row : 0
+    describe('integration',() => {
+
+      it('returns expected values',() => {
+      const initObject =
+      [
+        [0,0,5,5],
+        [0,3,0,3],
+        [-4,0,0,20]
+      ];
+      const expectedOutput = {
+        s : [
+          [1,0,0,-5],
+          [0,1,0,1],
+          [0,0,1,1]
+        ],
+        pivot : {
+          column : 0,
+          row : 0
+        }
       }
-    }
-    const fullSystem = new linearSystem(initObject);
-    const solution = fullSystem.solve();
-    expect(solution).toEqual(expectedOutput);
+      const fullSystem = new linearSystem(initObject);
+      const solution = fullSystem.solve();
+      expect(solution).toEqual(expectedOutput);
+      });
     });
 
     describe('_findPivotColumn', () => {

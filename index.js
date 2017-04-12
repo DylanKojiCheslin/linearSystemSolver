@@ -47,7 +47,7 @@
       return system;
     }
 
-    _rowReduceToEtchlonForm(system){
+    _changeToEtchlonForm(system){
       let limit = system.s.length - 1;
       // forEach row:
       for (var i = 0; i < system.s.length; i++) {
