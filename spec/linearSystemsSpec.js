@@ -413,7 +413,33 @@ describe('_changeToEtchlonForm', () => {
     });
   });
 
-
+  describe("_rowReplacementRemover", () => {
+    it("returns expected value", () => {
+      const rowNumber = 1;
+      const inputSystem = {
+        s : [
+          [2,1,1],
+          [1,1,1]
+        ],
+        pivot : {
+          row: 0,
+          column: 0
+        }
+      };
+      const expectedOutput = {
+        s : [
+          [2,1,1],
+          [0, .5, .5]
+        ],
+        pivot : {
+          row: 0,
+          column: 0
+        }
+      }
+      const output = linSys._rowReplacementRemover(inputSystem, rowNumber);
+      expect(output).toEqual(expectedOutput);
+    });
+  });
 
     describe("_scalePivotToOne", () => {
       it("return expected value", () => {
