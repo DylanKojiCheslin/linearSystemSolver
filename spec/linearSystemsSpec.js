@@ -439,6 +439,31 @@ describe('_changeToEtchlonForm', () => {
       const output = linSys._rowReplacementRemover(inputSystem, rowNumber);
       expect(output).toEqual(expectedOutput);
     });
+
+    it('calls _rowReplacement with expected paramiters', () => {
+      const replacer = sinon.spy(linSys, '_rowReplacement');
+      const rowNumber = 1;
+      const inputSystem = {
+        s : [
+          [2,1,1],
+          [1,1,1]
+        ],
+        pivot : {
+          row: 0,
+          column: 0
+        }
+      };
+      const output = linSys._rowReplacementRemover(inputSystem, rowNumber);
+      replacer.restore();
+      //._rowReplacement(newSystem, rowNumber, system.pivot.row, scale);
+        expect(replacer.calledWithExactly(
+          {s : [[2,1,1],[1,1,1]],pivot : {row: 0,column: 0}},
+          1,
+          0,
+          -.5
+        )).toBe(true);
+    });
+
   });
 
     describe("_scalePivotToOne", () => {
