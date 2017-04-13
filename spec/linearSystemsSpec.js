@@ -36,6 +36,22 @@ describe('linearSystem', () => {
       });
     });
 
+// describe('_changeToEtchlonForm', () => {
+//   it('return expected value', () => {
+//     let inputSystem = {
+//       s : [
+//         [3,3,3],
+//         [4,0,2]
+//       ],
+//       pivot : {
+//         row : 0,
+//         column : 0
+//       }
+//     }
+//     let outputSystem = linSys._changeToEtchlonForm(inputSystem);
+//   });
+// });
+
     describe('_findPivotColumn', () => {
 
       it('returns with correct pivot', () => {
@@ -295,6 +311,31 @@ describe('linearSystem', () => {
         },
       1);
       });
+
+      // it('passes other test case', () => {
+      //   let inputSystem = {
+      //     s: [
+      //       [ 4, 0, 2 ],
+      //       [ 4, 5, 20 ]
+      //     ],
+      //     pivot: {
+      //       row: 0,
+      //       column: 0 }
+      //     };
+      //   let expectedOutput = {
+      //     s: [
+      //       [ 4, 0, 2 ],
+      //       [ 4, 0, 20 ]
+      //     ],
+      //     pivot: {
+      //       row: 0,
+      //       column: 0 }
+      //     };
+      //   let output = linSys._zeroAllRowsUnderThePivot(inputSystem);
+      //   console.log(output.s);
+      //   console.log(expectedOutput.s);
+      // expect(output).toEqual(expectedOutput);
+      // });
     });
 
     describe("_zeroAllRowsAboveThePivot", () => {
