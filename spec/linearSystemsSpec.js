@@ -36,21 +36,32 @@ describe('linearSystem', () => {
       });
     });
 
-// describe('_changeToEtchlonForm', () => {
-//   it('return expected value', () => {
-//     let inputSystem = {
-//       s : [
-//         [3,3,3],
-//         [4,0,2]
-//       ],
-//       pivot : {
-//         row : 0,
-//         column : 0
-//       }
-//     }
-//     let outputSystem = linSys._changeToEtchlonForm(inputSystem);
-//   });
-// });
+describe('_changeToEtchlonForm', () => {
+  it('return expected value', () => {
+    let inputSystem = {
+      s : [
+        [3,3,3],
+        [4,0,2]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
+      }
+    }
+    const expectedOutput = {
+      s: [
+        [ 4, 0, 2 ],
+        [ 0, 3, 1.5 ]
+      ],
+      pivot: {
+        row: 1,
+        column: 1
+      }
+    }
+    let outputSystem = linSys._changeToEtchlonForm(inputSystem);
+    expect(outputSystem).toEqual(expectedOutput);
+  });
+});
 
     describe('_findPivotColumn', () => {
 

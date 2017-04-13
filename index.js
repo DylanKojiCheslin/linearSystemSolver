@@ -152,7 +152,7 @@
       //for each of the rows above the pivot
       for (var i = rowAboveThePivot; i > -1; i--) {
         // if the row is non-zero
-        if (system.s[row][column] != 0) {
+        if (system.s[i][column] != 0) {
           //use  _rowReplacementRemover on each
           system = this._rowReplacementRemover(system, i);
         }
@@ -169,7 +169,7 @@
     // for each entries below the pivot,
       for (var i = rowUnderThePivot; i < limit; i++) {
         // if the row is non-zero
-        if (newSystem.s[row][i] != 0) {
+        if (newSystem.s[i][column] != 0) {
           //use  _rowReplacementRemover on each
           newSystem = this._rowReplacementRemover(newSystem, i);
         }
