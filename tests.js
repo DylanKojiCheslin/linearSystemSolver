@@ -1,13 +1,13 @@
-import LinearSystem from '/index.js'
-
-const initObject = [
-  [2,3,0,5],
-  [0,0,1,20],
-  [0,-2,0,5]
-];
-
-const theSystem = new LinearSystem(initObject);
-const solution = theSystem.solve();
+// import LinearSystem from '/index.js'
+//
+// const initObject = [
+//   [2,3,0,5],
+//   [0,0,1,20],
+//   [0,-2,0,5]
+// ];
+//
+// const theSystem = new LinearSystem(initObject);
+// const solution = theSystem.solve();
 
 // const nullTestinit = null;
 //
@@ -29,21 +29,3 @@ const solution = theSystem.solve();
 //
 // const theEmptySystem = new LinearSystem(emptyInitObject);
 // theEmptySystem.solve();
-
-// const largestToTopInitObject = [
-//   [0,0,1,20],
-//   [2,3,0,5],
-//   [-3,-2,0,5]
-// ];
-
-// const largestToTopSystem = new LinearSystem(largestToTopInitObject);
-// largestToTopSystem.solve();
-
-// const easyInitObject = [
-//   [0,0,5,5],
-//   [0,3,0,3],
-//   [-4,0,0,20]
-// ];
-
-// const largestToTopSystem = new LinearSystem(largestToTopInitObject);
-// largestToTopSystem.solve();
