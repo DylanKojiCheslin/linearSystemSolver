@@ -327,30 +327,28 @@ describe('_changeToEtchlonForm', () => {
       1);
       });
 
-      // it('passes other test case', () => {
-      //   let inputSystem = {
-      //     s: [
-      //       [ 4, 0, 2 ],
-      //       [ 4, 5, 20 ]
-      //     ],
-      //     pivot: {
-      //       row: 0,
-      //       column: 0 }
-      //     };
-      //   let expectedOutput = {
-      //     s: [
-      //       [ 4, 0, 2 ],
-      //       [ 4, 0, 20 ]
-      //     ],
-      //     pivot: {
-      //       row: 0,
-      //       column: 0 }
-      //     };
-      //   let output = linSys._zeroAllRowsUnderThePivot(inputSystem);
-      //   console.log(output.s);
-      //   console.log(expectedOutput.s);
-      // expect(output).toEqual(expectedOutput);
-      // });
+      it('works for smallest input', () => {
+        let inputSystem = {
+          s: [
+            [ 4, 0, 2 ],
+            [ 4, 5, 20 ]
+          ],
+          pivot: {
+            row: 0,
+            column: 0 }
+          };
+        let expectedOutput = {
+          s: [
+            [ 4, 0, 2 ],
+            [ 0, 5, 18 ]
+          ],
+          pivot: {
+            row: 0,
+            column: 0 }
+          };
+        let output = linSys._zeroAllRowsUnderThePivot(inputSystem);
+      expect(output).toEqual(expectedOutput);
+      });
     });
 
     describe("_zeroAllRowsAboveThePivot", () => {
