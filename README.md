@@ -7,10 +7,6 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 
 ## project specifications
 
-### code specifications
-all methods in the class should be purely functional
-all methods should have a test preventing input mutation
-
 ### features
 takes a array of integers that conform to the augmented matrix notation
 find out if the systems has: no solution, one solution, infinite solutions
@@ -116,7 +112,7 @@ returns a bool indicating if the matrix is in [reduced echelon form](https://en.
 ## possible features or research topics
 
 ### graph solutions
-after solved a nice chart to look at if low enough number of dimensions
+after solved a nice chart to look at if, low enough number of dimensions
 
 ### animation of algorithm behavior
 ui element that shows system and animates switching, adding, scaling
