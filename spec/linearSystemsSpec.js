@@ -61,6 +61,56 @@ describe('_changeToEtchlonForm', () => {
     let outputSystem = linSys._changeToEtchlonForm(inputSystem);
     expect(outputSystem).toEqual(expectedOutput);
   });
+
+  it('calls _largestAbsoluteMovedToTopOfColumn correctly', () => {
+    let mover = sinon.spy(linSys, '_largestAbsoluteMovedToTopOfColumn');
+    let inputSystem = {
+      s : [
+        [3,3,3],
+        [4,0,2]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
+      }
+    }
+    const expectedOutput = {
+      s: [
+        [ 4, 0, 2 ],
+        [ 0, 3, 1.5 ]
+      ],
+      pivot: {
+        row: 1,
+        column: 1
+      }
+    }
+    let outputSystem = linSys._changeToEtchlonForm(inputSystem);
+    expect(outputSystem).toEqual(expectedOutput);
+    mover.restore();
+    expect(
+      mover.calledWithExactly({
+        s : [
+          [3,3,3],
+          [4,0,2]
+        ],
+        pivot : {
+          row : 0,
+          column : 0
+        }
+      })
+    ).toBe(true);
+    expect(
+      mover.calledWith({
+         s: [
+           [ 4, 0, 2 ],
+           [ 0, 3, 1.5 ]
+         ],
+         pivot: {
+           row: 1,
+           column: 1 } })
+    ).toBe(true);
+  });
+
 });
 
     describe('_findPivotColumn', () => {
