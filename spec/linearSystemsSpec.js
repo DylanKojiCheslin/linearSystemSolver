@@ -147,7 +147,9 @@ describe('_changeToEtchlonForm', () => {
         let rowToBeReplaced = 0, otherRow = 1, scale = 2;
         linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
         scaledBy.restore();
-        scaledBy.calledWith([9,9,30], 2);
+        expect(
+          scaledBy.calledWith([9,9,30], 2)
+        ).toBe(true);
       });
 
       it('should return array with a row replaced by itself mulitplied to scale', () => {
@@ -206,17 +208,19 @@ describe('_changeToEtchlonForm', () => {
         };
         let output = linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
         switchy.restore();
-        switchy.calledWith({
-          s : [
-            [0,1,2,3],
-            [1,2,3,4],
-            [-3,2,1,5]
-          ],
-          pivot : {
-            column : 0,
-            row : 0
-          }
-        });
+        expect(
+          switchy.calledWith({
+            s : [
+              [0,1,2,3],
+              [1,2,3,4],
+              [-3,2,1,5]
+            ],
+            pivot : {
+              column : 0,
+              row : 0
+            }
+        })
+      ).toBe(true);
       });
 
       it("should not mutate input", () => {
@@ -399,17 +403,18 @@ describe('_changeToEtchlonForm', () => {
         ],
         pivot : {row:2,column:2}
       };
-      let outSystem = linSys._zeroAllRowsUnderThePivot(inputSystem);
+      let outSystem = linSys._zeroAllRowsAboveThePivot(inputSystem);
       replacer.restore();
-      replacer.calledWithExactly({
-        s : [
-          [1,2,3,5],
-          [0,2,1,5],
-          [0,0,5,5]
-        ],
-        pivot : {row:2,column:2}
-      },
-    1);
+      expect(replacer.calledWithExactly(
+        {
+          s : [
+            [1,2,3,5],
+            [0,2,1,5],
+            [0,0,5,5]
+          ],
+          pivot : {row:2,column:2}
+        },
+      1)).toBe(true);
     });
   });
 
@@ -496,10 +501,12 @@ describe('_changeToEtchlonForm', () => {
           ],
           pivot : {row:0,column:0}
         };
-        let replacer = sinon.spy(linSys, "_scalePivotToOne");
+        let replacer = sinon.spy(linSys, "_getRowScaledBy");
         linSys._scalePivotToOne(inputSystem);
         replacer.restore();
-        replacer.calledWithExactly([2,0,0,2], .5);
+        expect(
+          replacer.calledWith([2,0,0,2], 0.5)
+        ).toBe(true);
       });
     });
 
