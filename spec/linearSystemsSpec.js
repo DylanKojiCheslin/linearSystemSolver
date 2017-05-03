@@ -2,12 +2,8 @@ import linearSystem from '../index.js'
 import sinon from 'sinon'
 describe('linearSystem', () => {
     let linSys;
-    let data;
     beforeEach(function() {
         linSys = new linearSystem();
-        data = {
-          s : [[2,2,6],[9,9,30]]
-        };
     });
 
     describe('integration',() => {
@@ -163,14 +159,21 @@ describe('_changeToEtchlonForm', () => {
 
     describe('_switch', () => {
       it('should exchange places of two diffrent rows', () => {
-        let thing = linSys._switch(data,0,1);
+        let thing = linSys._switch(
+          {
+            s : [[2,2,6],[9,9,30]]
+          },
+          0,
+          1
+        );
         expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
       });
 
       it('should not mutate input', () => {
-        let thing = linSys._switch(data,0,1);
+        let inputSystem = {s : [[2,2,6],[9,9,30]]};
+        let thing = linSys._switch( inputSystem, 0, 1);
         expect(thing.s).toEqual([[9,9,30],[2,2,6]]);
-        expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
+        expect(inputSystem).toEqual({ s : [[2,2,6],[9,9,30]]});
       });
     });
 
@@ -186,16 +189,19 @@ describe('_changeToEtchlonForm', () => {
       });
 
       it('should not mutate input', () => {
-        let row = linSys._getRowScaledBy([2,0,-6],-1);
-        expect(data).toEqual({s : [[2,2,6],[9,9,30]]});
+        let inputSystem = {s : [[2,2,6],[9,9,30]]};
+        let row = linSys._getRowScaledBy(inputSystem.s[0],-1);
+
+        expect(inputSystem).toEqual({s : [[2,2,6],[9,9,30]]});
       });
     });
 
     describe("_rowReplacement", () => {
-      it('should call _getRowScaledBy with data', () => {
+      it('should call _getRowScaledBy with correctly', () => {
+        let inputSystem = {s : [[2,2,6],[9,9,30]]};
         let scaledBy = sinon.spy(linSys, '_getRowScaledBy');
         let rowToBeReplaced = 0, otherRow = 1, scale = 2;
-        linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
+        linSys._rowReplacement(inputSystem, rowToBeReplaced, otherRow, scale);
         scaledBy.restore();
         expect(
           scaledBy.calledWith([9,9,30], 2)
@@ -203,15 +209,17 @@ describe('_changeToEtchlonForm', () => {
       });
 
       it('should return array with a row replaced by itself mulitplied to scale', () => {
+        let inputSystem = {s : [[2,2,6],[9,9,30]]};
         let rowToBeReplaced = 0,otherRow = 1,scale = 2;
-        let newthing = linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
+        let newthing = linSys._rowReplacement(inputSystem, rowToBeReplaced, otherRow, scale);
         expect(newthing).toEqual({s : [[20,20,66],[9,9,30]]});
       });
 
       it('should not mutate input value', () => {
+        let inputSystem = {s : [[2,2,6],[9,9,30]]};
         let rowToBeReplaced = 0, otherRow = 1, scale = 2;
-        linSys._rowReplacement(data, rowToBeReplaced, otherRow, scale);
-        expect(data).toEqual({ s : [[2,2,6],[9,9,30]]});
+        linSys._rowReplacement(inputSystem, rowToBeReplaced, otherRow, scale);
+        expect(inputSystem).toEqual({ s : [[2,2,6],[9,9,30]]});
       });
     });
 
