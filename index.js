@@ -182,8 +182,10 @@
       let newSystem = JSON.parse(JSON.stringify(system));
       const rowValue = Number(newSystem.s[rowNumber][newSystem.pivot.column]);
       const pivotValue = Number(newSystem.s[newSystem.pivot.row][newSystem.pivot.column]);
-      const scale = (rowValue / pivotValue)  * -1;
-      newSystem = this._rowReplacement(newSystem, rowNumber, system.pivot.row, scale);
+      if (pivotValue != 0) {
+        const scale = (rowValue / pivotValue)  * -1;
+        newSystem = this._rowReplacement(newSystem, rowNumber, system.pivot.row, scale);
+      }
       return newSystem;
     }
 

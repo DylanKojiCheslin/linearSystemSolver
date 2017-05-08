@@ -525,6 +525,30 @@ describe('_changeToEtchlonForm', () => {
         )).toBe(true);
     });
 
+    it("handles zero pivot input", () => {
+      const inputSystem = {
+        s : [
+          [0,1,1],
+          [1,1,1]
+        ],
+        pivot : {
+          row: 0,
+          column: 0}
+        };
+
+        const rowNumber = 1;
+
+      const output = linSys._rowReplacementRemover(inputSystem, rowNumber);
+      console.log(output);
+      expect(output).toEqual({
+        s: [
+          [ 0, 1, 1 ],
+          [ 1, 1, 1 ] ],
+        pivot: {
+          row: 0,
+          column: 0 } })
+    });
+
   });
 
     describe("_scalePivotToOne", () => {
