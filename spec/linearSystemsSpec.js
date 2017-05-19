@@ -539,7 +539,6 @@ describe('_changeToEtchlonForm', () => {
         const rowNumber = 1;
 
       const output = linSys._rowReplacementRemover(inputSystem, rowNumber);
-      console.log(output);
       expect(output).toEqual({
         s: [
           [ 0, 1, 1 ],
