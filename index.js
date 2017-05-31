@@ -19,11 +19,7 @@
       let system = {};
       system.s = this._systemState;
       system.pivot = this._pivot;
-      // 1. find pivot column
-      system = this._findPivotColumn(system);
-      // 2. the top row/column postion of the pivot.column is the pivot location
-      system.pivot.row = 0;
-      system.pivot.column = this._pivot.column;
+      system = this._initializePivot(system);
       system = this._changeToEtchlonForm(system);
       system = this._changeToRowCanonicalForm(system);
         return system;
@@ -88,27 +84,45 @@
       });
     };
 
-    //the left most non-zero column is the _pivot.column
-    _findPivotColumn(system){
-      let isNonZero = false;
-    //iterate until a column has a non-zero int in it
-      for (var i = 0; i < system.s.length; i++) {
-        let thisColumn = system.s.map(function(value) {
-          return value[i];
-        });
-        isNonZero = thisColumn.some(function(entry){
-          return Math.abs(entry) > 0
-        });
-        if (isNonZero) {
-          system.pivot.column = i;
-          break;
-        }
-      }
-      //if there isn't a non-zero column then the set is empty and has no solutions
-      if ( undefined === system.pivot.column) {
+
+  // _initaialzePivot
+    _initializePivot(system){
+      const pivotColumn = this._findPivot(system);
+      let newSystem = JSON.parse(JSON.stringify(system));
+      newSystem.pivot.row = 0;
+      newSystem.pivot.column = pivotColumn;
+      return newSystem;
+  }
+
+      //the left most non-zero entry that is also (not the right most column) is the pivot column
+    _findPivot(system){
+      // remove the rightmost solution column
+      const withOutTheRightestColumn = system.s.map(
+        function(x, index, array){
+          const thisRowWithOutTheRightestColumn =  x.filter(function(y, index, array){
+            return !!(array.length -1 != index);
+          })
+        return thisRowWithOutTheRightestColumn;
+      })
+      // get the columns
+      const columns = withOutTheRightestColumn.map(function(column, index, array){
+        return withOutTheRightestColumn.map(function(row){
+          return row[index];
+        })
+      })
+      //find column with non-zero the columns
+      const pivotColumn = columns.findIndex(function( x, index, array ){
+        const nonZeroIncolumn = x.some( function( y ){
+          return Math.abs(y) > 0
+        })
+        return nonZeroIncolumn;
+      })
+
+      //none found
+      if ( pivotColumn == -1 ){
         throw 'empty sets have no solutions';
       }
-      return system;
+      return pivotColumn;
     }
 
     _switch(system, aRowNumber, differentRowNumber){

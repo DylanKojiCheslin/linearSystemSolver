@@ -109,7 +109,7 @@ describe('_changeToEtchlonForm', () => {
 
 });
 
-    describe('_findPivotColumn', () => {
+    describe('_initializePivot', () => {
 
       it('returns with correct pivot', () => {
         const inputSystem = {
@@ -130,11 +130,40 @@ describe('_changeToEtchlonForm', () => {
             [0,0,0,0]
           ],
           pivot :{
-            row : undefined,
+            row : 0,
             column : 1
           }
         }
-        let outputSystem = linSys._findPivotColumn(inputSystem);
+        let outputSystem = linSys._initializePivot(inputSystem);
+        expect(outputSystem).toEqual(expectedOutput);
+      });
+
+      it('returns correct pivot from input rotational symmetry', () => {
+        const inputSystem = {
+          s : [
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,0,2,0],
+            [0,0,0,0]
+          ],
+          pivot :{
+            row : undefined,
+            column : undefined
+          }
+        };
+        const expectedOutput = {
+          s : [
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,0,2,0],
+            [0,0,0,0]
+          ],
+          pivot :{
+            row : 0,
+            column : 2
+          }
+        }
+        let outputSystem = linSys._initializePivot(inputSystem);
         expect(outputSystem).toEqual(expectedOutput);
       });
 
@@ -152,7 +181,7 @@ describe('_changeToEtchlonForm', () => {
         };
         expect(
           function(){
-            linSys._findPivotColumn(emptyObject)
+            linSys._initializePivot(emptyObject)
           }).toThrow('empty sets have no solutions');
       });
     });

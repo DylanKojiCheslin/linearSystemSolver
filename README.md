@@ -57,8 +57,10 @@ optional parameter object has:
 
 return a description of the systems solution (or lack of one)
 
-1. the left most non-zero column is the _pivotColumn
-2. the top row/column postion of the _pivotColumn is the _pivot
+_initializePivot
+1. the left most non-zero column is the pivot column
+2. the top row position of the pivot column is the pivot row
+
 foreach row:
 a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
 b. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
@@ -76,8 +78,8 @@ yourInstance._scaling(rowNumber, scaleNumber)
 scales all entries in row by a non-zero number
 
 ### _rowReplacement
-yourInstance._rowReplacement(rowToBeReplaced, diffrenctRowNumber, scaleNumberForOtherRow)
-replaces the row in rowToBeReplaced with the the product of the row in diffrenctRowNumber and scaleNumberForOtherRow
+yourInstance._rowReplacement(rowToBeReplaced, differentRowNumber, scaleNumberForOtherRow)
+replaces the row in rowToBeReplaced with the the product of the row in differentRowNumber and scaleNumberForOtherRow
 
 ### _zeroAllRowsUnderThePivot
 iterate over all entries below the pivot, use _rowReplacementRemover on each
@@ -120,5 +122,21 @@ ui element that shows system and animates switching, adding, scaling
 ### optional parameter bool back-substitution instead of going from echelon to reduced echelon form
 
 ### function approximation of this class with less complexity cost or overhead
+find cases that are easy examples where skipping one or more steps doesn't affect the solution or an approximation of it
+
+### how do linear systems handle infinite entries
+many checks for non-zero numbers in code check like:
+
+```javascript
+Math.abs(x) > 0
+```
+could also be
+
+```javascript
+!isNaN(parseFloat(num)) && isFinite(num);
+```
+
+not sure how or if linear algebra handle infinite, or how could relate to the js version of infinity
 
 ### how neural networks solve linear system
+there are many ways, check them out...... If you want me to list resources make an issue
