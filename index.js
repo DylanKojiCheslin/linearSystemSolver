@@ -19,47 +19,65 @@
       let system = {};
       system.s = this._systemState;
       system.pivot = this._pivot;
-      system = this._initializePivot(system);
-      system = this._changeToEtchlonForm(system);
-      system = this._changeToRowCanonicalForm(system);
-        return system;
+      const systemWithPivot = this._initializePivot(system);
+      const systemEtchlonForm = this._changeToEtchlonForm(systemWithPivot);
+      const systemCanonicalForm = this._changeToRowCanonicalForm(systemEtchlonForm);
+
+        return systemCanonicalForm;
     }
 
     _changeToRowCanonicalForm(system){
-      // 3. forEach row:
-      let limit = system.s.length - 1;
-      for (var i = limit; i >= 0; i--) {
-        // a. _zeroAllRowsAboveThePivot(),
-        system = this._zeroAllRowsAboveThePivot(system);
-        // the pivot shoud be scaled to postive one
-        system = this._scalePivotToOne(system);
-        // b. pivot.row--, pivot.column--
-        // move the pivot up and over unless its at the top
-        if (i > 0) {
-          system.pivot.row = system.pivot.row - 1;
-          system.pivot.column = system.pivot.column - 1;
-        }
+      //unless pivot is at the top
+      const newSystem = JSON.parse(JSON.stringify(system));
+      if ( 0 == newSystem.pivot.row) {
+        return this._scalePivotToOne(newSystem);
+      }else {
+        let newSystemZeroed = this._zeroAllRowsAboveThePivot(newSystem);
+        let scaledToOne = this._scalePivotToOne(newSystemZeroed);
+        scaledToOne.pivot.row = scaledToOne.pivot.row -1;
+        scaledToOne.pivot.column = scaledToOne.pivot.column -1;
+        return this._changeToRowCanonicalForm(scaledToOne);
       }
-      return system;
     }
 
     _changeToEtchlonForm(system){
-      let limit = system.s.length - 1;
-      // forEach row:
-      for (var i = 0; i < system.s.length; i++) {
-        // a. _largestAbsoluteMovedToTopOfColumn on the pivot.column - largest to top
-        system = this._largestAbsoluteMovedToTopOfColumn(system)
-        // b. _zeroAllRowsUnderThePivot() - row replacement operations to "zero" all entry under the pivot
-        system = this._zeroAllRowsUnderThePivot(system);
-        //unless the pivot is in the bottom right
-        if (system.pivot.column < limit && system.pivot.row < limit) {
-        // c. pivot.row++, pivot.column++
-          system.pivot.column = system.pivot.column + 1;
-          system.pivot.row = system.pivot.row + 1;
-        }
+      const newSystem = JSON.parse(JSON.stringify(system));
+      if ( newSystem.s.length - 1 == newSystem.pivot.row ) {
+        return newSystem;
       }
-      return system;
+      else
+      {
+        let systemLargestTop = this._largestAbsoluteMovedToTopOfColumn(newSystem);
+        let zeroedUnderPivot = this._zeroAllRowsUnderThePivot(systemLargestTop);
+        zeroedUnderPivot.pivot.row = zeroedUnderPivot.pivot.row + 1;
+        zeroedUnderPivot.pivot.column = zeroedUnderPivot.pivot.column + 1;
+        return this._changeToEtchlonForm(zeroedUnderPivot);
+      }
     }
+
+
+
+
+      // console.log(system);
+      // let limit = system.s.length - 1;
+      // // forEach row:
+      // for (var i = 0; i < system.s.length; i++) {
+      //   // a. _largestAbsoluteMovedToTopOfColumn on the pivot.column - largest to top
+      //   system = this._largestAbsoluteMovedToTopOfColumn(system)
+      //   // b. _zeroAllRowsUnderThePivot() - row replacement operations to "zero" all entry under the pivot
+      //   system = this._zeroAllRowsUnderThePivot(system);
+      //   //unless the pivot is in the bottom right
+      //   if (system.pivot.column < limit && system.pivot.row < limit) {
+      //   // c. pivot.row++, pivot.column++
+      //     system.pivot.column = system.pivot.column + 1;
+      //     system.pivot.row = system.pivot.row + 1;
+      //   }
+      // }
+      // console.log(system);
+      // return system;
+      //
+      //
+      //
 
     //checks if input is correctly formatted linear system
     _isCorrectFormat(matrix){

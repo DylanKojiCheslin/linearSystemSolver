@@ -95,16 +95,16 @@ describe('_changeToEtchlonForm', () => {
         }
       })
     ).toBe(true);
-    expect(
-      mover.calledWith({
-         s: [
-           [ 4, 0, 2 ],
-           [ 0, 3, 1.5 ]
-         ],
-         pivot: {
-           row: 1,
-           column: 1 } })
-    ).toBe(true);
+    // expect(
+    //   mover.calledWith({
+    //      s: [
+    //        [ 4, 0, 2 ],
+    //        [ 0, 3, 1.5 ]
+    //      ],
+    //      pivot: {
+    //        row: 1,
+    //        column: 1 } })
+    // ).toBe(true);
   });
 
 });
