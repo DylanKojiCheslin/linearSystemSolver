@@ -22,7 +22,6 @@
       const systemWithPivot = this._initializePivot(system);
       const systemEtchlonForm = this._changeToEtchlonForm(systemWithPivot);
       const systemCanonicalForm = this._changeToRowCanonicalForm(systemEtchlonForm);
-
         return systemCanonicalForm;
     }
 
@@ -54,30 +53,6 @@
         return this._changeToEtchlonForm(zeroedUnderPivot);
       }
     }
-
-
-
-
-      // console.log(system);
-      // let limit = system.s.length - 1;
-      // // forEach row:
-      // for (var i = 0; i < system.s.length; i++) {
-      //   // a. _largestAbsoluteMovedToTopOfColumn on the pivot.column - largest to top
-      //   system = this._largestAbsoluteMovedToTopOfColumn(system)
-      //   // b. _zeroAllRowsUnderThePivot() - row replacement operations to "zero" all entry under the pivot
-      //   system = this._zeroAllRowsUnderThePivot(system);
-      //   //unless the pivot is in the bottom right
-      //   if (system.pivot.column < limit && system.pivot.row < limit) {
-      //   // c. pivot.row++, pivot.column++
-      //     system.pivot.column = system.pivot.column + 1;
-      //     system.pivot.row = system.pivot.row + 1;
-      //   }
-      // }
-      // console.log(system);
-      // return system;
-      //
-      //
-      //
 
     //checks if input is correctly formatted linear system
     _isCorrectFormat(matrix){
