@@ -31,8 +31,8 @@
       if ( 0 == newSystem.pivot.row) {
         return this._scalePivotToOne(newSystem);
       }else {
-        let newSystemZeroed = this._zeroAllRowsAboveThePivot(newSystem);
-        let scaledToOne = this._scalePivotToOne(newSystemZeroed);
+        const newSystemZeroed = this._zeroAllRowsAboveThePivot(newSystem);
+        const scaledToOne = this._scalePivotToOne(newSystemZeroed);
         scaledToOne.pivot.row = scaledToOne.pivot.row -1;
         scaledToOne.pivot.column = scaledToOne.pivot.column -1;
         return this._changeToRowCanonicalForm(scaledToOne);
