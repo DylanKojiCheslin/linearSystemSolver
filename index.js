@@ -22,7 +22,7 @@
       const systemWithPivot = this._initializePivot(system);
       const systemEtchlonForm = this._changeToEtchlonForm(systemWithPivot);
       const systemCanonicalForm = this._changeToRowCanonicalForm(systemEtchlonForm);
-        return systemCanonicalForm;
+      return systemCanonicalForm;
     }
 
     _changeToRowCanonicalForm(system){
@@ -46,11 +46,13 @@
       }
       else
       {
-        let systemLargestTop = this._largestAbsoluteMovedToTopOfColumn(newSystem);
-        let zeroedUnderPivot = this._zeroAllRowsUnderThePivot(systemLargestTop);
-        zeroedUnderPivot.pivot.row = zeroedUnderPivot.pivot.row + 1;
-        zeroedUnderPivot.pivot.column = zeroedUnderPivot.pivot.column + 1;
-        return this._changeToEtchlonForm(zeroedUnderPivot);
+        const systemLargestTop = this._largestAbsoluteMovedToTopOfColumn(newSystem);
+        const zeroedUnderPivot = this._zeroAllRowsUnderThePivot(systemLargestTop);
+        const { pivot, ...zeroedUnderPivotPostIteration } = zeroedUnderPivot;
+        zeroedUnderPivotPostIteration.pivot = {};
+        zeroedUnderPivotPostIteration.pivot.row =  zeroedUnderPivot.pivot.row + 1;
+        zeroedUnderPivotPostIteration.pivot.column = zeroedUnderPivot.pivot.column + 1;
+        return this._changeToEtchlonForm(zeroedUnderPivotPostIteration);
       }
     }
 
