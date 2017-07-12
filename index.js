@@ -85,8 +85,10 @@
     _initializePivot(system){
       const pivotColumn = this._findPivot(system);
       let newSystem = JSON.parse(JSON.stringify(system));
-      newSystem.pivot.row = 0;
-      newSystem.pivot.column = pivotColumn;
+      newSystem.pivot = {
+        row : 0,
+        column : pivotColumn
+      };
       return newSystem;
   }
 
