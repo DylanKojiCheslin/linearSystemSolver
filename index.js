@@ -49,9 +49,10 @@
         const systemLargestTop = this._largestAbsoluteMovedToTopOfColumn(newSystem);
         const zeroedUnderPivot = this._zeroAllRowsUnderThePivot(systemLargestTop);
         const { pivot, ...zeroedUnderPivotPostIteration } = zeroedUnderPivot;
-        zeroedUnderPivotPostIteration.pivot = {};
-        zeroedUnderPivotPostIteration.pivot.row =  zeroedUnderPivot.pivot.row + 1;
-        zeroedUnderPivotPostIteration.pivot.column = zeroedUnderPivot.pivot.column + 1;
+        zeroedUnderPivotPostIteration.pivot = {
+          row :  zeroedUnderPivot.pivot.row + 1,
+          column : zeroedUnderPivot.pivot.column + 1
+        };
         return this._changeToEtchlonForm(zeroedUnderPivotPostIteration);
       }
     }
