@@ -8,7 +8,7 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 ## project specifications
 
 ### features
-takes system that conforms to the augmented matrix notation and
+takes a system that conforms to the augmented matrix notation and
 find if the systems has: no solution, one solution, infinite solutions.
 if there is one or more solutions then define them.
 
@@ -36,58 +36,50 @@ const solution = LinearSystemSolution(intObject);
 ```
 return a description of the systems solution (or lack of one)
 
-_initializePivot
+initializePivot
 1. the left most non-zero column is the pivot column
 2. the top row position of the pivot column is the pivot row
 
 foreach row:
-a. _largestAbsoluteMovedToTopOfColumn on the _pivotColumn - largest to top
-b. _zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
-c. _pivot.row++, _pivot.column++
+a. largestAbsoluteMovedToTopOfColumn on the pivotColumn - largest to top
+b. zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
+c. pivot.row++, pivot.column++
 3. foreach row:
-a. _zeroAllRowsAboveThePivot(), _scalePivotToOne
-b. _pivot.row--, _pivot--
+a. zeroAllRowsAboveThePivot(), scalePivotToOne
+b. pivot.row--, pivot--
 
-### _switch
-yourInstance._switch(rowNumberOne, rowNumberTwo)
+### switch
+switch(system, rowNumberOne, rowNumberTwo)
 exchange the location of 2 rows
 
-### _scaling
-yourInstance._scaling(rowNumber, scaleNumber)
+### scaling
+scaling(system, rowNumber, scaleNumber)
 scales all entries in row by a non-zero number
 
-### _rowReplacement
-yourInstance._rowReplacement(rowToBeReplaced, differentRowNumber, scaleNumberForOtherRow)
+### rowReplacement
+rowReplacement(system, rowToBeReplaced, differentRowNumber, scaleNumberForOtherRow)
 replaces the row in rowToBeReplaced with the the product of the row in differentRowNumber and scaleNumberForOtherRow
 
-### _zeroAllRowsUnderThePivot
-iterate over all entries below the pivot, use _rowReplacementRemover on each
+### zeroAllRowsUnderThePivot
+iterate over all entries below the pivot, use rowReplacementRemover on each
 
-### _zeroAllRowsAboveThePivot
-iterate over all entries above the pivot, use _rowReplacementRemover on each
+### zeroAllRowsAboveThePivot
+iterate over all entries above the pivot, use rowReplacementRemover on each
 
-### _rowReplacementRemover()
-zeros out the entry using _rowReplacement and the _pivot
+### rowReplacementRemover
+zeros out the entry using rowReplacement and the pivot
 
-### _scalePivotToOne
-uses _scaling on the row of _pivot to scale _pivot to 1
+### scalePivotToOne
+uses scaling on the row of pivot to scale the entry in the pivot position to 1
 
-### _largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber)
+### largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber)
 rearranges rows to move the largest absolute value to the top of the column row to the top.
 this is sometimes called partial pivoting
 
-## instance properties
-
-### _systemState
-the internal storage of the linear systems matrix as an array
-
-### _pivot
-the pivot position, a obj with props row/column
-
-### _isEchelonForm
+### isEchelonForm
 returns a bool indicating if the matrix is in [echelon form](https://en.wikipedia.org/wiki/Row_echelon_form "etchlon_Form")
 
-### _isReducedEchelonForm
+### isReducedEchelonForm
 returns a bool indicating if the matrix is in [reduced echelon form](https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form "reduced_echelon_form")
 
 ## possible features or research topics
