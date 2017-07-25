@@ -1,6 +1,6 @@
 # linearSystemUtility
 
-[![Build Status](https://travis-ci.org/DylanKojiCheslin/linearSystemUtility.svg?branch=master)](https://travis-ci.org/DylanKojiCheslin/linearSystemUtility)  
+<!-- [![Build Status](https://travis-ci.org/DylanKojiCheslin/linearSystemUtility.svg?branch=master)](https://travis-ci.org/DylanKojiCheslin/linearSystemUtility)   -->
 tools for exploring linear systems
 
 what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_linear_equations "System_of_linear_equations")
@@ -8,22 +8,11 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 ## project specifications
 
 ### features
-takes a array of integers that conform to the augmented matrix notation
-find out if the systems has: no solution, one solution, infinite solutions
-if there is one or more solutions then define them for the user
+takes system that conforms to the augmented matrix notation and
+find if the systems has: no solution, one solution, infinite solutions.
+if there is one or more solutions then define them.
 
-a LinearSystem object.
-
-```javascript
-const intObject = [
-  [2,3,0,5],
-  [0,0,1,20],
-  [0,-2,0,5]
-]
-const theSystem = new LinearSystem(intObject);
-```
-
-##find out if the systems has: no solution, one solution, infinite solutions
+##find if the systems has: no solution, one solution, infinite solutions
 
 what is a [solving a linear system](https://en.wikipedia.org/wiki/Augmented_matrix#Solution_of_a_linear_system "solving_a_System_of_linear_equations")
 
@@ -33,28 +22,18 @@ what is a [solving a linear system](https://en.wikipedia.org/wiki/Augmented_matr
 2. (scaling) multiply every entry in a row by a non-zero constant
 3. (rowReplacement) replace a row with its sum and a multiple of a different row and a non-zero constant
 
-
-```javascript
-const solution = theSystem.solve();
-console.log(solution);
-```
-
 ## API
 
-## instance methods
+### LinearSystemSolution
 
-### new LinearSystem
-new LinearSystem( theSystemAugmentedMatrixNotation );
-
-return an instance of LinearSystem
-
-### solve
-  yourInstance.solve({verbose:false,reduced:true})
-
-optional parameter object has:
-"verbose" bool prints console logs of the details of the solution default false,
-"reduced" bool if the solutions should return in reduced echelon form default true
-
+```javascript
+const intObject = [
+  [2,3,0,5],
+  [0,0,1,20],
+  [0,-2,0,5]
+]
+const solution = LinearSystemSolution(intObject);
+```
 return a description of the systems solution (or lack of one)
 
 _initializePivot
