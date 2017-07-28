@@ -14,7 +14,7 @@ if there is one or more solutions then define them.
 
 ##find if the systems has: no solution, one solution, infinite solutions
 
-what is a [solving a linear system](https://en.wikipedia.org/wiki/Augmented_matrix#Solution_of_a_linear_system "solving_a_System_of_linear_equations")
+what is a [solving a system of linear equations](https://en.wikipedia.org/wiki/Augmented_matrix#Solution_of_a_linear_system "solving_a_System_of_linear_equations")[of linear equations](http://mathworld.wolfram.com/LinearSystemofEquations.html)
 
 [3 row operations:](https://en.wikipedia.org/wiki/Elementary_matrix#Operations "matrix_Operations")
 
