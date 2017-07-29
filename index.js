@@ -1,26 +1,11 @@
 import {initializePivot} from './initializePivot'
+import {changeToEtchlonForm} from './changeToEtchlonForm'
 
 export default function LinearSystemSolution {
 //create linear system from matrix
   const system = initializePivot( matrix );
+  const systemEtchlonForm = changeToEtchlonForm(system);
 
-  //   constructor(matrix) {
-  //     if (matrix != undefined) {
-  //       this._isCorrectFormat(matrix);
-  //     }
-  //     this._systemState = matrix;
-  //     this._pivot = {
-  //       row: undefined,
-  //       column: undefined
-  //     };
-  //     this._isEchelonForm = undefined;
-  //     this._isReducedEchelonForm = undefined;
-  //   }
-  //
-  //   solve(){
-  //     if (this._systemState == undefined) {
-  //       throw "_systemState undefined"
-  //     }
   //     let system = {};
   //     system.s = this._systemState;
   //     system.pivot = this._pivot;
