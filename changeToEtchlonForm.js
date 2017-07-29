@@ -1,10 +1,11 @@
+import {largestAbsoluteMovedToTopOfColumn} from './largestAbsoluteMovedToTopOfColumn'
 export function changeToEtchlonForm(system){
   const newSystem = { ...system };
   if (newSystem.s.length - 1 == newSystem.pivot.row) {
     return newSystem
   }else {
     const systemLargestTop = largestAbsoluteMovedToTopOfColumn(newSystem);
-    
+
   }
   //     const newSystem = JSON.parse(JSON.stringify(system));
   //     if ( newSystem.s.length - 1 == newSystem.pivot.row ) {
