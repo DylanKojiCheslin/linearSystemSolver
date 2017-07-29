@@ -1,6 +1,12 @@
 import {findPivotColumn} from './findPivotColumn'
 export function initializePivot( matrix ){
-  //what is pivot column?
   const columnNumber = findPivotColumn( matrix );
-  
+  const system = {
+    s : matrix,
+    pivot : {
+      row : 0,
+      column : columnNumber
+    }
+  };
+  return system
 }

@@ -1,4 +1,9 @@
-  export default function LinearSystemSolution {
+import {initializePivot} from './initializePivot'
+
+export default function LinearSystemSolution {
+//create linear system from matrix
+  const system = initializePivot( matrix );
+
   //   constructor(matrix) {
   //     if (matrix != undefined) {
   //       this._isCorrectFormat(matrix);
