@@ -5,8 +5,7 @@ export function changeToEtchlonForm(system){
     return newSystem
   }else {
     const systemLargestTop = largestAbsoluteMovedToTopOfColumn(newSystem);
-    // const systemLargestTop = this._largestAbsoluteMovedToTopOfColumn(newSystem);
-    // const zeroedUnderPivot = this._zeroAllRowsUnderThePivot(systemLargestTop);
+    const zeroedUnderPivot = this._zeroAllRowsUnderThePivot(systemLargestTop);
     // const { pivot, ...zeroedUnderPivotPostIteration } = zeroedUnderPivot;
     // zeroedUnderPivotPostIteration.pivot = {
     //   row :  zeroedUnderPivot.pivot.row + 1,

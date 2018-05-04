@@ -1,6 +1,7 @@
 import {findPivotColumn} from '../findPivotColumn';
 import {initializePivot} from '../initializePivot';
 import {largestAbsoluteMovedToTopOfColumn} from '../largestAbsoluteMovedToTopOfColumn';
+import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot'
 import sinon from 'sinon';
 
   describe('findPivotColumn', () => {
@@ -121,63 +122,28 @@ import sinon from 'sinon';
       let output = largestAbsoluteMovedToTopOfColumn(inputSystem);
       expect(output).toEqual(expectedOutput);
     });
-
-    // it("calls _switch with correct values", () => {
-    //   let switchy = sinon.spy(linSys, '_switch');
-    //   let inputSystem = {
-    //     s : [
-    //       [0,1,2,3],
-    //       [1,2,3,4],
-    //       [-3,2,1,5]
-    //     ],
-    //     pivot : {
-    //       column : 0,
-    //       row : 0
-    //     }
-    //   };
-    //   let output = linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
-    //   switchy.restore();
-    //   expect(
-    //     switchy.calledWith({
-    //       s : [
-    //         [0,1,2,3],
-    //         [1,2,3,4],
-    //         [-3,2,1,5]
-    //       ],
-    //       pivot : {
-    //         column : 0,
-    //         row : 0
-    //       }
-    //   })
-    // ).toBe(true);
-    // });
-
-    // it("should not mutate input", () => {
-    //   let inputSystem = {
-    //     s : [
-    //       [0,1,2,3],
-    //       [1,2,3,4],
-    //       [-3,2,1,5]
-    //     ],
-    //     pivot : {
-    //       column : 0,
-    //       row : 0
-    //     }
-    //   };
-    //   linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
-    //   expect(inputSystem).toEqual({
-    //     s : [
-    //       [0,1,2,3],
-    //       [1,2,3,4],
-    //       [-3,2,1,5]
-    //     ],
-    //     pivot : {
-    //       column : 0,
-    //       row : 0
-    //     }
-    //   });
-    // });
   });
 
-
+  describe("zeroAllRowsUnderThePivot", () => {
+     it('returns correct value', () => {
+       let inputSystem = {
+         s : [
+           [5,1,1,10],
+           [-1,1,1,-2],
+           [1,1,1,2]
+         ],
+         pivot : {
+           column : 0,
+           row : 0
+         }
+       };
+       let outSystem = zeroAllRowsUnderThePivot(inputSystem);
+       expect(outSystem.s).toEqual(
+         [
+           [ 5, 1, 1, 10 ],
+           [ 0, 1.2, 1.2, 0 ],
+           [ 0, 0.8, 0.8, 0 ]
+         ]);
+     });
+  });
 });
