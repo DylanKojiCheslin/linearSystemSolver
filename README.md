@@ -8,9 +8,9 @@ what is a [System of linear equations](https://en.wikipedia.org/wiki/System_of_l
 ## project specifications
 
 ### features
-takes a system that conforms to the augmented matrix notation and
-find if the systems has: no solution, one solution, infinite solutions.
-if there is one or more solutions then define them.
+takes systems of linear equations in augmented matrix notation and
+find if the systems have: no solution, one solution, infinite solutions.
+if there is a solution defines it.
 
 ##find if the systems has: no solution, one solution, infinite solutions
 
@@ -48,8 +48,8 @@ c. pivot.row++, pivot.column++
 a. zeroAllRowsAboveThePivot(), scalePivotToOne
 b. pivot.row--, pivot--
 
-### switch
-switch(system, rowNumberOne, rowNumberTwo)
+### switchRows
+switchRows(system, rowNumberOne, rowNumberTwo)
 exchange the location of 2 rows
 
 ### scaling
@@ -72,7 +72,7 @@ zeros out the entry using rowReplacement and the pivot
 ### scalePivotToOne
 uses scaling on the row of pivot to scale the entry in the pivot position to 1
 
-### largestAbsoluteMovedToTopOfColumn(columnNumber, rowsOffSetNumber)
+### largestAbsoluteMovedToTopOfColumn(system)
 rearranges rows to move the largest absolute value to the top of the column row to the top.
 this is sometimes called partial pivoting
 
