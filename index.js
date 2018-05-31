@@ -5,6 +5,7 @@ export default function LinearSystemSolution {
 //create linear system from matrix
   const system = initializePivot( matrix );
   const systemEtchlonForm = changeToEtchlonForm(system);
+  const systemCanonicalForm = backSubstitution(systemEtchlonForm);
 
   //     let system = {};
   //     system.s = this._systemState;

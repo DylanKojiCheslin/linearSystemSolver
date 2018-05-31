@@ -3,7 +3,10 @@ import {initializePivot} from '../initializePivot';
 import {largestAbsoluteMovedToTopOfColumn} from '../largestAbsoluteMovedToTopOfColumn';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import {changeToEtchlonForm} from '../changeToEtchlonForm';
+import {pivotValueIsOne} from '../pivotValueIsOne';
 import sinon from 'sinon';
+
+//change order of imports / tests to match file sturcture of package
 
 describe('findPivotColumn', () => {
 
@@ -72,6 +75,7 @@ describe('findPivotColumn', () => {
     expect(input).toEqual(expectedInput);
   });
 });
+
 describe('initializePivot', () => {
   it('returns the correct value', () => {
     const inputMatrix =
@@ -144,33 +148,51 @@ describe("zeroAllRowsUnderThePivot", () => {
         [ 5, 1, 1, 10 ],
         [ 0, 1.2, 1.2, 0 ],
         [ 0, 0.8, 0.8, 0 ]
-      ]);
-    });
+      ]
+      );
   });
+});
 
-  describe('_changeToEtchlonForm', () => {
-    it('return expected value', () => {
-      let inputSystem = {
-        s : [
-          [3,3,3],
-          [4,0,2]
-        ],
-        pivot : {
-          row : 0,
-          column : 0
-        }
+describe('changeToEtchlonForm', () => {
+  it('return expected value', () => {
+    let inputSystem = {
+      s : [
+        [3,3,3],
+        [4,0,2]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
       }
-      const expectedOutput = {
-        s: [
-          [ 4, 0, 2 ],
-          [ 0, 3, 1.5 ]
-        ],
-        pivot: {
-          row: 1,
-          column: 1
-        }
+    }
+    const expectedOutput = {
+      s: [
+        [ 4, 0, 2 ],
+        [ 0, 3, 1.5 ]
+      ],
+      pivot: {
+        row: 1,
+        column: 1
       }
-      let outputSystem = changeToEtchlonForm(inputSystem);
-      expect(outputSystem).toEqual(expectedOutput);
-    });
+    }
+    let outputSystem = changeToEtchlonForm(inputSystem);
+    expect(outputSystem).toEqual(expectedOutput);
   });
+});
+
+describe('pivotValueIsOne', () => {
+  it('return expected value', () => {
+    let inputSystem = {
+      s : [
+        [3,3,3],
+        [4,0,2]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
+      }
+    };
+    let output = pivotValueIsOne(inputSystem);
+    expect(output).toEqual(false);
+  });
+});

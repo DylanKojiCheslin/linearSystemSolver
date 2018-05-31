@@ -1,7 +1,16 @@
 import {largestAbsoluteMovedToTopOfColumn} from './largestAbsoluteMovedToTopOfColumn'
 import {zeroAllRowsUnderThePivot} from './zeroAllRowsUnderThePivot'
+import {scalePivotToOne} from './scalePivotToOne'
+import {pivotValueIsOne} from './pivotValueIsOne'
+
 export function changeToEtchlonForm(system){
-  const newSystem = { ...system };
+  let newSystem = { ...system };
+  console.log("pivotValueIsOne");
+  console.log(pivotValueIsOne);
+  const valueIsOne = pivotValueIsOne(newSystem);
+  if ( ! valueIsOne) {
+    newSystem = scalePivotToOne(newSystem);
+  }
   if (newSystem.s.length - 1 == newSystem.pivot.row) {
     return newSystem
   }else {
