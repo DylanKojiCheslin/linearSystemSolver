@@ -22,7 +22,7 @@ export function findPivotColumn(matrix){
       //if none found throw otherwise return
     })
       if ( pivotColumn == -1 ){
-        throw 'empty sets have no solutions';
+        throw 'sets with no pivot column have no solutions';
       }
       return pivotColumn;
   }
