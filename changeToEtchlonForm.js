@@ -1,4 +1,4 @@
-import {largestAbsoluteMovedToTopOfColumn} from './largestAbsoluteMovedToTopOfColumn';
+import {moveLargestToTopOfPivotColumn} from './moveLargestToTopOfPivotColumn';
 import {zeroAllRowsUnderThePivot} from './zeroAllRowsUnderThePivot';
 import {scalePivotToOne} from './scalePivotToOne';
 import  {findNextPivot} from './findNextPivot';
@@ -9,7 +9,7 @@ export function changeToEtchlonForm(system){
     const lastSystem = scalePivotToOne(newSystem);
     return lastSystem;
   }else {
-    const systemLargestTop = largestAbsoluteMovedToTopOfColumn(newSystem);
+    const systemLargestTop = moveLargestToTopOfPivotColumn(newSystem);
     const zeroedUnderPivot = zeroAllRowsUnderThePivot(systemLargestTop);
     const scaled = scalePivotToOne(zeroedUnderPivot);
     const nextSystem = findNextPivot(scaled);

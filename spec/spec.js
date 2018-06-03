@@ -1,7 +1,7 @@
 import {changeToEtchlonForm} from '../changeToEtchlonForm';
 import {findPivotColumn} from '../findPivotColumn';
 import {initializePivot} from '../initializePivot';
-import {largestAbsoluteMovedToTopOfColumn} from '../largestAbsoluteMovedToTopOfColumn';
+import {moveLargestToTopOfPivotColumn} from '../moveLargestToTopOfPivotColumn';
 import {pivotValueIsOne} from '../pivotValueIsOne';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
@@ -12,8 +12,6 @@ import sinon from 'sinon';
 // findNextPivot should add current to leadingValues array
 // findNextPivot should handle columns that empty under pivot and empty rows
 // findNextPivot include findNextPivotColumn with non-zero under pivot
-
-// largestAbsoluteMovedToTopOfColumn change to moveLargestToTopOfPivotColumn
 
 describe('changeToEtchlonForm', () => {
   it('return expected value', () => {
@@ -136,7 +134,7 @@ describe('initializePivot', () => {
   });
 });
 
-describe("largestAbsoluteMovedToTopOfColumn", () => {
+describe("moveLargestToTopOfPivotColumn", () => {
   it('should return array with largest absolute value to top of each pivot', () => {
     let inputSystem = {
       s : [
@@ -160,7 +158,7 @@ describe("largestAbsoluteMovedToTopOfColumn", () => {
         row : 0
       }
     };
-    let output = largestAbsoluteMovedToTopOfColumn(inputSystem);
+    let output = moveLargestToTopOfPivotColumn(inputSystem);
     expect(output).toEqual(expectedOutput);
   });
 });

@@ -58,8 +58,8 @@
 //     expect(outputSystem).toEqual(expectedOutput);
 //   });
 //
-//   it('calls _largestAbsoluteMovedToTopOfColumn correctly', () => {
-//     let mover = sinon.spy(linSys, '_largestAbsoluteMovedToTopOfColumn');
+//   it('calls _moveLargestToTopOfPivotColumn correctly', () => {
+//     let mover = sinon.spy(linSys, '_moveLargestToTopOfPivotColumn');
 //     let inputSystem = {
 //       s : [
 //         [3,3,3],
@@ -252,7 +252,7 @@
 //       });
 //     });
 //
-//     describe("_largestAbsoluteMovedToTopOfColumn", () => {
+//     describe("_moveLargestToTopOfPivotColumn", () => {
 //       it('should return array with largest absolute value to top of each pivot', () => {
 //         let inputSystem = {
 //           s : [
@@ -276,7 +276,7 @@
 //             row : 0
 //           }
 //         };
-//         let output = linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
+//         let output = linSys._moveLargestToTopOfPivotColumn(inputSystem);
 //         expect(output).toEqual(expectedOutput);
 //       });
 //
@@ -293,7 +293,7 @@
 //             row : 0
 //           }
 //         };
-//         let output = linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
+//         let output = linSys._moveLargestToTopOfPivotColumn(inputSystem);
 //         switchy.restore();
 //         expect(
 //           switchy.calledWith({
@@ -322,7 +322,7 @@
 //             row : 0
 //           }
 //         };
-//         linSys._largestAbsoluteMovedToTopOfColumn(inputSystem);
+//         linSys._moveLargestToTopOfPivotColumn(inputSystem);
 //         expect(inputSystem).toEqual({
 //           s : [
 //             [0,1,2,3],

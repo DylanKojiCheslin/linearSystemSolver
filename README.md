@@ -41,7 +41,7 @@ initializePivot
 2. the top row position of the pivot column is the pivot row
 
 foreach row:
-a. largestAbsoluteMovedToTopOfColumn on the pivotColumn - largest to top
+a. moveLargestToTopOfPivotColumn on the pivotColumn - largest to top
 b. zeroAllRowsUnderThePevot() - row replacement operations to "zero" all entry under the pivot
 c. pivot.row++, pivot.column++
 3. foreach row:
@@ -72,7 +72,7 @@ zeros out the entry using rowReplacement and the pivot
 ### scalePivotToOne
 uses scaling on the row of pivot to scale the entry in the pivot position to 1
 
-### largestAbsoluteMovedToTopOfColumn(system)
+### moveLargestToTopOfPivotColumn(system)
 rearranges rows to move the largest absolute value to the top of the column row to the top.
 this is sometimes called partial pivoting
 

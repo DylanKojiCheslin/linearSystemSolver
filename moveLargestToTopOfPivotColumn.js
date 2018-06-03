@@ -1,5 +1,5 @@
 import {switchRows} from './switchRows';
-export function largestAbsoluteMovedToTopOfColumn(system){
+export function moveLargestToTopOfPivotColumn(system){
   const newSystem = { ...system};
   const rowsOffSetNumber = newSystem.pivot.row;
   const columnNumber = newSystem.pivot.column;
