@@ -1,12 +1,42 @@
+import {changeToEtchlonForm} from '../changeToEtchlonForm';
 import {findPivotColumn} from '../findPivotColumn';
 import {initializePivot} from '../initializePivot';
 import {largestAbsoluteMovedToTopOfColumn} from '../largestAbsoluteMovedToTopOfColumn';
-import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
-import {changeToEtchlonForm} from '../changeToEtchlonForm';
 import {pivotValueIsOne} from '../pivotValueIsOne';
+import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
 
-//change order of imports / tests to match file sturcture of package
+//findPivotColumn change to findFirstPivotColumn
+// largestAbsoluteMovedToTopOfColumn change to moveLargestToTopOfPivotColumn
+
+describe('changeToEtchlonForm', () => {
+  it('return expected value', () => {
+    let inputSystem = {
+      s : [
+        [3,3,3],
+        [4,0,2]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
+      }
+    }
+    const expectedOutput = {
+      s: [
+        [ 1, 0, 0.5 ],
+        [ 0, 1, 0.5 ]
+      ],
+      pivot: {
+        row: 1,
+        column: 1
+      }
+    }
+    let outputSystem = changeToEtchlonForm(inputSystem);
+    console.log("outputSystem");
+    console.log(outputSystem);
+    expect(outputSystem).toEqual(expectedOutput);
+  });
+});
 
 describe('findPivotColumn', () => {
 
@@ -129,6 +159,23 @@ describe("largestAbsoluteMovedToTopOfColumn", () => {
   });
 });
 
+describe('pivotValueIsOne', () => {
+  it('return expected value', () => {
+    let inputSystem = {
+      s : [
+        [3,3,3],
+        [4,0,2]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
+      }
+    };
+    let output = pivotValueIsOne(inputSystem);
+    expect(output).toEqual(false);
+  });
+});
+
 describe("zeroAllRowsUnderThePivot", () => {
   it('returns correct value', () => {
     let inputSystem = {
@@ -150,49 +197,5 @@ describe("zeroAllRowsUnderThePivot", () => {
         [ 0, 0.8, 0.8, 0 ]
       ]
       );
-  });
-});
-
-describe('changeToEtchlonForm', () => {
-  it('return expected value', () => {
-    let inputSystem = {
-      s : [
-        [3,3,3],
-        [4,0,2]
-      ],
-      pivot : {
-        row : 0,
-        column : 0
-      }
-    }
-    const expectedOutput = {
-      s: [
-        [ 4, 0, 2 ],
-        [ 0, 3, 1.5 ]
-      ],
-      pivot: {
-        row: 1,
-        column: 1
-      }
-    }
-    let outputSystem = changeToEtchlonForm(inputSystem);
-    expect(outputSystem).toEqual(expectedOutput);
-  });
-});
-
-describe('pivotValueIsOne', () => {
-  it('return expected value', () => {
-    let inputSystem = {
-      s : [
-        [3,3,3],
-        [4,0,2]
-      ],
-      pivot : {
-        row : 0,
-        column : 0
-      }
-    };
-    let output = pivotValueIsOne(inputSystem);
-    expect(output).toEqual(false);
   });
 });
