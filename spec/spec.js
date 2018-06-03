@@ -6,7 +6,13 @@ import {pivotValueIsOne} from '../pivotValueIsOne';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
 
-//findPivotColumn change to findFirstPivotColumn
+// findPivotColumn change to findNextPivotColumn
+// findNextPivotColumn handles init state case
+// findNextPivot init state case
+// findNextPivot should add current to leadingValues array
+// findNextPivot should handle columns that empty under pivot and empty rows
+// findNextPivot include findNextPivotColumn with non-zero under pivot
+
 // largestAbsoluteMovedToTopOfColumn change to moveLargestToTopOfPivotColumn
 
 describe('changeToEtchlonForm', () => {
