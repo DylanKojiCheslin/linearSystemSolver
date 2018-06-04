@@ -6,10 +6,9 @@ import {pivotValueIsOne} from '../pivotValueIsOne';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
 
-// findNextPivotColumn handles init state case
 // findNextPivotColumn handles non-init state case
 // findNextPivot init state case
-// findNextPivot should add current to leadingValues array
+// findNextPivot should add current pivot to leadingValues array
 // findNextPivot should handle columns that empty under pivot and empty rows
 // findNextPivot include findNextPivotColumn with non-zero under pivot
 
@@ -33,7 +32,8 @@ describe('changeToEtchlonForm', () => {
       pivot: {
         row: 1,
         column: 1
-      }
+      },
+      leadingValues: [ ]
     }
     let outputSystem = changeToEtchlonForm(inputSystem);
     console.log("outputSystem");
@@ -83,7 +83,7 @@ describe('findNextPivotColumn', () => {
     ];
     expect(
       function(){findNextPivotColumn(inputMatrix)}
-    ).toThrow('empty sets have no solutions');
+    ).toThrow('sets with no pivot column have no solutions');
   });
 
   it('does not modifiy input', () => {
