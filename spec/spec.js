@@ -1,13 +1,13 @@
 import {changeToEtchlonForm} from '../changeToEtchlonForm';
-import {findPivotColumn} from '../findPivotColumn';
+import {findNextPivotColumn} from '../findNextPivotColumn';
 import {initializePivot} from '../initializePivot';
 import {moveLargestToTopOfPivotColumn} from '../moveLargestToTopOfPivotColumn';
 import {pivotValueIsOne} from '../pivotValueIsOne';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
 
-// findPivotColumn change to findNextPivotColumn
 // findNextPivotColumn handles init state case
+// findNextPivotColumn handles non-init state case
 // findNextPivot init state case
 // findNextPivot should add current to leadingValues array
 // findNextPivot should handle columns that empty under pivot and empty rows
@@ -42,7 +42,7 @@ describe('changeToEtchlonForm', () => {
   });
 });
 
-describe('findPivotColumn', () => {
+describe('findNextPivotColumn', () => {
 
   it('returns the correct pivot column', () => {
     const inputMatrix =
@@ -52,7 +52,7 @@ describe('findPivotColumn', () => {
       [0,0,0,0]
     ];
     const expectedOutput = 1;
-    const output = findPivotColumn(inputMatrix);
+    const output = findNextPivotColumn(inputMatrix);
     expect(output).toEqual(expectedOutput);
   });
 
@@ -67,7 +67,7 @@ describe('findPivotColumn', () => {
       [0,0,0,0,1,0,1]
     ];
     const expectedOutput = 4;
-    const output = findPivotColumn(inputMatrix);
+    const output = findNextPivotColumn(inputMatrix);
     expect(output).toEqual(expectedOutput);
   });
 
@@ -82,7 +82,7 @@ describe('findPivotColumn', () => {
       [0,0,0,0,0,0,1]
     ];
     expect(
-      function(){findPivotColumn(inputMatrix)}
+      function(){findNextPivotColumn(inputMatrix)}
     ).toThrow('empty sets have no solutions');
   });
 
@@ -105,7 +105,7 @@ describe('findPivotColumn', () => {
       [0,0,0,0,0,0,0],
       [0,0,0,0,1,0,1]
     ];
-    const output = findPivotColumn(input);
+    const output = findNextPivotColumn(input);
     expect(input).toEqual(expectedInput);
   });
 });

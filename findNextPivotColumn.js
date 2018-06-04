@@ -1,11 +1,11 @@
-export function findPivotColumn(matrix){
+export function findNextPivotColumn(matrix){
   // remove the right most column (the column vector of solutions)
   const withOutTheRightestColumn = matrix.map(
     function(x, index, array){
       const thisRowWithOutTheRightestColumn =  x.filter(function(y, index, array){
         return !!(array.length -1 != index);
       })
-      return thisRowWithOutTheRightestColumn;
+      return thisRowWithOutTheRightestColfindPivotColumnumn;
     })
     // get the columns from the matrix as rows in a new array for easyer searching
     const columns = withOutTheRightestColumn.map(function(column, index, array){

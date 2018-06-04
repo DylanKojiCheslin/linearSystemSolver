@@ -1,6 +1,6 @@
-import {findPivotColumn} from './findPivotColumn'
+import {findNextPivotColumn} from './findNextPivotColumn'
 export function initializePivot( matrix ){
-  const columnNumber = findPivotColumn( matrix );
+  const columnNumber = findNextPivotColumn( matrix );
   const system = {
     s : matrix,
     pivot : {
