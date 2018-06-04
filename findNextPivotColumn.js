@@ -5,7 +5,7 @@ export function findNextPivotColumn(matrix){
       const thisRowWithOutTheRightestColumn =  x.filter(function(y, index, array){
         return !!(array.length -1 != index);
       })
-      return thisRowWithOutTheRightestColfindPivotColumnumn;
+      return thisRowWithOutTheRightestColumn;
     })
     // get the columns from the matrix as rows in a new array for easyer searching
     const columns = withOutTheRightestColumn.map(function(column, index, array){
