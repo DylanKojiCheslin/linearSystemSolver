@@ -6,7 +6,8 @@ import  {findNextPivot} from './findNextPivot';
 export function changeToEtchlonForm(system){
   let newSystem = { ...system };
   if (newSystem.s.length - 1 == newSystem.pivot.row) {
-    const lastSystem = scalePivotToOne(newSystem);
+    const scaled = scalePivotToOne(newSystem);
+    const lastSystem = findNextPivot(scaled);
     return lastSystem;
   }else {
     const systemLargestTop = moveLargestToTopOfPivotColumn(newSystem);

@@ -6,6 +6,10 @@ import {pivotValueIsOne} from '../pivotValueIsOne';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
 
+// move no coefficients error to initializePivot
+// change no coefficients error into state solvable:false
+// add no coefficients tests for initializePivot
+// findNextPivotColumn receves full state, not just matrix
 // findNextPivotColumn handles non-init state case
 // findNextPivot init state case
 // findNextPivot should add current pivot to leadingValues array
@@ -13,7 +17,7 @@ import sinon from 'sinon';
 // findNextPivot include findNextPivotColumn with non-zero under pivot
 
 describe('changeToEtchlonForm', () => {
-  it('return expected value', () => {
+  it('return expected value 0', () => {
     let inputSystem = {
       s : [
         [3,3,3],
@@ -22,7 +26,8 @@ describe('changeToEtchlonForm', () => {
       pivot : {
         row : 0,
         column : 0
-      }
+      },
+      leadingValues : []
     }
     const expectedOutput = {
       s: [
@@ -33,80 +38,88 @@ describe('changeToEtchlonForm', () => {
         row: 1,
         column: 1
       },
-      leadingValues: [ ]
+      leadingValues: [ Object({ row: 0, column: 0 }) ]
     }
     let outputSystem = changeToEtchlonForm(inputSystem);
-    console.log("outputSystem");
-    console.log(outputSystem);
     expect(outputSystem).toEqual(expectedOutput);
   });
+
+  it('return expected value 1', () => {
+    let inputSystem = {
+      s : [
+        [2,3,0,5],
+        [0,0,1,20],
+        [0,-2,0,5]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
+      },
+      leadingValues : []
+    }
+    const expectedOutput = {
+      s: [
+          [1,1.5,0,2.5],
+          [0,1,0,-2.5],
+          [0,0,1,20]
+      ],
+      pivot: {
+        row: 3,
+        column: 3
+      },
+      leadingValues: [
+        Object({ row: 0, column: 0 }),
+        Object({ row: 1, column: 1 }),
+        Object({ row: 2, column: 2 })
+       ]
+    }
+    let outputSystem = changeToEtchlonForm(inputSystem);
+    expect(outputSystem).toEqual(expectedOutput);
+  });
+
 });
 
 describe('findNextPivotColumn', () => {
 
   it('returns the correct pivot column', () => {
-    const inputMatrix =
-    [
-      [0,0,0,0],
-      [0,1,0,0],
-      [0,0,0,0]
-    ];
+    const inputMatrix = {
+      s :
+        [
+          [0,0,0,0],
+          [0,1,0,0],
+          [0,0,0,0]
+        ],
+        pivot : {
+          row : 0,
+          column : 0
+        },
+      leadingValues : []
+    };
     const expectedOutput = 1;
     const output = findNextPivotColumn(inputMatrix);
     expect(output).toEqual(expectedOutput);
   });
 
   it('returns the correct pivot column non rotational symmetry input', () => {
-    const inputMatrix =
-    [
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,1,0,1]
-    ];
+    const inputMatrix = {
+      s :
+      [
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,1,0,1]
+      ],
+        pivot : {
+          row : 0,
+          column : 0
+        },
+      leadingValues : []
+    };
     const expectedOutput = 4;
     const output = findNextPivotColumn(inputMatrix);
     expect(output).toEqual(expectedOutput);
-  });
-
-  it('throws error if all coefficients are zero', () => {
-    const inputMatrix =
-    [
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,1]
-    ];
-    expect(
-      function(){findNextPivotColumn(inputMatrix)}
-    ).toThrow('sets with no pivot column have no solutions');
-  });
-
-  it('does not modifiy input', () => {
-    const input =
-    [
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,1,0,1]
-    ];
-    const expectedInput =
-    [
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,1,0,1]
-    ];
-    const output = findNextPivotColumn(input);
-    expect(input).toEqual(expectedInput);
   });
 });
 
@@ -127,11 +140,28 @@ describe('initializePivot', () => {
       pivot : {
         row : 0,
         column : 1
-      }
+      },
+      leadingValues : []
     };
     const outputSystem = initializePivot(inputMatrix);
     expect(outputSystem).toEqual(expectedOutput);
   });
+
+    // it('throws error if all coefficients are zero', () => {
+    //   const inputMatrix =
+    //   [
+    //     [0,0,0,0,0,0,0],
+    //     [0,0,0,0,0,0,0],
+    //     [0,0,0,0,0,0,0],
+    //     [0,0,0,0,0,0,0],
+    //     [0,0,0,0,0,0,0],
+    //     [0,0,0,0,0,0,1]
+    //   ];
+    //   expect(
+    //     function(){findNextPivotColumn(inputMatrix)}
+    //   ).toThrow('sets with no pivot column have no solutions');
+    // });
+
 });
 
 describe("moveLargestToTopOfPivotColumn", () => {

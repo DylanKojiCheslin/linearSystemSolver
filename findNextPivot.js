@@ -1,17 +1,13 @@
+import {findNextPivotColumn} from "./findNextPivotColumn"
 export function findNextPivot(system) {
-  const { pivot, ...nextSystem } = system;
-  if (! nextSystem.leadingValues) {
-    nextSystem.leadingValues = [];
-  } else {
-    console.log(pivot);
-    nextSystem.leadingValues.push(pivot);
-  }
 
+  const nextSystem = {...system};
+  const pivot = nextSystem.pivot;
+  nextSystem.leadingValues.push(pivot);
+  const nextPivotColumn = findNextPivotColumn(nextSystem);
   nextSystem.pivot = {
     row :  pivot.row + 1,
-    column : pivot.column + 1
+    column : nextPivotColumn
   };
-
-    console.log(nextSystem);
   return nextSystem;
 }
