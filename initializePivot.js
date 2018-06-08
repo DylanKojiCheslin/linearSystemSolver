@@ -11,6 +11,8 @@ export function initializePivot( matrix ){
   const nextPivotColumn = findNextPivotColumn( system );
   if ( nextPivotColumn == -1 ){
     throw 'sets with no pivot column have no solutions';
+  }else{
+    system.pivot.column = nextPivotColumn;
   }
   return system
 }

@@ -7,7 +7,6 @@ import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
 
 // change no coefficients error into state solvable:false
-// add no coefficients tests for initializePivot
 // findNextPivot init state case
 // findNextPivot should add current pivot to leadingValues array
 // findNextPivot should handle columns that empty under pivot and empty rows
@@ -189,20 +188,20 @@ describe('initializePivot', () => {
     expect(outputSystem).toEqual(expectedOutput);
   });
 
-    // it('throws error if all coefficients are zero', () => {
-    //   const inputMatrix =
-    //   [
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,1]
-    //   ];
-    //   expect(
-    //     function(){findNextPivotColumn(inputMatrix)}
-    //   ).toThrow('sets with no pivot column have no solutions');
-    // });
+    it('throws error if all coefficients are zero', () => {
+      const inputMatrix =
+      [
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,1]
+      ];
+      expect(
+        function(){initializePivot(inputMatrix)}
+      ).toThrow('sets with no pivot column have no solutions');
+    });
 
 });
 
