@@ -6,11 +6,8 @@ import {pivotValueIsOne} from '../pivotValueIsOne';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
 
-// move no coefficients error to initializePivot
 // change no coefficients error into state solvable:false
 // add no coefficients tests for initializePivot
-// findNextPivotColumn receves full state, not just matrix
-// findNextPivotColumn handles non-init state case
 // findNextPivot init state case
 // findNextPivot should add current pivot to leadingValues array
 // findNextPivot should handle columns that empty under pivot and empty rows
@@ -84,15 +81,15 @@ describe('findNextPivotColumn', () => {
   it('returns the correct pivot column', () => {
     const inputMatrix = {
       s :
-        [
-          [0,0,0,0],
-          [0,1,0,0],
-          [0,0,0,0]
-        ],
-        pivot : {
-          row : 0,
-          column : 0
-        },
+      [
+        [0,0,0,0],
+        [0,1,0,0],
+        [0,0,0,0]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
+      },
       leadingValues : []
     };
     const expectedOutput = 1;
@@ -111,16 +108,61 @@ describe('findNextPivotColumn', () => {
         [0,0,0,0,0,0,0],
         [0,0,0,0,1,0,1]
       ],
-        pivot : {
-          row : 0,
-          column : 0
-        },
+      pivot : {
+        row : 0,
+        column : 0
+      },
       leadingValues : []
     };
     const expectedOutput = 4;
     const output = findNextPivotColumn(inputMatrix);
     expect(output).toEqual(expectedOutput);
   });
+
+  it('returns the correct for first column', () => {
+    const inputMatrix = {
+      s :
+      [
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [1,0,0,0,0,0,0],
+        [0,0,0,0,0,0,1]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
+      },
+      leadingValues : []
+    };
+    const expectedOutput = 0;
+    const output = findNextPivotColumn(inputMatrix);
+    expect(output).toEqual(expectedOutput);
+  });
+
+  it('returns correct for all zeros', () => {
+    const inputMatrix = {
+      s :
+      [
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,1]
+      ],
+      pivot : {
+        row : 0,
+        column : 0
+      },
+      leadingValues : []
+    };
+    const expectedOutput = -1;
+    const output = findNextPivotColumn(inputMatrix);
+    expect(output).toEqual(expectedOutput);
+  });
+
 });
 
 describe('initializePivot', () => {
