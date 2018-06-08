@@ -1,5 +1,5 @@
 import {switchRows} from './switchRows';
-export function moveLargestToTopOfPivotColumn(system){
+export function partialPivoting(system){
   const newSystem = { ...system};
   const rowsOffSetNumber = newSystem.pivot.row;
   const columnNumber = newSystem.pivot.column;

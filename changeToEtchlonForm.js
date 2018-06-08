@@ -1,4 +1,4 @@
-import {moveLargestToTopOfPivotColumn} from './moveLargestToTopOfPivotColumn';
+import {partialPivoting} from './partialPivoting';
 import {zeroAllRowsUnderThePivot} from './zeroAllRowsUnderThePivot';
 import {scalePivotToOne} from './scalePivotToOne';
 import  {findNextPivot} from './findNextPivot';
@@ -10,7 +10,7 @@ export function changeToEtchlonForm(system){
     const lastSystem = findNextPivot(scaled);
     return lastSystem;
   }else {
-    const systemLargestTop = moveLargestToTopOfPivotColumn(newSystem);
+    const systemLargestTop = partialPivoting(newSystem);
     const zeroedUnderPivot = zeroAllRowsUnderThePivot(systemLargestTop);
     const scaled = scalePivotToOne(zeroedUnderPivot);
     const nextSystem = findNextPivot(scaled);

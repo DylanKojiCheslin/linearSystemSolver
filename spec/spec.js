@@ -1,7 +1,7 @@
 import {changeToEtchlonForm} from '../changeToEtchlonForm';
 import {findNextPivotColumn} from '../findNextPivotColumn';
 import {initializeSystem} from '../initializeSystem';
-import {moveLargestToTopOfPivotColumn} from '../moveLargestToTopOfPivotColumn';
+import {partialPivoting} from '../partialPivoting';
 import {pivotValueIsOne} from '../pivotValueIsOne';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
@@ -205,7 +205,7 @@ describe('initializeSystem', () => {
 
 });
 
-describe("moveLargestToTopOfPivotColumn", () => {
+describe("partialPivoting", () => {
   it('should return array with largest absolute value to top of each pivot', () => {
     let inputSystem = {
       s : [
@@ -229,7 +229,7 @@ describe("moveLargestToTopOfPivotColumn", () => {
         row : 0
       }
     };
-    let output = moveLargestToTopOfPivotColumn(inputSystem);
+    let output = partialPivoting(inputSystem);
     expect(output).toEqual(expectedOutput);
   });
 });
