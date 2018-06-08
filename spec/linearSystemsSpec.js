@@ -142,7 +142,7 @@
 //
 // });
 //
-//     describe('_initializePivot', () => {
+//     describe('_initializeSystem', () => {
 //
 //       it('returns with correct pivot', () => {
 //         const inputSystem = {
@@ -167,7 +167,7 @@
 //             column : 1
 //           }
 //         }
-//         let outputSystem = linSys._initializePivot(inputSystem);
+//         let outputSystem = linSys._initializeSystem(inputSystem);
 //         expect(outputSystem).toEqual(expectedOutput);
 //       });
 //
@@ -196,7 +196,7 @@
 //             column : 2
 //           }
 //         }
-//         let outputSystem = linSys._initializePivot(inputSystem);
+//         let outputSystem = linSys._initializeSystem(inputSystem);
 //         expect(outputSystem).toEqual(expectedOutput);
 //       });
 //
@@ -214,7 +214,7 @@
 //         };
 //         expect(
 //           function(){
-//             linSys._initializePivot(emptyObject)
+//             linSys._initializeSystem(emptyObject)
 //           }).toThrow('empty sets have no solutions');
 //       });
 //     });

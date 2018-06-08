@@ -1,5 +1,5 @@
 import {findNextPivotColumn} from './findNextPivotColumn'
-export function initializePivot( matrix ){
+export function initializeSystem( matrix ){
   const system = {
     s : matrix,
     pivot : {

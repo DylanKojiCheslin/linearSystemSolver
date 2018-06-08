@@ -1,6 +1,6 @@
 import {changeToEtchlonForm} from '../changeToEtchlonForm';
 import {findNextPivotColumn} from '../findNextPivotColumn';
-import {initializePivot} from '../initializePivot';
+import {initializeSystem} from '../initializeSystem';
 import {moveLargestToTopOfPivotColumn} from '../moveLargestToTopOfPivotColumn';
 import {pivotValueIsOne} from '../pivotValueIsOne';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
@@ -164,7 +164,7 @@ describe('findNextPivotColumn', () => {
 
 });
 
-describe('initializePivot', () => {
+describe('initializeSystem', () => {
   it('returns the correct value', () => {
     const inputMatrix =
     [
@@ -184,7 +184,7 @@ describe('initializePivot', () => {
       },
       leadingValues : []
     };
-    const outputSystem = initializePivot(inputMatrix);
+    const outputSystem = initializeSystem(inputMatrix);
     expect(outputSystem).toEqual(expectedOutput);
   });
 
@@ -199,7 +199,7 @@ describe('initializePivot', () => {
         [0,0,0,0,0,0,1]
       ];
       expect(
-        function(){initializePivot(inputMatrix)}
+        function(){initializeSystem(inputMatrix)}
       ).toThrow('sets with no pivot column have no solutions');
     });
 

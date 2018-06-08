@@ -36,7 +36,7 @@ const solution = LinearSystemSolution(intObject);
 ```
 return a description of the systems solution (or lack of one)
 
-initializePivot
+initializeSystem
 1. the left most non-zero column is the pivot column
 2. the top row position of the pivot column is the pivot row
 
