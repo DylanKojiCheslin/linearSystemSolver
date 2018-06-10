@@ -34,7 +34,10 @@ describe('changeToEtchlonForm', () => {
         row: 1,
         column: 1
       },
-      leadingValues: [ Object({ row: 0, column: 0 }) ]
+      leadingValues: [
+        Object({ row: 0, column: 0 }),
+        Object({ row: 1, column: 1 })
+      ]
     }
     let outputSystem = changeToEtchlonForm(inputSystem);
     expect(outputSystem).toEqual(expectedOutput);

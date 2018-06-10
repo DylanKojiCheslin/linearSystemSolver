@@ -1,6 +1,7 @@
 export function findNextPivotColumn(system){
   // remove the right most column (the column vector of solutions)
   const currentPivotColumn = system.pivot.column;
+  const currentPivotRow = system.pivot.row;
   const withOutTheRightestColumn = system.s.map(
     function(x, index, array){
       const thisRowWithOutTheRightestColumn =  x.filter(function(y, index, array){
@@ -16,11 +17,13 @@ export function findNextPivotColumn(system){
     })
     //find column after the pivot with non-zero value in the column
     // let pivotColumn = newestPivotColumn || undefined;
-      const nextPivotColumn = columns.findIndex(function( x, index, array ){
-          const nonZeroInColumn = x.some( function( y ){
-            return Math.abs(y) > 0
-          })
-      return nonZeroInColumn;
+      const nextPivotColumn = columns.findIndex(function( x, clmIndex, array ){
+        if (clmIndex > currentPivotColumn) {
+            const nonZeroInColumn = x.some( function( y, rowIndex ){
+              return (Math.abs(y) > 0 && rowIndex > currentPivotRow)
+            })
+        return nonZeroInColumn;
+        }
     })
     return nextPivotColumn;
   }
