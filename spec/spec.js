@@ -1,5 +1,6 @@
 import {changeToEtchlonForm} from '../changeToEtchlonForm';
 import {findNextPivotColumn} from '../findNextPivotColumn';
+import {findNextPivot} from '../findNextPivot';
 import {initializeSystem} from '../initializeSystem';
 import {partialPivoting} from '../partialPivoting';
 import {pivotValueIsOne} from '../pivotValueIsOne';
@@ -76,6 +77,31 @@ describe('changeToEtchlonForm', () => {
     expect(outputSystem).toEqual(expectedOutput);
   });
 
+});
+
+describe('findNextPivot', () => {
+  it('returns correctly', () => {
+    const inputSystem = {
+      s: [
+        [ 1, 0, 0.5 ],
+        [ 0, 3, 1.5 ]
+      ],
+      pivot: {row: 0, column: 0},
+      leadingValues: [
+        { row: 0, column: 0 }
+      ]
+    }
+    const expectedOutput = {
+      s: [
+        [ 1, 0, 0.5 ],
+        [ 0, 3, 1.5 ]
+      ],
+      pivot: {row: 1, column: 1},
+      leadingValues: [
+        { row: 0, column: 0 }
+      ]
+    }
+  });
 });
 
 describe('findNextPivotColumn', () => {
