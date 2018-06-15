@@ -101,6 +101,8 @@ describe('findNextPivot', () => {
         { row: 0, column: 0 }
       ]
     }
+    let outputSystem = findNextPivot(inputSystem);
+    expect(outputSystem).toEqual(expectedOutput);
   });
 });
 
