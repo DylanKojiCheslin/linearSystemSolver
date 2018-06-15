@@ -104,6 +104,37 @@ describe('findNextPivot', () => {
     let outputSystem = findNextPivot(inputSystem);
     expect(outputSystem).toEqual(expectedOutput);
   });
+
+  it('returns correctly on last pivot', () => {
+    const inputSystem = {
+      s: [
+        [ 1, 0, 0, 0.5 ],
+        [ 0, 3, 0, 1.5 ],
+        [ 0, 0, 0, 0   ]
+      ],
+      pivot: {row: 1, column: 1},
+      leadingValues: [
+        { row: 0, column: 0 },
+        { row: 1, column: 1 }
+      ]
+    };
+    const expectedOutput = {
+      s: [
+        [ 1, 0, 0, 0.5 ],
+        [ 0, 3, 0, 1.5 ],
+        [ 0, 0, 0, 0   ]
+      ],
+      pivot: {row: 1, column: 1},
+      leadingValues: [
+        { row: 0, column: 0 },
+        { row: 1, column: 1 }
+      ],
+      lastLeadingEntryFound: true
+    };
+    let outputSystem = findNextPivot(inputSystem);
+    expect(outputSystem).toEqual(expectedOutput);
+  });
+
 });
 
 describe('findNextPivotColumn', () => {
