@@ -165,6 +165,27 @@ describe('findNextPivotColumn', () => {
     expect(output).toEqual(expectedOutput);
   });
 
+  it('returns correctly on last leadingValue', () => {
+    const inputMatrix = {
+      s :
+      [
+        [0,1,0,0],
+        [0,0,0,0],
+        [0,0,0,0]
+      ],
+      pivot : {
+        row : 0,
+        column : 1
+      },
+      leadingValues : [
+        Object({ row: 0, column: 1 })
+      ]
+    };
+    const expectedOutput = -1;
+    const output = findNextPivotColumn(inputMatrix);
+    expect(output).toEqual(expectedOutput);
+  });
+
 });
 
 describe('initializeSystem', () => {
