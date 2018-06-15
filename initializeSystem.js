@@ -3,8 +3,8 @@ export function initializeSystem( matrix ){
   const system = {
     s : matrix,
     pivot : {
-      row : 0,
-      column : 0
+      row : -1,
+      column : -1
     },
     leadingValues : []
   };
@@ -13,6 +13,7 @@ export function initializeSystem( matrix ){
     throw 'sets with no pivot column have no solutions';
   }else{
     system.pivot.column = nextPivotColumn;
+    system.pivot.row = system.pivot.row + 1;
   }
   return system
 }

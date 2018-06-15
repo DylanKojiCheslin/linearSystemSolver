@@ -6,11 +6,11 @@ import {pivotValueIsOne} from '../pivotValueIsOne';
 import {zeroAllRowsUnderThePivot} from '../zeroAllRowsUnderThePivot';
 import sinon from 'sinon';
 
+// findNextPivot should handle no coefficients state
 // change no coefficients error into state solvable:false
+// findNextPivot if leadingValues.length & no more coefficients coefficientsFound = true
 // findNextPivot init state case
-// findNextPivot should add current pivot to leadingValues array
 // findNextPivot should handle columns that empty under pivot and empty rows
-// findNextPivot include findNextPivotColumn with non-zero under pivot
 
 describe('changeToEtchlonForm', () => {
   it('return expected value 0', () => {
@@ -63,8 +63,8 @@ describe('changeToEtchlonForm', () => {
           [0,0,1,20]
       ],
       pivot: {
-        row: 3,
-        column: 3
+        row: 2,
+        column: 2
       },
       leadingValues: [
         Object({ row: 0, column: 0 }),
@@ -89,8 +89,8 @@ describe('findNextPivotColumn', () => {
         [0,0,0,0]
       ],
       pivot : {
-        row : 0,
-        column : 0
+        row : -1,
+        column : -1
       },
       leadingValues : []
     };
@@ -111,8 +111,8 @@ describe('findNextPivotColumn', () => {
         [0,0,0,0,1,0,1]
       ],
       pivot : {
-        row : 0,
-        column : 0
+        row : -1,
+        column : -1
       },
       leadingValues : []
     };
@@ -133,8 +133,8 @@ describe('findNextPivotColumn', () => {
         [0,0,0,0,0,0,1]
       ],
       pivot : {
-        row : 0,
-        column : 0
+        row : -1,
+        column : -1
       },
       leadingValues : []
     };
@@ -155,8 +155,8 @@ describe('findNextPivotColumn', () => {
         [0,0,0,0,0,0,1]
       ],
       pivot : {
-        row : 0,
-        column : 0
+        row : -1,
+        column : -1
       },
       leadingValues : []
     };
