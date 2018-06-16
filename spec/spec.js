@@ -1,3 +1,4 @@
+import {addPivotToLeadingValues} from '../addPivotToLeadingValues';
 import {changeToEtchlonForm} from '../changeToEtchlonForm';
 import {findNextPivotColumn} from '../findNextPivotColumn';
 import {findNextPivot} from '../findNextPivot';
@@ -12,6 +13,30 @@ import sinon from 'sinon';
 // findNextPivot if leadingValues.length & no more coefficients coefficientsFound = true
 // findNextPivot init state case
 // findNextPivot should handle columns that empty under pivot and empty rows
+
+describe('addPivotToLeadingValues', () => {
+  it('returns expected value', () => {
+    const inputSystem = {
+      s : [
+        [5,6,7],
+        [0,9,1]
+      ],
+      pivot : {row:0,column:0},
+      leadingValues : []
+    };
+    const expectedOutput = {
+      s : [
+        [5,6,7],
+        [0,9,1]
+      ],
+      pivot : {row:0,column:0},
+      leadingValues : [Object({ row: 0, column: 0 })]
+    };
+    const outputSystem = addPivotToLeadingValues(inputSystem);
+    expect(outputSystem).toEqual(expectedOutput);
+  });
+});
+
 
 describe('changeToEtchlonForm', () => {
   it('return expected value 0', () => {
