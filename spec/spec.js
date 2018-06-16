@@ -2,6 +2,7 @@ import {addPivotToLeadingValues} from '../addPivotToLeadingValues';
 import {changeToEtchlonForm} from '../changeToEtchlonForm';
 import {findNextPivotColumn} from '../findNextPivotColumn';
 import {findNextPivot} from '../findNextPivot';
+import {getRowScaledBy} from '../getRowScaledBy';
 import {initializeSystem} from '../initializeSystem';
 import {partialPivoting} from '../partialPivoting';
 import {pivotValueIsOne} from '../pivotValueIsOne';
@@ -270,6 +271,18 @@ describe('findNextPivotColumn', () => {
     expect(output).toEqual(expectedOutput);
   });
 
+});
+
+describe('getRowScaledBy', () => {
+  it('should return an array mulitplied by scale', () => {
+    const row = getRowScaledBy([2,0,6],2);
+    expect(row).toEqual([4,0,12]);
+  });
+
+  it('should return array mulitplied to negitive scale', () => {
+    const row = getRowScaledBy([2,0,-6],-1);
+    expect(row).toEqual([-2,0,6]);
+  });
 });
 
 describe('initializeSystem', () => {
